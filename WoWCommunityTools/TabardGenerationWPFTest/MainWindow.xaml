@@ -1,0 +1,9 @@
+﻿<Window x:Class="TabardGenerationWPFTest.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <Image Height="216" HorizontalAlignment="Left" Margin="83,39,0,0" Name="image1" Stretch="Fill" VerticalAlignment="Top" Width="223" />
+        <Button Content="Button" Height="23" HorizontalAlignment="Left" Margin="362,94,0,0" Name="button1" VerticalAlignment="Top" Width="75" Click="button1_Click" />
+    </Grid>
+</Window>

@@ -1,0 +1,20 @@
+﻿<navigation:Page x:Class="WOWSharp.Silverlight5Test.ErrorPage" 
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+           mc:Ignorable="d"
+           xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
+           d:DesignWidth="640" d:DesignHeight="480"
+           Title="ErrorPage Page">
+    <Grid x:Name="LayoutRoot">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <TextBlock Height="23" HorizontalAlignment="Center" Margin="0,10,0,10" Text="Error" VerticalAlignment="Top" FontWeight="Bold" FontSize="18" Width="Auto" />
+        <TextBox Grid.Row="1" Height="Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="2,2,2,2" Width="Auto" Name="ErrorText" IsReadOnly="True" Background="White" AcceptsReturn="True" />
+        <Button Grid.Row="2" Name="BackToMainButton" Content="Back To Main Page" Margin="266,9,264,11" HorizontalAlignment="Center" Click="BackToMainButtonClick" />
+    </Grid>
+</navigation:Page>

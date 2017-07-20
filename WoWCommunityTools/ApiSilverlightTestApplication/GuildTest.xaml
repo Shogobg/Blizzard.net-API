@@ -1,0 +1,57 @@
+﻿<navigation:Page x:Class="ApiSilverlightTestApplication.GuildTest" 
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+           mc:Ignorable="d"
+           xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
+           d:DesignWidth="640" d:DesignHeight="480"
+           Title="GuildTest Page" xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk" Loaded="Page_Loaded">
+    <Grid x:Name="LayoutRoot" Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="168*" />
+            <ColumnDefinition Width="472*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="428*" />
+        </Grid.RowDefinitions>
+
+        <Grid Margin="4" Grid.ColumnSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0" Grid.Row="0" Margin="4,4,4,0" Text="Region" />
+            <TextBlock Grid.Column="1" Grid.Row="0" Margin="4,4,4,0" Text="Realm" />
+            <TextBlock Grid.Column="2" Grid.Row="0" Margin="4,4,4,0" Text="Guild Name" />
+
+            <ComboBox Name="RegionCombo" Grid.Column="0" Grid.Row="1" Margin="0,0,2,0" Width="50" SelectionChanged="RegionCombo_SelectionChanged" />
+            <sdk:AutoCompleteBox Grid.Column="1" Grid.Row="1" Margin="2,0,2,0" Name="RealmNameText" />
+            <sdk:AutoCompleteBox Grid.Column="2" Grid.Row="1" Name="GuildNameText" />
+            <Button Name="GetMembersButton" Margin="2,0,2,0" Grid.Column="3" Grid.Row="1" Width="100" Click="GetMembersButton_Click">Get Members</Button>
+        </Grid>
+        <sdk:DataGrid AutoGenerateColumns="False" Margin="2,0,2,0" Grid.ColumnSpan="4" Grid.Row="2" Name="GuildMembersGrid" Height="Auto" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+            <sdk:DataGrid.Columns>
+                <sdk:DataGridTextColumn CanUserReorder="True" CanUserResize="True" CanUserSort="True" Width="*" Binding="{Binding Name}" Header="Charcater Name"/>
+                <sdk:DataGridTextColumn CanUserReorder="True" CanUserResize="True" CanUserSort="True" Width="Auto" Binding="{Binding Level}" Header="Level"/>
+                <sdk:DataGridTextColumn CanUserReorder="True" CanUserResize="True" CanUserSort="True" Width="Auto" Binding="{Binding Gender}" Header="Gender"/>
+                <sdk:DataGridTextColumn CanUserReorder="True" CanUserResize="True" CanUserSort="True" Width="Auto" Binding="{Binding Race}" Header="Race"/>
+                <sdk:DataGridTextColumn CanUserReorder="True" CanUserResize="True" CanUserSort="True" Width="Auto" Binding="{Binding Class}" Header="Class"/>
+            </sdk:DataGrid.Columns>
+        </sdk:DataGrid>
+    </Grid>
+</navigation:Page>

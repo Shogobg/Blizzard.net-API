@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Dictionary>
+  <Words>
+    <Recognized>
+      <Word>Crit</Word>
+      <Word>Mana</Word>
+      <Word>Worgen</Word>
+      <Word>Draenei</Word>
+      <Word>Tauren</Word>
+      <Word>Dps</Word>
+      <Word>Equippable</Word>
+      <Word>Auctionable</Word>
+      <Word>Reforged</Word>
+      <Word>Reforge</Word>
+      <Word>Orc</Word>
+      <Word>Pvp</Word>
+      <Word>Pve</Word>
+      <Word>Wow</Word>
+      <Word>Api</Word>
+      <Word>Pandaren</Word>
+      <Word>wow</Word>
+      <Word>Libram</Word>
+      <Word>Librams</Word>
+      <Word>Tol</Word>
+      <Word>Barad</Word>
+      <Word>Proc</Word>
+      <Word>Lfr</Word>
+      <Word>v</Word>
+      <Word>Polearm</Word>
+      <Word>Daibo</Word>
+      <Word>Cooldown</Word>
+    </Recognized>
+  </Words>
+  <Acronyms>
+    <CasingExceptions>
+      <Acronym>WOW</Acronym>
+      <Acronym>DPS</Acronym>
+      <Acronym>v</Acronym>
+    </CasingExceptions>
+  </Acronyms>
+</Dictionary>

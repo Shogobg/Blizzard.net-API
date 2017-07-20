@@ -1,0 +1,376 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6AB857FE-524E-456A-BA63-6486C8FE8D1D}</ProjectGuid>
+    <ProjectTypeGuids>{A1591282-1198-4647-A2B1-27E5FF5F6F3B};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WOWSharp.Community</RootNamespace>
+    <AssemblyName>WOWSharp.Community</AssemblyName>
+    <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
+    <SilverlightApplication>false</SilverlightApplication>
+    <ValidateXaml>true</ValidateXaml>
+    <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <!-- This property group is only here to support building this project using the 
+       MSBuild 3.5 toolset. In order to work correctly with this older toolset, it needs 
+       to set the TargetFrameworkVersion to v3.5 -->
+  <PropertyGroup Condition="'$(MSBuildToolsVersion)' == '3.5'">
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;SILVERLIGHT</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="mscorlib" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Windows" />
+    <Reference Include="system" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Windows.Browser" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\WOWSharp.Community\ApiAsyncResult.cs">
+      <Link>ApiAsyncResult.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ApiClient.cs">
+      <Link>ApiClient.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ApiError.cs">
+      <Link>ApiError.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ApiResponse.cs">
+      <Link>ApiResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\EnumHelper.cs">
+      <Link>EnumHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ErrorMessages.Designer.cs">
+      <Link>ErrorMessages.Designer.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ICacheManager.cs">
+      <Link>ICacheManager.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\MemoryCache.cs">
+      <Link>MemoryCache.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\Achievement.cs">
+      <Link>ObjectModel\Achievement.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\AchievementCategory.cs">
+      <Link>ObjectModel\AchievementCategory.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\Achievements.cs">
+      <Link>ObjectModel\Achievements.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\AchievementsResponse.cs">
+      <Link>ObjectModel\AchievementsResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\ArenaTeam.cs">
+      <Link>ObjectModel\ArenaTeam.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\ArenaTeamMember.cs">
+      <Link>ObjectModel\ArenaTeamMember.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\ArenaTeamsResponse.cs">
+      <Link>ObjectModel\ArenaTeamsResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\Auction.cs">
+      <Link>ObjectModel\Auction.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\AuctionDump.cs">
+      <Link>ObjectModel\AuctionDump.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\AuctionFile.cs">
+      <Link>ObjectModel\AuctionFile.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\AuctionFilesResponse.cs">
+      <Link>ObjectModel\AuctionFilesResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\AuctionHouse.cs">
+      <Link>ObjectModel\AuctionHouse.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\BattlegroundStats.cs">
+      <Link>ObjectModel\BattlegroundStats.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\Character.cs">
+      <Link>ObjectModel\Character.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\Character.Emblem.cs">
+      <Link>ObjectModel\Character.Emblem.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\CharacterAppearance.cs">
+      <Link>ObjectModel\CharacterAppearance.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\CharacterArenaTeam.cs">
+      <Link>ObjectModel\CharacterArenaTeam.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\CharacterBossKills.cs">
+      <Link>ObjectModel\CharacterBossKills.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\CharacterClass.cs">
+      <Link>ObjectModel\CharacterClass.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\CharacterField.cs">
+      <Link>ObjectModel\CharacterField.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\CharacterGender.cs">
+      <Link>ObjectModel\CharacterGender.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\CharacterGlyph.cs">
+      <Link>ObjectModel\CharacterGlyph.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\CharacterGlyphs.cs">
+      <Link>ObjectModel\CharacterGlyphs.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\CharacterGuild.cs">
+      <Link>ObjectModel\CharacterGuild.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\CharacterInstanceProgression.cs">
+      <Link>ObjectModel\CharacterInstanceProgression.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\CharacterInstanceStatus.cs">
+      <Link>ObjectModel\CharacterInstanceStatus.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\CharacterItems.cs">
+      <Link>ObjectModel\CharacterItems.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\CharacterPet.cs">
+      <Link>ObjectModel\CharacterPet.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\CharacterProfession.cs">
+      <Link>ObjectModel\CharacterProfession.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\CharacterProfessions.cs">
+      <Link>ObjectModel\CharacterProfessions.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\CharacterProgression.cs">
+      <Link>ObjectModel\CharacterProgression.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\CharacterPvpInformation.cs">
+      <Link>ObjectModel\CharacterPvpInformation.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\CharacterRace.cs">
+      <Link>ObjectModel\CharacterRace.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\CharacterRatedBattlegroundInformation.cs">
+      <Link>ObjectModel\CharacterRatedBattlegroundInformation.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\CharacterReputation.cs">
+      <Link>ObjectModel\CharacterReputation.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\CharacterStats.cs">
+      <Link>ObjectModel\CharacterStats.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\CharacterTalents.cs">
+      <Link>ObjectModel\CharacterTalents.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\CharacterTalentTree.cs">
+      <Link>ObjectModel\CharacterTalentTree.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\CharacterTitle.cs">
+      <Link>ObjectModel\CharacterTitle.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\Class.cs">
+      <Link>ObjectModel\Class.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\ClassesResponse.cs">
+      <Link>ObjectModel\ClassesResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\EquipmentSlot.cs">
+      <Link>ObjectModel\EquipmentSlot.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\EquippedItem.cs">
+      <Link>ObjectModel\EquippedItem.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\EquippedItemParameters.cs">
+      <Link>ObjectModel\EquippedItemParameters.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\Faction.cs">
+      <Link>ObjectModel\Faction.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\GemBonus.cs">
+      <Link>ObjectModel\GemBonus.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\GemInfo.cs">
+      <Link>ObjectModel\GemInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\GemType.cs">
+      <Link>ObjectModel\GemType.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\Guild.cs">
+      <Link>ObjectModel\Guild.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\GuildEmblem.cs">
+      <Link>ObjectModel\GuildEmblem.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\GuildField.cs">
+      <Link>ObjectModel\GuildField.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\GuildMembership.cs">
+      <Link>ObjectModel\GuildMembership.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\GuildPerk.cs">
+      <Link>ObjectModel\GuildPerk.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\GuildPerksResponse.cs">
+      <Link>ObjectModel\GuildPerksResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\GuildReward.cs">
+      <Link>ObjectModel\GuildReward.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\GuildRewardsResponse.cs">
+      <Link>ObjectModel\GuildRewardsResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\Item.cs">
+      <Link>ObjectModel\Item.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\ItemBindType.cs">
+      <Link>ObjectModel\ItemBindType.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\ItemCategory.cs">
+      <Link>ObjectModel\ItemCategory.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\ItemCategoryName.cs">
+      <Link>ObjectModel\ItemCategoryName.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\ItemCategoryNamesResponse.cs">
+      <Link>ObjectModel\ItemCategoryNamesResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\ItemInventoryType.cs">
+      <Link>ObjectModel\ItemInventoryType.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\ItemQuality.cs">
+      <Link>ObjectModel\ItemQuality.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\ItemSource.cs">
+      <Link>ObjectModel\ItemSource.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\ItemSpell.cs">
+      <Link>ObjectModel\ItemSpell.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\ItemStat.cs">
+      <Link>ObjectModel\ItemStat.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\ItemStatType.cs">
+      <Link>ObjectModel\ItemStatType.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\ItemSubCategory.cs">
+      <Link>ObjectModel\ItemSubCategory.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\PowerType.cs">
+      <Link>ObjectModel\PowerType.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\Quest.cs">
+      <Link>ObjectModel\Quest.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\Race.cs">
+      <Link>ObjectModel\Race.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\RacesResponse.cs">
+      <Link>ObjectModel\RacesResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\Realm.cs">
+      <Link>ObjectModel\Realm.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\RealmStatusResponse.cs">
+      <Link>ObjectModel\RealmStatusResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\RealmType.cs">
+      <Link>ObjectModel\RealmType.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\RecipeInfo.cs">
+      <Link>ObjectModel\RecipeInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\RewardItem.cs">
+      <Link>ObjectModel\RewardItem.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\Skill.cs">
+      <Link>ObjectModel\Skill.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\Socket.cs">
+      <Link>ObjectModel\Socket.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\SocketInfo.cs">
+      <Link>ObjectModel\SocketInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\Spell.cs">
+      <Link>ObjectModel\Spell.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\Standing.cs">
+      <Link>ObjectModel\Standing.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\WeaponDamage.cs">
+      <Link>ObjectModel\WeaponDamage.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\ObjectModel\WeaponInfo.cs">
+      <Link>ObjectModel\WeaponInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\Region.cs">
+      <Link>Region.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\WoWApiException.cs">
+      <Link>WoWApiException.cs</Link>
+    </Compile>
+    <Compile Include="..\WOWSharp.Community\WriteableBitmapExtensions.cs">
+      <Link>WriteableBitmapExtensions.cs</Link>
+    </Compile>
+    <Compile Include="ApiClient.Silverlight.cs" />
+    <Compile Include="BaseExtensibleDataObject.cs" />
+    <Compile Include="ColorConverter.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReaderWriterLockSlim.cs" />
+    <Compile Include="SerializableAttribute.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\WOWSharp.Community\ErrorMessages.resx">
+      <Link>ErrorMessages.resx</Link>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{A1591282-1198-4647-A2B1-27E5FF5F6F3B}">
+        <SilverlightProjectProperties />
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

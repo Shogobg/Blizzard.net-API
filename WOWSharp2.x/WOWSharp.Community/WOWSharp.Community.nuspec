@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>WOWSharp</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <licenseUrl>http://wowsharp.codeplex.com/license</licenseUrl>
+    <projectUrl>http://wowsharp.codeplex.com/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <releaseNotes>http://wowsharp.codeplex.com/releases/view/101698</releaseNotes>
+    <copyright>Copyright © 2011 by Sherif Elmetainy (aka Grendiser@Kazzak-EU)</copyright>
+    <tags>wowsharp battle.net wow warcraft diablo d3 api</tags>
+  </metadata>
+</package>

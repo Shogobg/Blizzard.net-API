@@ -1,0 +1,55 @@
+! WOWSharp 1.4.0 Preview
+
+!! IMPORTANT
+* This version of WOWSharp has MANY breaking changes and is NOT compatible with and can NOT simply replace the older versions pre 1.0.
+
+!! 1.4.0
+* Added support for changes made by Blizzard for Patch 5.4.
+* API now gets information about Flexible progress, LFR progress as well as timestamp for kills in all modes
+* BREAKING CHANGE! API now gets the new PVP leader board information for characters. Arena teams were removed from Blizzard APIs and from WowSharp
+
+!! 1.3.4
+* Fixed an issue with guild level up event resulting in an exception when deserializing guild information.
+
+!! 1.3.3
+* Added armor property to equipped items.
+* Added reforged amount to equipped item stats.
+
+!! 1.3.2
+* Added missing enumeration values for ItemSpellTriggers enumeration.
+* Added character profile item upgrade information (item upgrade feature added in Patch 5.1)
+* Added new IsUpgradable property to item API (item upgrade feature added in Patch 5.1)
+
+!! 1.3.1
+* Added [EnumMember] attribute to ItemBindType enumeration members to support serialization.
+
+!! 1.3
+* Added challenge information to guild API.
+* Added get spell info and get talents info APIs
+* Added get battle pet types Api.
+
+!! 1.2
+* Added support for battle pets, pet slots, hunter pets, feeds and mounts for character information.
+* Added support for guild news in guild information.
+* Added support for battle Pets abilities and battle Pet Species APIs. Note that battle Pet species APIs will result in a SerializationException because of an issue of how Blizzard serializes the information. Blizzard says this is going to get fixed, so when they do the API should work without an exception. http://us.battle.net/wow/en/forum/topic/6794870673
+* Added support for retrieving region and realm leaderboards for challenge modes.
+* Some bug fixes releated to serialization.
+
+!! 1.1
+* Some bug fixes with serialization.
+
+!! 1.0
+
+* Migrated the project to Visual Studio 2012 as a Portable Class Library Project. This means that only one library is needed to support .NET 4, Silverlight 4 and 5 and Windows Mobile 7 and 7.5.
+* The library no longer supports .NET 3.5 (minimum required is 4.0 now). If you want .NET 3.5 you will need to download the source code and compile. Most of the code should work with very few exceptions.
+* All the classes related to World of WarCraft were moved to new Wow Namespace. The ApiClient class is now the base abstract class for WowClient class which has all the methods related to World Of Warcraft. This is to prepare for future support for Diablo 3 API.
+* Emblem Drawing feature were removed from the library since they don't fit in the portable class library. I plan to add it in another library.
+* Fixed an issue with the deserialization of itemSet attribute of the item (the exception was caused by an undocumented change by Blizzard which changed the itemSet from a string to an object)
+* Added the Item Set API
+* Added the rated battleground ladded API
+* Added the new fields for Achievements (criteria, accountWide, etc) which came with the API Mists of Pandaria update.
+* Support for character model changes in Mists of Pandaria (new talents, resilience changes, new class, new races, etc)
+* Added the battlegroups data resource API
+* Fixed several spelling mistakes in property names.
+* Updated the ItemCategory API to support subcategories
+* Changed the way collections are serialized. All properties that previously returned arrays now return IList<T> instead with only public getters.

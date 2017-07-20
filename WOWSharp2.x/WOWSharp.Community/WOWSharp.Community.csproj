@@ -1,0 +1,336 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{DA640CCB-A60B-40C5-A052-98DFE436DEA9}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WOWSharp.Community</RootNamespace>
+    <AssemblyName>WOWSharp.Community</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Profile136</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>.\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>.\bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- A reference to the entire .NET Framework is automatically included -->
+    <EmbeddedResource Include="ErrorMessages.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ErrorMessages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApiClient.cs" />
+    <Compile Include="ApiError.cs" />
+    <Compile Include="ApiException.cs" />
+    <Compile Include="ApiKeyPair.cs" />
+    <Compile Include="ApiResponse.cs" />
+    <Compile Include="CacheManagerException.cs" />
+    <Compile Include="DatetimeConverter.cs" />
+    <Compile Include="DatetimeMillisecondsConverter.cs" />
+    <Compile Include="DateTimeSecondsConverter.cs" />
+    <Compile Include="Diablo\ArtisanInfo.cs" />
+    <Compile Include="Diablo\ArtisanLevel.cs" />
+    <Compile Include="Diablo\ArtisanTier.cs" />
+    <Compile Include="Diablo\ArtisanTraining.cs" />
+    <Compile Include="Diablo\AttributeValue.cs" />
+    <Compile Include="Diablo\CharacterItems.cs" />
+    <Compile Include="Diablo\CharacterStats.cs" />
+    <Compile Include="Diablo\EquipmentSlot.cs" />
+    <Compile Include="Diablo\Follower.cs" />
+    <Compile Include="Diablo\FollowerSkills.cs" />
+    <Compile Include="Diablo\FollowerType.cs" />
+    <Compile Include="Diablo\HeroFollowers.cs" />
+    <Compile Include="Diablo\Item.cs" />
+    <Compile Include="Diablo\CharacterSkill.cs" />
+    <Compile Include="Diablo\CharacterSkills.cs" />
+    <Compile Include="Diablo\DiabloAct.cs" />
+    <Compile Include="Diablo\ActProgression.cs" />
+    <Compile Include="Diablo\DiabloClient.cs" />
+    <Compile Include="Diablo\Hero.cs" />
+    <Compile Include="Diablo\HeroClass.cs" />
+    <Compile Include="Diablo\HeroFollower.cs" />
+    <Compile Include="Diablo\HeroGender.cs" />
+    <Compile Include="Diablo\ItemAffix.cs" />
+    <Compile Include="Diablo\ItemAffixColor.cs" />
+    <Compile Include="Diablo\ItemAffixType.cs" />
+    <Compile Include="Diablo\ItemAttributes.cs" />
+    <Compile Include="Diablo\ItemDisplayColor.cs" />
+    <Compile Include="Diablo\ItemHelper.cs" />
+    <Compile Include="Diablo\ItemSalvageMaterial.cs" />
+    <Compile Include="Diablo\ItemSet.cs" />
+    <Compile Include="Diablo\ItemSetBonus.cs" />
+    <Compile Include="Diablo\ItemType.cs" />
+    <Compile Include="Diablo\ItemTypeInfo.cs" />
+    <Compile Include="Diablo\JsonDataItemConverter.cs" />
+    <Compile Include="Diablo\KillStatistics.cs" />
+    <Compile Include="Diablo\ProfileArtisanInfo.cs" />
+    <Compile Include="Diablo\ArtisanType.cs" />
+    <Compile Include="Diablo\DiabloProfile.cs" />
+    <Compile Include="Diablo\ProfileProgression.cs" />
+    <Compile Include="Diablo\Quest.cs" />
+    <Compile Include="Diablo\RandomAffixAttributes.cs" />
+    <Compile Include="Diablo\Recipe.cs" />
+    <Compile Include="Diablo\RecipeReagent.cs" />
+    <Compile Include="Diablo\Rune.cs" />
+    <Compile Include="Diablo\Skill.cs" />
+    <Compile Include="Diablo\SocketedGem.cs" />
+    <Compile Include="Diablo\SocketEffect.cs" />
+    <Compile Include="Diablo\TimePlayedStatistics.cs" />
+    <Compile Include="DoNotAuthenticateAttribute.cs" />
+    <Compile Include="EnumHelper.cs" />
+    <Compile Include="ErrorMessages.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ErrorMessages.resx</DependentUpon>
+    </Compile>
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="ICacheManager.cs" />
+    <Compile Include="Diablo\Progression.cs" />
+    <Compile Include="JsonApiResponseConverter.cs" />
+    <Compile Include="JsonSerializationContext.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Region.cs" />
+    <Compile Include="Wow\Achievements\Achievement.cs" />
+    <Compile Include="Wow\Achievements\AchievementCategory.cs" />
+    <Compile Include="Wow\Achievements\AchievementCriterion.cs" />
+    <Compile Include="Wow\Achievements\Achievements.cs" />
+    <Compile Include="Wow\Achievements\AchievementsResponse.cs" />
+    <Compile Include="Wow\Auctions\AuctionTimeLeft.cs" />
+    <Compile Include="Wow\BattleGroupsResponse.cs" />
+    <Compile Include="Wow\BattlePets\BattlePetAbility.cs" />
+    <Compile Include="Wow\BattlePets\BattlePetSpecies.cs" />
+    <Compile Include="Wow\BattlePets\BattlePetType.cs" />
+    <Compile Include="Wow\BattlePets\BattlePetTypesResponse.cs" />
+    <Compile Include="Wow\ChallengeMode\Challenge.cs" />
+    <Compile Include="Wow\ChallengeMode\ChallengeCompletionTime.cs" />
+    <Compile Include="Wow\ChallengeMode\ChallengeGroup.cs" />
+    <Compile Include="Wow\ChallengeMode\ChallengeGroupMember.cs" />
+    <Compile Include="Wow\Character\CharacterStatistic.cs" />
+    <Compile Include="Wow\Character\CharacterStatisticsCategory.cs" />
+    <Compile Include="Wow\Character\ClassTalentInfo.cs" />
+    <Compile Include="Wow\Character\EquippedItemUpgrade.cs" />
+    <Compile Include="Wow\Character\TalentsResponse.cs" />
+    <Compile Include="Wow\Guilds\GuildNewsItem.cs" />
+    <Compile Include="Wow\Guilds\GuildNewsItemType.cs" />
+    <Compile Include="Wow\Items\RewardItem.cs" />
+    <Compile Include="Wow\Pvp\CharacterPvpBracketInformation.cs" />
+    <Compile Include="Wow\Pvp\CharacterPvpBrackets.cs" />
+    <Compile Include="Wow\Pvp\PvpLeaderboardRecord.cs" />
+    <Compile Include="Wow\Pvp\PvpLeaderboardResponse.cs" />
+    <Compile Include="Wow\Pvp\PvpBracket.cs" />
+    <Compile Include="Wow\SimpleCharacter.cs" />
+    <Compile Include="Wow\ChallengeMode\ChallengeMedalType.cs" />
+    <Compile Include="Wow\ChallengeMode\ChallengeMap.cs" />
+    <Compile Include="Wow\ChallengeMode\ChallengesResponse.cs" />
+    <Compile Include="Wow\Character\CharacterMounts.cs" />
+    <Compile Include="Wow\Character\CharacterPets.cs" />
+    <Compile Include="Wow\Character\CharacterPetSlot.cs" />
+    <Compile Include="Wow\Character\Pet.cs" />
+    <Compile Include="Wow\Character\CharacterRoles.cs" />
+    <Compile Include="Wow\Character\Mount.cs" />
+    <Compile Include="Wow\Character\PetStats.cs" />
+    <Compile Include="Wow\FeedItem.cs" />
+    <Compile Include="Wow\FeedItemType.cs" />
+    <Compile Include="Wow\Items\ItemSourceTypes.cs" />
+    <Compile Include="Wow\Items\ItemSpellTriggers.cs" />
+    <Compile Include="Wow\Items\SocketTypes.cs" />
+    <Compile Include="Wow\Auctions\Auction.cs" />
+    <Compile Include="Wow\Auctions\AuctionDump.cs" />
+    <Compile Include="Wow\Auctions\AuctionFile.cs" />
+    <Compile Include="Wow\Auctions\AuctionFilesResponse.cs" />
+    <Compile Include="Wow\Auctions\AuctionHouse.cs" />
+    <Compile Include="Wow\Pvp\BattlegroundStats.cs" />
+    <Compile Include="Wow\Pvp\BattleGroup.cs" />
+    <Compile Include="Wow\Character\Character.cs" />
+    <Compile Include="Wow\Character\CharacterAppearance.cs" />
+    <Compile Include="Wow\Character\CharacterBossKills.cs" />
+    <Compile Include="Wow\Character\CharacterClass.cs" />
+    <Compile Include="Wow\Character\CharacterFields.cs" />
+    <Compile Include="Wow\Character\CharacterGender.cs" />
+    <Compile Include="Wow\Character\CharacterGlyph.cs" />
+    <Compile Include="Wow\Character\CharacterGlyphs.cs" />
+    <Compile Include="Wow\Character\CharacterGuild.cs" />
+    <Compile Include="Wow\Character\CharacterInstanceProgression.cs" />
+    <Compile Include="Wow\Character\CharacterInstanceStatus.cs" />
+    <Compile Include="Wow\Character\CharacterItems.cs" />
+    <Compile Include="Wow\Character\HunterPet.cs" />
+    <Compile Include="Wow\Character\CharacterProfession.cs" />
+    <Compile Include="Wow\Character\CharacterProfessions.cs" />
+    <Compile Include="Wow\Character\CharacterProgression.cs" />
+    <Compile Include="Wow\Character\CharacterPvpInformation.cs" />
+    <Compile Include="Wow\Character\CharacterRace.cs" />
+    <Compile Include="Wow\Character\CharacterRatedBattlegroundInformation.cs" />
+    <Compile Include="Wow\Character\CharacterReputation.cs" />
+    <Compile Include="Wow\Items\ItemCategory.cs" />
+    <Compile Include="Wow\Items\ItemSet.cs" />
+    <Compile Include="Wow\Items\ItemSetBonus.cs" />
+    <Compile Include="Wow\Items\ItemSubcategoryName.cs" />
+    <Compile Include="Wow\Pvp\PvpZone.cs" />
+    <Compile Include="Wow\Pvp\PvpZoneStatus.cs" />
+    <Compile Include="Wow\RealmPopulation.cs" />
+    <Compile Include="Wow\Character\Specialization.cs" />
+    <Compile Include="Wow\Character\CharacterStats.cs" />
+    <Compile Include="Wow\Character\CharacterTalents.cs" />
+    <Compile Include="Wow\Character\CharacterTalent.cs" />
+    <Compile Include="Wow\Character\CharacterTitle.cs" />
+    <Compile Include="Wow\Character\ClassKey.cs" />
+    <Compile Include="Wow\Character\ClassesResponse.cs" />
+    <Compile Include="Wow\Character\EquipmentSlot.cs" />
+    <Compile Include="Wow\Character\EquippedItem.cs" />
+    <Compile Include="Wow\Character\EquippedItemParameters.cs" />
+    <Compile Include="Wow\Faction.cs" />
+    <Compile Include="Wow\Items\GemBonus.cs" />
+    <Compile Include="Wow\Items\GemInfo.cs" />
+    <Compile Include="Wow\Items\GemType.cs" />
+    <Compile Include="Wow\Guilds\Guild.cs" />
+    <Compile Include="Wow\Guilds\GuildEmblem.cs" />
+    <Compile Include="Wow\Guilds\GuildFields.cs" />
+    <Compile Include="Wow\Guilds\GuildMembership.cs" />
+    <Compile Include="Wow\Guilds\GuildPerk.cs" />
+    <Compile Include="Wow\Guilds\GuildPerksResponse.cs" />
+    <Compile Include="Wow\Guilds\GuildReward.cs" />
+    <Compile Include="Wow\Guilds\GuildRewardsResponse.cs" />
+    <Compile Include="Wow\Items\Item.cs" />
+    <Compile Include="Wow\Items\ItemBindType.cs" />
+    <Compile Include="Wow\Items\ItemCategoryName.cs" />
+    <Compile Include="Wow\Items\ItemCategoryNamesResponse.cs" />
+    <Compile Include="Wow\Items\ItemInventoryType.cs" />
+    <Compile Include="Wow\Items\ItemQuality.cs" />
+    <Compile Include="Wow\Items\ItemSource.cs" />
+    <Compile Include="Wow\Items\ItemSpell.cs" />
+    <Compile Include="Wow\Items\ItemStat.cs" />
+    <Compile Include="Wow\Items\ItemStatType.cs" />
+    <Compile Include="Wow\MemoryCache.cs" />
+    <Compile Include="Wow\Character\PowerType.cs" />
+    <Compile Include="Wow\Quest.cs" />
+    <Compile Include="Wow\Character\Race.cs" />
+    <Compile Include="Wow\Character\RacesResponse.cs" />
+    <Compile Include="Wow\Realm.cs" />
+    <Compile Include="Wow\RealmStatusResponse.cs" />
+    <Compile Include="Wow\RealmTypes.cs" />
+    <Compile Include="Wow\Items\RecipeInfo.cs" />
+    <Compile Include="Wow\Skill.cs" />
+    <Compile Include="Wow\Items\Socket.cs" />
+    <Compile Include="Wow\Items\SocketInfo.cs" />
+    <Compile Include="Wow\Spell.cs" />
+    <Compile Include="Wow\Character\Standing.cs" />
+    <Compile Include="Wow\Items\WeaponDamage.cs" />
+    <Compile Include="Wow\Items\WeaponInfo.cs" />
+    <Compile Include="Wow\WowClient.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <CodeAnalysisDictionary Include="CustomDictionary.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Threading.Tasks">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\portable-net40+sl4+win8+wp71+wpa81\Microsoft.Threading.Tasks.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\portable-net40+sl4+win8+wp71+wpa81\Microsoft.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.3\lib\portable-net40+sl4+wp7+win8\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO">
+      <HintPath>..\packages\Microsoft.Bcl.1.1.8\lib\portable-net40+sl5+win8+wp8+wpa81\System.IO.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.20\lib\portable-net40+sl4+win8+wp71+wpa81\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Extensions">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.20\lib\portable-net40+sl4+win8+wp71+wpa81\System.Net.Http.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.20\lib\portable-net40+sl4+win8+wp71+wpa81\System.Net.Http.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime">
+      <HintPath>..\packages\Microsoft.Bcl.1.1.8\lib\portable-net40+sl5+win8+wp8+wpa81\System.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks">
+      <HintPath>..\packages\Microsoft.Bcl.1.1.8\lib\portable-net40+sl5+win8+wp8+wpa81\System.Threading.Tasks.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
+  <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
+    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
+    <Error Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
