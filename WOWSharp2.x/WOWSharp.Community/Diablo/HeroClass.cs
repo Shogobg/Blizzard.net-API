@@ -19,19 +19,14 @@
 // THE SOFTWARE.
 
 
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Serialization;
-using System.Text;
 
 namespace WOWSharp.Community.Diablo
 {
-    /// <summary>
-    /// A diablo hero class
-    /// </summary>
-    [DataContract]
+	/// <summary>
+	/// A diablo hero class
+	/// </summary>
+	[DataContract]
     public enum HeroClass
     {
         [EnumMember(Value = "none")]
@@ -70,6 +65,12 @@ namespace WOWSharp.Community.Diablo
         /// Crusader
         /// </summary>
         [EnumMember(Value = "crusader")]
-        Crusader = 6
-    }
+        Crusader = 6,
+
+		/// <summary>
+		/// Necromancer
+		/// </summary>
+		[EnumMember(Value = "necromancer")]
+		Necromancer = 7
+	}
 }

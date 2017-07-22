@@ -22,18 +22,15 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using System.Runtime.Serialization;
-using System.Text;
 
 namespace WOWSharp.Community.Diablo
 {
-    /// <summary>
-    /// A diablo hero (character) information
-    /// </summary>
-    [DataContract]
+	/// <summary>
+	/// A diablo hero (character) information
+	/// </summary>
+	[DataContract]
     public class Hero : ApiResponse
     {
         /// <summary>
@@ -45,8 +42,7 @@ namespace WOWSharp.Community.Diablo
             get;
             internal set;
         }
-
-        
+		
         /// <summary>
         /// Hero's class
         /// </summary>
@@ -88,10 +84,20 @@ namespace WOWSharp.Community.Diablo
             internal set;
         }
 
-        /// <summary>
-        /// character's level
-        /// </summary>
-        [DataMember(Name = "level", IsRequired = true)]
+		/// <summary>
+		/// whether the hero is seasonal
+		/// </summary>
+		[DataMember(Name = "seasonal", IsRequired = true)]
+		public bool IsSeasonal
+		{
+			get;
+			internal set;
+		}
+
+		/// <summary>
+		/// character's level
+		/// </summary>
+		[DataMember(Name = "level", IsRequired = true)]
         public int Level
         {
             get;

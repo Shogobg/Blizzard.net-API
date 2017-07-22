@@ -52,7 +52,7 @@ namespace WOWSharp.UnitTests
         public void TestAuctions()
         {
             var client = new WowClient(TestConstants.TestRegionName,
-                                       new ApiKeyPair(TestConstants.PublicKey, TestConstants.PrivateKey), null, null);
+                                       "", null, null);
             //var result = client.GetAuctionDump(TestConstants.TestRealmName);
             var result = client.GetAuctionDumpAsync(TestConstants.TestAuctionHouseRealm).Result;
 
@@ -90,7 +90,7 @@ namespace WOWSharp.UnitTests
         {
             try
             {
-                var client = new WowClient(TestConstants.TestRegionName, TestConstants.Credentials, null, null);
+                var client = new WowClient(TestConstants.TestRegionName, "en-gb", TestConstants.apiKey, null);
                 var result = client.GetAuctionDumpAsync(TestConstants.TestRealmName + TestConstants.TestRealmName).Result; // invalid realm name
             }
             catch (AggregateException ex)
@@ -109,7 +109,7 @@ namespace WOWSharp.UnitTests
         [TestCategory("WOW")]
         public void TestItems()
         {
-            var client = new WowClient(TestConstants.TestRegionName, TestConstants.Credentials, null, null);
+            var client = new WowClient(TestConstants.TestRegionName, "en-gb", TestConstants.apiKey, null);
             var result = client.GetItemAsync(17182).Result;
             Assert.IsNotNull(result);
             Assert.IsTrue(result.ItemQuality == ItemQuality.Legendary);
@@ -143,7 +143,7 @@ namespace WOWSharp.UnitTests
         [TestCategory("WOW")]
         public void TestRewards()
         {
-            var client = new WowClient(TestConstants.TestRegionName, TestConstants.Credentials, null, null);
+            var client = new WowClient(TestConstants.TestRegionName, "en-gb", TestConstants.apiKey, null);
             var result = client.GetGuildRewardsAsync().Result;
             Assert.IsNotNull(result);
             Assert.IsNotNull(result.Rewards);
@@ -174,7 +174,7 @@ namespace WOWSharp.UnitTests
         [TestCategory("WOW")]
         public void TestItemCategoryNames()
         {
-            var client = new WowClient(TestConstants.TestRegionName, TestConstants.Credentials, null, null);
+            var client = new WowClient(TestConstants.TestRegionName, "en-gb", TestConstants.apiKey, null);
             var result = client.GetItemCategoryNamesAsync().Result;
             Assert.IsNotNull(result);
             Assert.IsNotNull(result.CategoryNames);
@@ -188,7 +188,7 @@ namespace WOWSharp.UnitTests
         [TestCategory("WOW")]
         public void TestQuest()
         {
-            var client = new WowClient(TestConstants.TestRegionName, TestConstants.Credentials, null, null);
+            var client = new WowClient(TestConstants.TestRegionName, "en-gb", TestConstants.apiKey, null);
             var quest = client.GetQuestAsync(9962).Result;
             Assert.IsNotNull(quest);
             Assert.IsNotNull(quest.Title);
@@ -208,7 +208,7 @@ namespace WOWSharp.UnitTests
         [TestCategory("WOW")]
         public void TestRecipe()
         {
-            var client = new WowClient(TestConstants.TestRegionName, TestConstants.Credentials, null, null);
+            var client = new WowClient(TestConstants.TestRegionName, "en-gb", TestConstants.apiKey, null);
             var recipe = client.GetRecipeAsync(70556).Result;
             Assert.IsNotNull(recipe);
             Assert.IsNotNull(recipe.Name);
@@ -226,7 +226,7 @@ namespace WOWSharp.UnitTests
         [TestCategory("WOW")]
         public void TestClasses()
         {
-            var client = new WowClient(TestConstants.TestRegionName, TestConstants.Credentials, null, null);
+            var client = new WowClient(TestConstants.TestRegionName, "en-gb", TestConstants.apiKey, null);
             var result = client.GetClassesAsync().Result;
             Assert.IsNotNull(result);
             Assert.IsNotNull(result.Count > 0);
@@ -248,7 +248,7 @@ namespace WOWSharp.UnitTests
         [TestCategory("WOW")]
         public void TestRaces()
         {
-            var client = new WowClient(TestConstants.TestRegionName, TestConstants.Credentials, null, null);
+            var client = new WowClient(TestConstants.TestRegionName, "en-gb", TestConstants.apiKey, null);
             var result = client.GetRacesAsync().Result;
             Assert.IsNotNull(result);
             Assert.IsNotNull(result.Count > 0);
@@ -266,7 +266,7 @@ namespace WOWSharp.UnitTests
         [TestCategory("WOW")]
         public void TestRealms()
         {
-            var client = new WowClient(TestConstants.TestRegionName, TestConstants.Credentials, null, null);
+            var client = new WowClient(TestConstants.TestRegionName, "en-gb", TestConstants.apiKey, null);
             var realms = client.GetRealmStatusAsync(null).Result;
             realms = client.GetRealmStatusAsync(new[] { TestConstants.TestRealmName }).Result;
             Assert.AreEqual(1, realms.Realms.Count);
@@ -314,7 +314,7 @@ namespace WOWSharp.UnitTests
         [TestCategory("WOW")]
         public void TestGuild()
         {
-            var client = new WowClient(TestConstants.TestRegionName, TestConstants.Credentials, null, null);
+            var client = new WowClient(TestConstants.TestRegionName, "en-gb", TestConstants.apiKey, null);
             var guild = client.GetGuildAsync(TestConstants.TestRealmName, TestConstants.TestGuildName, GuildFields.All).Result;
             Assert.IsNotNull(guild);
             Assert.IsNotNull(guild.Members);
@@ -360,7 +360,7 @@ namespace WOWSharp.UnitTests
         [TestCategory("WOW")]
         public void TestCharacter()
         {
-            var client = new WowClient(TestConstants.TestRegionName, TestConstants.Credentials, null, null);
+            var client = new WowClient(TestConstants.TestRegionName, "en-gb", TestConstants.apiKey, null);
             var character = client.GetCharacterAsync(TestConstants.TestRealmName, TestConstants.TestCharacterName, CharacterFields.All).Result;
             Assert.IsNotNull(character);
             Assert.IsNotNull(character.Professions);
@@ -391,7 +391,7 @@ namespace WOWSharp.UnitTests
         [TestCategory("WOW")]
         public void TestAchievements()
         {
-            var client = new WowClient("US", TestConstants.Credentials, "en-us", null);
+            var client = new WowClient("US", "en-us", TestConstants.apiKey, null);
             Assert.IsNotNull(client.GetGuildAchievementsAsync().Result);
             var achievements = client.GetCharacterAchievementsAsync().Result;
             Assert.IsNotNull(achievements.Categories);
@@ -455,7 +455,7 @@ namespace WOWSharp.UnitTests
         [TestCategory("WOW")]
         public void TestSpell()
         {
-            var client = new WowClient(TestConstants.TestRegion, TestConstants.Credentials, null, null);
+            var client = new WowClient(TestConstants.TestRegion, "en-gb", TestConstants.apiKey, null);
             var spell = client.GetSpellAsync(8056).Result;
             Assert.IsNotNull(spell);
             Assert.IsNotNull(spell.Name);
@@ -468,7 +468,7 @@ namespace WOWSharp.UnitTests
         [TestCategory("WOW")]
         public void TestAllTalents()
         {
-            var client = new WowClient(TestConstants.TestRegion, TestConstants.Credentials, null, null);
+            var client = new WowClient(TestConstants.TestRegion, "en-gb", TestConstants.apiKey, null);
             var talents = client.GetTalentsAsync().Result;
             Assert.IsNotNull(talents);
             Assert.IsNotNull(talents.Warrior);
@@ -491,7 +491,7 @@ namespace WOWSharp.UnitTests
         [TestCategory("WOW")]
         public void TestSerializationRoundTrip()
         {
-            var client = new WowClient(TestConstants.TestRegionName, TestConstants.Credentials, null, null);
+            var client = new WowClient(TestConstants.TestRegionName, "en-gb", TestConstants.apiKey, null);
             var character = client.GetCharacterAsync(TestConstants.TestRealmName, TestConstants.TestCharacterName,
                                                 CharacterFields.Achievements).Result;
             JsonSerializer serializer = new JsonSerializer();

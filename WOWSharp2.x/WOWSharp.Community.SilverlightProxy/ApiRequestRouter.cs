@@ -108,7 +108,9 @@ namespace WOWSharp.Community.SilverlightProxy
 
             // Create the request
             var request = (HttpWebRequest) WebRequest.Create(uri);
-            SetAuthenticationHeader(request, GetApiKey());
+            
+			// Todo: Set API key??
+
             request.AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip;
 
 
@@ -173,35 +175,11 @@ namespace WOWSharp.Community.SilverlightProxy
         ///   When overriden gets the API key.
         /// </summary>
         /// <returns> Returns the API key used to get the request </returns>
-        public virtual ApiKeyPair GetApiKey()
+        public virtual string GetApiKey()
         {
             // I rather not implement it here 
             // It's up to the application to determine how to secure the keys
             return null;
-        }
-
-        /// <summary>
-        ///   Sets the request authentication header
-        /// </summary>
-        /// <param name="request"> request </param>
-        /// <param name="apiKey"> api key pair </param>
-        internal static void SetAuthenticationHeader(HttpWebRequest request, ApiKeyPair apiKey)
-        {
-            if (apiKey != null)
-            {
-                DateTime date = DateTime.Now.ToUniversalTime();
-                string dateString = date.ToString("r", CultureInfo.InvariantCulture);
-                request.Date = date;
-
-                string stringToSign = request.Method + "\n" + dateString
-                                      + "\n" + request.RequestUri.AbsolutePath + "\n";
-                using (var hashAlgorithm = new HMACSHA1(apiKey.GetPrivateKeyBytes()))
-                {
-                    string signature = Convert.ToBase64String(
-                        hashAlgorithm.ComputeHash(Encoding.UTF8.GetBytes(stringToSign)));
-                    request.Headers[HttpRequestHeader.Authorization] = "BNET " + apiKey.PublicKey + ":" + signature;
-                }
-            }
         }
     }
 }

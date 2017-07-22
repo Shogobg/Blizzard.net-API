@@ -18,19 +18,15 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Serialization;
-using System.Text;
 
 namespace WOWSharp.Community.Diablo
 {
-    /// <summary>
-    /// Act's progression for a profile or a character
-    /// </summary>
-    [DataContract]
+	/// <summary>
+	/// Act's progression for a profile or a character
+	/// </summary>
+	[DataContract]
     public class ActProgression
     {
         /// <summary>

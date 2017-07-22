@@ -48,7 +48,7 @@ namespace WOWSharp.UnitTests
         [TestCategory("Diablo")]
         public void TestProfile()
         {
-            var client = new DiabloClient(TestConstants.TestRegion, TestConstants.Credentials, null, null);
+            var client = new DiabloClient(TestConstants.TestRegion, "en-gb", TestConstants.apiKey, null);
             var profile = client.GetProfileAsync(TestConstants.TestBattleTag).Result;
             Assert.IsNotNull(profile);
             Assert.AreEqual(TestConstants.TestBattleTag, profile.BattleTag);
@@ -89,7 +89,7 @@ namespace WOWSharp.UnitTests
         [TestCategory("Diablo")]
         public void TestHero()
         {
-            var client = new DiabloClient(TestConstants.TestRegion, TestConstants.Credentials, null, null);
+            var client = new DiabloClient(TestConstants.TestRegion, "en-gb", TestConstants.apiKey, null);
             var profile = client.GetProfileAsync(TestConstants.TestBattleTag).Result;
             var hero = profile.Heroes.First(h => h.HeroClass == HeroClass.Barbarian
                 && h.Level >= 60 && !h.IsHardcore);
@@ -157,7 +157,7 @@ namespace WOWSharp.UnitTests
         [TestMethod]
         public void TestFollower()
         {
-            var client = new DiabloClient(TestConstants.TestRegion, TestConstants.Credentials, null, null);
+            var client = new DiabloClient(TestConstants.TestRegion, "en-gb", TestConstants.apiKey, null);
             var follower = client.GetFollowerInfoAsync(FollowerType.Templar).Result;
             Assert.AreEqual(FollowerType.Templar, follower.FollowerType);
             Assert.AreEqual("Templar", follower.Name);
@@ -174,7 +174,7 @@ namespace WOWSharp.UnitTests
         [TestMethod]
         public void TestArtisan()
         {
-            var client = new DiabloClient(TestConstants.TestRegion, TestConstants.Credentials, null, null);
+            var client = new DiabloClient(TestConstants.TestRegion, "en-gb", TestConstants.apiKey, null);
             var blackSmith = client.GetArtisanInfoAsync(ArtisanType.Blacksmith).Result;
             Assert.IsNotNull(blackSmith);
             Assert.AreEqual(ArtisanType.Blacksmith, blackSmith.ArtisanType);

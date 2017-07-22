@@ -166,7 +166,7 @@ namespace WOWSharp.Community.Wow
         //            Character ch = Members[i].Character;
         //            ch.LastModifiedUtc = LastModifiedUtc;
         //            ch.Client = client;
-        //            ch.Path = "/api/wow/character/" + WowClient.GetRealmSlug(ch.Realm) + "/" +
+        //            ch.Path = "/wow/character/" + WowClient.GetRealmSlug(ch.Realm) + "/" +
         //                      Uri.EscapeUriString(ch.Name);
         //            ch.OnDeserialized(client);
         //        }

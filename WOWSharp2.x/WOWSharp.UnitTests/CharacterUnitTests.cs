@@ -47,7 +47,7 @@ namespace WOWSharp.UnitTests
         [TestCategory("WowCharacter")]
         public void TestCharacterProfessions()
         {
-            var client = new WowClient(TestConstants.TestRegionName, TestConstants.Credentials, null, null);
+            var client = new WowClient(TestConstants.TestRegionName, "en-gb", TestConstants.apiKey, null);
             var character = client.GetCharacterAsync(TestConstants.TestRealmName, TestConstants.TestCharacterName,
                                                 CharacterFields.Professions).Result;
             Assert.IsNotNull(character.Professions);
@@ -102,7 +102,7 @@ namespace WOWSharp.UnitTests
         [TestCategory("WowCharacter")]
         public void TestCharacterAchievements()
         {
-            var client = new WowClient(TestConstants.TestRegionName, TestConstants.Credentials, null, null);
+            var client = new WowClient(TestConstants.TestRegionName, "en-gb", TestConstants.apiKey, null);
             var character = client.GetCharacterAsync(TestConstants.TestRealmName, TestConstants.TestCharacterName,
                                                 CharacterFields.Achievements).Result;
             Assert.IsNull(character.Professions);
@@ -143,7 +143,7 @@ namespace WOWSharp.UnitTests
         [TestCategory("WowCharacter")]
         public void TestCharacterCompanions()
         {
-            var client = new WowClient(TestConstants.TestRegionName, TestConstants.Credentials, null, null);
+            var client = new WowClient(TestConstants.TestRegionName, "en-gb", TestConstants.apiKey, null);
             var character = client.GetCharacterAsync(TestConstants.TestRealmName, TestConstants.TestCharacterName,
                                                 CharacterFields.Pets).Result;
             Assert.IsNotNull(character.Pets);
@@ -160,7 +160,7 @@ namespace WOWSharp.UnitTests
         [TestCategory("WowCharacter")]
         public void TestCharacterMounts()
         {
-            var client = new WowClient(TestConstants.TestRegionName, TestConstants.Credentials, null, null);
+            var client = new WowClient(TestConstants.TestRegionName, "en-gb", TestConstants.apiKey, null);
             var character = client.GetCharacterAsync(TestConstants.TestRealmName, TestConstants.TestCharacterName,
                                                 CharacterFields.Mounts).Result;
             Assert.IsNotNull(character.Mounts);
@@ -178,7 +178,7 @@ namespace WOWSharp.UnitTests
         [TestCategory("WowCharacter")]
         public void TestCharacterStats()
         {
-            var client = new WowClient(TestConstants.TestRegionName, TestConstants.Credentials, null, null);
+            var client = new WowClient(TestConstants.TestRegionName, "en-gb", TestConstants.apiKey, null);
             var character = client.GetCharacterAsync(TestConstants.TestRealmName, TestConstants.TestCharacterName,
                                                 CharacterFields.Stats).Result;
             Assert.IsNotNull(character.Stats);
@@ -197,7 +197,7 @@ namespace WOWSharp.UnitTests
         [TestCategory("WowCharacter")]
         public void TestCharacterReputation()
         {
-            var client = new WowClient(TestConstants.TestRegionName, TestConstants.Credentials, null, null);
+            var client = new WowClient(TestConstants.TestRegionName, "en-gb", TestConstants.apiKey, null);
             var character = client.GetCharacterAsync(TestConstants.TestRealmName, TestConstants.TestCharacterName,
                                                 CharacterFields.Reputation).Result;
             Assert.IsNotNull(character.Reputations);
@@ -218,7 +218,7 @@ namespace WOWSharp.UnitTests
         [TestCategory("WowCharacter")]
         public void TestCharacterTitles()
         {
-            var client = new WowClient(TestConstants.TestRegionName, TestConstants.Credentials, null, null);
+            var client = new WowClient(TestConstants.TestRegionName, "en-gb", TestConstants.apiKey, null);
             var character = client.GetCharacterAsync(TestConstants.TestRealmName, TestConstants.TestCharacterName,
                                                 CharacterFields.Titles).Result;
             Assert.IsNotNull(character.Titles);
@@ -237,7 +237,7 @@ namespace WOWSharp.UnitTests
         [TestCategory("WowCharacter")]
         public void TestCharacterSpec()
         {
-            var client = new WowClient(TestConstants.TestRegionName, TestConstants.Credentials, null, null);
+            var client = new WowClient(TestConstants.TestRegionName, "en-gb", TestConstants.apiKey, null);
             var character = client.GetCharacterAsync(TestConstants.TestRealmName, TestConstants.TestCharacterName,
                                                 CharacterFields.Talents).Result;
             Assert.IsNotNull(character.Talents);
@@ -290,7 +290,7 @@ namespace WOWSharp.UnitTests
         [TestCategory("WowCharacter")]
         public void TestCharacterProgression()
         {
-            var client = new WowClient(TestConstants.TestRegionName, TestConstants.Credentials, null, null);
+            var client = new WowClient(TestConstants.TestRegionName, "en-gb", TestConstants.apiKey, null);
             var character = client.GetCharacterAsync(TestConstants.TestRealmName, TestConstants.TestCharacterName,
                                                 CharacterFields.Progression).Result;
             Assert.IsNotNull(character.Progression);
@@ -340,7 +340,7 @@ namespace WOWSharp.UnitTests
         [TestCategory("WowCharacter")]
         public void TestCharacterGuild()
         {
-            var client = new WowClient(TestConstants.TestRegionName, TestConstants.Credentials, null, null);
+            var client = new WowClient(TestConstants.TestRegionName, "en-gb", TestConstants.apiKey, null);
             var character = client.GetCharacterAsync(TestConstants.TestRealmName, TestConstants.TestCharacterName,
                                                 CharacterFields.Guild).Result;
             Assert.IsNull(character.Professions);
@@ -382,7 +382,7 @@ namespace WOWSharp.UnitTests
         [TestCategory("WowCharacter")]
         public void TestCharacterAllFields()
         {
-            var client = new WowClient(TestConstants.TestRegionName, TestConstants.Credentials, null, null);
+            var client = new WowClient(TestConstants.TestRegionName, "en-gb", TestConstants.apiKey, null);
             var character = client.GetCharacterAsync(TestConstants.TestRealmName, TestConstants.TestCharacterName, CharacterFields.All).Result;
             Assert.IsNotNull(character);
             Assert.IsNotNull(character.Professions);
@@ -419,7 +419,7 @@ namespace WOWSharp.UnitTests
         [TestCategory("WowCharacter")]
         public void TestCharacterNoFields()
         {
-            var client = new WowClient(TestConstants.TestRegionName, TestConstants.Credentials, null, null);
+            var client = new WowClient(TestConstants.TestRegionName, "en-gb", TestConstants.apiKey, null);
             var character = client.GetCharacterAsync(TestConstants.TestRealmName, TestConstants.TestCharacterName, CharacterFields.None).Result;
             Assert.IsNotNull(character);
             Assert.IsNull(character.Professions);
@@ -448,7 +448,7 @@ namespace WOWSharp.UnitTests
         [TestCategory("WowCharacter")]
         public void TestCharacterStatistics()
         {
-            var client = new WowClient(TestConstants.TestRegionName, TestConstants.Credentials, null, null);
+            var client = new WowClient(TestConstants.TestRegionName, "en-gb", TestConstants.apiKey, null);
             var character = client.GetCharacterAsync(TestConstants.TestRealmName, TestConstants.TestCharacterName,
                                                 CharacterFields.Statistics).Result;
             Assert.IsNotNull(character);
@@ -475,7 +475,7 @@ namespace WOWSharp.UnitTests
         [TestCategory("WowCharacter")]
         public void TestCharacterAppearance()
         {
-            var client = new WowClient(TestConstants.TestRegionName, TestConstants.Credentials, null, null);
+            var client = new WowClient(TestConstants.TestRegionName, "en-gb", TestConstants.apiKey, null);
             var character = client.GetCharacterAsync(TestConstants.TestRealmName, TestConstants.TestCharacterName,
                                                 CharacterFields.Appearance).Result;
             Assert.IsNotNull(character);
@@ -495,7 +495,7 @@ namespace WOWSharp.UnitTests
         [TestCategory("WowCharacter")]
         public void TestCharacterGear()
         {
-            var client = new WowClient(TestConstants.TestRegionName, TestConstants.Credentials, null, null);
+            var client = new WowClient(TestConstants.TestRegionName, "en-gb", TestConstants.apiKey, null);
             var character = client.GetCharacterAsync(TestConstants.TestRealmName, TestConstants.TestCharacterName,
                                                 CharacterFields.Items).Result;
             Assert.IsNotNull(character);
@@ -557,7 +557,7 @@ namespace WOWSharp.UnitTests
         [TestCategory("WowCharacter")]
         public void TestCharacterHunterPets()
         {
-            var client = new WowClient(TestConstants.TestRegionName, TestConstants.Credentials, null, null);
+            var client = new WowClient(TestConstants.TestRegionName, "en-gb", TestConstants.apiKey, null);
             var character = client.GetCharacterAsync(TestConstants.TestRealmName, TestConstants.TestHunter,
                                                 CharacterFields.HunterPets).Result;
             Assert.IsNotNull(character.HunterPets);
@@ -586,7 +586,7 @@ namespace WOWSharp.UnitTests
         [TestCategory("WowCharacter")]
         public void TestCharacterProgression2()
         {
-            var client = new WowClient(TestConstants.TestRegionName, TestConstants.Credentials, null, null);
+            var client = new WowClient(TestConstants.TestRegionName, "en-gb", TestConstants.apiKey, null);
             var character = client.GetCharacterAsync(TestConstants.TestRealmName, TestConstants.TestCharacterName,
                                                 CharacterFields.Progression).Result;
             Assert.IsNotNull(character);
@@ -619,7 +619,7 @@ namespace WOWSharp.UnitTests
         [TestCategory("WowCharacter")]
         public void TestCharacterFeeds()
         {
-            var client = new WowClient(TestConstants.TestRegionName, TestConstants.Credentials, null, null);
+            var client = new WowClient(TestConstants.TestRegionName, "en-gb", TestConstants.apiKey, null);
             var character = client.GetCharacterAsync(TestConstants.TestRealmName, TestConstants.TestCharacterName,
                                                 CharacterFields.Feed).Result;
             Assert.IsNotNull(character);

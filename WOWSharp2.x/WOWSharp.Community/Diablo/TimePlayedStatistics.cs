@@ -18,20 +18,15 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using System.Runtime.Serialization;
-using System.Text;
 
 namespace WOWSharp.Community.Diablo
 {
-    /// <summary>
-    /// The time played statistics for different classes
-    /// </summary>
-    [DataContract]
+	/// <summary>
+	/// The time played statistics for different classes
+	/// </summary>
+	[DataContract]
     public class TimePlayedStatistics
     {
         /// <summary>
@@ -44,10 +39,20 @@ namespace WOWSharp.Community.Diablo
             internal set;
         }
 
-        /// <summary>
-        /// Time played with demon hunter
-        /// </summary>
-        [DataMember(Name = "demon-hunter", IsRequired = false)]
+		/// <summary>
+		/// Time played with crusader
+		/// </summary>
+		[DataMember(Name = "crusader", IsRequired = false)]
+		public double Crusader
+		{
+			get;
+			internal set;
+		}
+
+		/// <summary>
+		/// Time played with demon hunter
+		/// </summary>
+		[DataMember(Name = "demon-hunter", IsRequired = false)]
         public double DemonHunter
         {
             get;
@@ -64,10 +69,20 @@ namespace WOWSharp.Community.Diablo
             internal set;
         }
 
-        /// <summary>
-        /// Time played with witch doctor
-        /// </summary>
-        [DataMember(Name = "witch-doctor", IsRequired = false)]
+		/// <summary>
+		/// Time played with necromancer
+		/// </summary>
+		[DataMember(Name = "necromancer", IsRequired = false)]
+		public double Necromancer
+		{
+			get;
+			internal set;
+		}
+
+		/// <summary>
+		/// Time played with witch doctor
+		/// </summary>
+		[DataMember(Name = "witch-doctor", IsRequired = false)]
         public double Witchdoctor
         {
             get;
@@ -85,22 +100,14 @@ namespace WOWSharp.Community.Diablo
         }
 
         /// <summary>
-        /// Time played with crusader
-        /// </summary>
-        [DataMember(Name = "crusader", IsRequired = false)]
-        public double Crusader
-        {
-            get;
-            internal set;
-        }
-
-        /// <summary>
         /// Gets string representation for debugging purposes
         /// </summary>
         /// <returns></returns>
         public override string ToString()
         {
-            return string.Format(CultureInfo.InvariantCulture, "Barbarian {0}, Demon Hunter {1}, Monk {2}, Witch Doctor {3}, Wizard {4}, Crusader {5}", Barbarian, DemonHunter, Monk, Wizard, Witchdoctor, Crusader);
+            return string.Format(CultureInfo.InvariantCulture,
+				"Barbarian {0}, Demon Hunter {1}, Monk {2}, Witch Doctor {3}, Wizard {4}, Crusader {5}, Necromancer {6}",
+				Barbarian, DemonHunter, Monk, Wizard, Witchdoctor, Crusader, Necromancer);
         }
     }
 }

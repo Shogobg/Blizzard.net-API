@@ -20,19 +20,15 @@
 
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using System.Runtime.Serialization;
-using System.Text;
 
 namespace WOWSharp.Community.Diablo
 {
-    /// <summary>
-    /// A character's artisan information
-    /// </summary>
-    [DataContract]
+	/// <summary>
+	/// A character's artisan information
+	/// </summary>
+	[DataContract]
     public class ProfileArtisanInfo
     {
         /// <summary>

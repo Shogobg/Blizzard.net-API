@@ -100,7 +100,7 @@ namespace WOWSharp.Community.Diablo
                     {
                         serializer.Populate(jObject.CreateReader(), item);
                         item.TooltipParameters = tooltipParameter;
-                        item.Path = "/api/d3/data/" + tooltipParameter;
+                        item.Path = "/d3/data/" + tooltipParameter;
                         return item;
                     }
                 }

@@ -86,17 +86,22 @@ namespace WOWSharp.Community
         {
             if (objectType == null)
                 throw new ArgumentNullException("objectType");
+
             if (reader == null)
                 throw new ArgumentNullException("reader");
+
             if (serializer == null)
                 throw new ArgumentNullException("serializer");
+
             if (reader.TokenType == JsonToken.Null)
                 return null;
+
             ApiResponse response = (ApiResponse)Activator.CreateInstance(objectType);
 
             serializer.Populate(reader, response);
 
             SetResponseLastModifiedDate(ResponseMessage, response);
+
             return response;
         }
 

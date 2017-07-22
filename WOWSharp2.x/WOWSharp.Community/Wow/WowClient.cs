@@ -21,19 +21,17 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace WOWSharp.Community.Wow
 {
-    /// <summary>
-    ///   ApiClient for World of WarCraft APIs
-    /// </summary>
-    public class WowClient : ApiClient
+	/// <summary>
+	///   ApiClient for World of WarCraft APIs
+	/// </summary>
+	public class WowClient : ApiClient
     {
         #region Constructors
 
@@ -81,38 +79,14 @@ namespace WOWSharp.Community.Wow
         /// <summary>
         ///   Constructor. Initializes a new instance of the ApiClient class
         /// </summary>
-        /// <param name="apiKey"> Application key used to authenticate requests sent by the ApiClient </param>
-        public WowClient(ApiKeyPair apiKey)
-            : this((Region) null, apiKey, null, null)
-        {
-        }
-
-        /// <summary>
-        ///   Constructor. Initializes a new instance of the ApiClient class
-        /// </summary>
         /// <param name="region"> Regional battle.net Community website to which the ApiClient should connect to perform request. </param>
         /// <param name="apiKey"> Application key used to authenticate requests sent by the ApiClient </param>
         /// <param name="locale"> The locale to use to perform request (item names, class names, etc are retrieved in the locale specified) </param>
         /// <remarks>
         ///   Only Locales supported by the regional website that the ApiClient is connecting to are supported. If a wrong local is passed, default language is used.
         /// </remarks>
-        public WowClient(string region, ApiKeyPair apiKey, string locale)
-            : this(Region.GetRegion(region), apiKey, locale, null)
-        {
-        }
-
-        /// <summary>
-        ///   Constructor. Initializes a new instance of the ApiClient class
-        /// </summary>
-        /// <param name="region"> Regional battle.net Community website to which the ApiClient should connect to perform request. </param>
-        /// <param name="apiKey"> Application key used to authenticate requests sent by the ApiClient </param>
-        /// <param name="locale"> The locale to use to perform request (item names, class names, etc are retrieved in the locale specified) </param>
-        /// <param name="cacheManager"> Cache manager to cache data </param>
-        /// <remarks>
-        ///   Only Locales supported by the regional website that the ApiClient is connecting to are supported. If a wrong local is passed, default language is used.
-        /// </remarks>
-        public WowClient(string region, ApiKeyPair apiKey, string locale, ICacheManager cacheManager)
-            : this(Region.GetRegion(region), apiKey, locale, cacheManager)
+        public WowClient(string region, string locale, string apiKey)
+            : this(Region.GetRegion(region), locale, apiKey, null)
         {
         }
 
@@ -126,8 +100,23 @@ namespace WOWSharp.Community.Wow
         /// <remarks>
         ///   Only Locales supported by the regional website that the ApiClient is connecting to are supported. If a wrong local is passed, default language is used.
         /// </remarks>
-        public WowClient(Region region, ApiKeyPair apiKey, string locale, ICacheManager cacheManager)
-            : base(region, apiKey, locale, cacheManager)
+        public WowClient(string region, string locale, string apiKey, ICacheManager cacheManager)
+            : this(Region.GetRegion(region), locale, apiKey, cacheManager)
+        {
+        }
+
+        /// <summary>
+        ///   Constructor. Initializes a new instance of the ApiClient class
+        /// </summary>
+        /// <param name="region"> Regional battle.net Community website to which the ApiClient should connect to perform request. </param>
+        /// <param name="apiKey"> Application key used to authenticate requests sent by the ApiClient </param>
+        /// <param name="locale"> The locale to use to perform request (item names, class names, etc are retrieved in the locale specified) </param>
+        /// <param name="cacheManager"> Cache manager to cache data </param>
+        /// <remarks>
+        ///   Only Locales supported by the regional website that the ApiClient is connecting to are supported. If a wrong local is passed, default language is used.
+        /// </remarks>
+        public WowClient(Region region, string locale, string apiKey, ICacheManager cacheManager)
+            : base(region, locale, apiKey, cacheManager)
         {
         }
 
@@ -188,7 +177,7 @@ namespace WOWSharp.Community.Wow
         /// <returns> The status of the async operation </returns>
         public Task<RealmStatusResponse> GetRealmStatusAsync()
         {
-            return GetAsync<RealmStatusResponse>("/api/wow/realm/status", null);
+            return GetAsync<RealmStatusResponse>("/wow/realm/status", null);
         }
 
         /// <summary>
@@ -203,7 +192,7 @@ namespace WOWSharp.Community.Wow
             string queryString = "?realms=" + string.Join(",",
                                                           realms.Where(r => !string.IsNullOrEmpty(r)).Select(
                                                               GetRealmSlug).ToArray());
-            return GetAsync<RealmStatusResponse>("/api/wow/realm/status" + queryString, null);
+            return GetAsync<RealmStatusResponse>("/wow/realm/status" + queryString, null);
         }
 
         #endregion
@@ -227,7 +216,7 @@ namespace WOWSharp.Community.Wow
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate")]
         public Task<BattleGroupsResponse> GetBattleGroupsAsync()
         {
-            return GetAsync<BattleGroupsResponse>("/api/wow/data/battlegroups/index", null);
+            return GetAsync<BattleGroupsResponse>("/wow/data/battlegroups/index", null);
         }
 
         #endregion
@@ -254,7 +243,7 @@ namespace WOWSharp.Community.Wow
             string queryString = fields.Length == 0 ? "" : "?fields=" + string.Join(",", fields);
             return
                 GetAsync<Character>(
-                    "/api/wow/character/" + GetRealmSlug(realm) + "/" + Uri.EscapeUriString(characterName) + queryString,
+                    "/wow/character/" + GetRealmSlug(realm) + "/" + Uri.EscapeUriString(characterName) + queryString,
                     null);
         }
 
@@ -280,7 +269,7 @@ namespace WOWSharp.Community.Wow
                         name => name.ToLowerInvariant()).ToArray();
             string queryString = fields.Length == 0 ? "" : "?fields=" + string.Join(",", fields);
             return GetAsync<Guild>(
-                    "/api/wow/guild/" + GetRealmSlug(realm) + "/" + Uri.EscapeUriString(guildName) + queryString, null);
+                    "/wow/guild/" + GetRealmSlug(realm) + "/" + Uri.EscapeUriString(guildName) + queryString, null);
         }
 
         #endregion Guild
@@ -306,7 +295,7 @@ namespace WOWSharp.Community.Wow
         /// <returns> the async task</returns>
         public async Task<AuctionDump> GetAuctionDumpAsync(string realm, DateTime ifModifiedSince)
         {
-            var files = await GetAsync<AuctionFilesResponse>("/api/wow/auction/data/" + GetRealmSlug(realm), null);
+            var files = await GetAsync<AuctionFilesResponse>("/wow/auction/data/" + GetRealmSlug(realm), null);
             if (files == null || files.Files == null || files.Files.Count == 0
                 || string.IsNullOrEmpty(files.Files[files.Files.Count - 1].DownloadPath)
                 || files.Files[0].LastModifiedUtc <= ifModifiedSince)
@@ -330,7 +319,7 @@ namespace WOWSharp.Community.Wow
         /// <returns> the status of the async operation </returns>
         public Task<Item> GetItemAsync(int itemId)
         {
-            return GetAsync<Item>("/api/wow/item/" + itemId.ToString(CultureInfo.InvariantCulture), null);
+            return GetAsync<Item>("/wow/item/" + itemId.ToString(CultureInfo.InvariantCulture), null);
         }
 
         #endregion Item
@@ -344,7 +333,7 @@ namespace WOWSharp.Community.Wow
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate")]
         public Task<ItemCategoryNamesResponse> GetItemCategoryNamesAsync()
         {
-            return GetAsync<ItemCategoryNamesResponse>("/api/wow/data/item/classes", null);
+            return GetAsync<ItemCategoryNamesResponse>("/wow/data/item/classes", null);
         }
 
         #endregion ItemCategories
@@ -358,7 +347,7 @@ namespace WOWSharp.Community.Wow
         /// <returns> the status of the async operation </returns>
         public Task<ItemSet> GetItemSetAsync(int itemSetId)
         {
-            return GetAsync<ItemSet>("/api/wow/item/set/" + itemSetId.ToString(CultureInfo.InvariantCulture), null);
+            return GetAsync<ItemSet>("/wow/item/set/" + itemSetId.ToString(CultureInfo.InvariantCulture), null);
         }
 
         #endregion ItemSet
@@ -392,7 +381,7 @@ namespace WOWSharp.Community.Wow
             {
                 return classes;
             }
-            var classesResponse = await GetAsync<ClassesResponse>("/api/wow/data/character/classes", null);
+            var classesResponse = await GetAsync<ClassesResponse>("/wow/data/character/classes", null);
             classes = new ReadOnlyCollection<CharacterClass>(classesResponse.Classes);
             _classes.AddValue(Locale, classes);
             return classes;
@@ -411,7 +400,7 @@ namespace WOWSharp.Community.Wow
             {
                 return races;
             }
-            var racesResponse = await GetAsync<RacesResponse>("/api/wow/data/character/races", null);
+            var racesResponse = await GetAsync<RacesResponse>("/wow/data/character/races", null);
             races = new ReadOnlyCollection<CharacterRace>(racesResponse.Races);
             _races.AddValue(Locale, races);
             return races;
@@ -429,7 +418,7 @@ namespace WOWSharp.Community.Wow
         public Task<PvpLeaderboardResponse> GetPvpLeaderboardAsync(PvpBracket type)
         {
             string strType = EnumHelper<PvpBracket>.EnumToString(type);
-            return GetAsync<PvpLeaderboardResponse>("/api/wow/leaderboard/" + strType, null);
+            return GetAsync<PvpLeaderboardResponse>("/wow/leaderboard/" + strType, null);
         }
 
         #endregion PVP
@@ -443,7 +432,7 @@ namespace WOWSharp.Community.Wow
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate")]
         public Task<GuildRewardsResponse> GetGuildRewardsAsync()
         {
-            return GetAsync<GuildRewardsResponse>("/api/wow/data/guild/rewards", null);
+            return GetAsync<GuildRewardsResponse>("/wow/data/guild/rewards", null);
         }
 
         /// <summary>
@@ -453,7 +442,7 @@ namespace WOWSharp.Community.Wow
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate")]
         public Task<GuildPerksResponse> GetGuildPerksAsync()
         {
-            return GetAsync<GuildPerksResponse>("/api/wow/data/guild/perks", null);
+            return GetAsync<GuildPerksResponse>("/wow/data/guild/perks", null);
         }
 
         #endregion Guild Perks/Rewards
@@ -467,7 +456,7 @@ namespace WOWSharp.Community.Wow
         /// <returns> The state of the async operation </returns>
         public Task<Achievement> GetAchievementAsync(int achievementId)
         {
-            return GetAsync<Achievement>("/api/wow/achievement/" + achievementId.ToString(CultureInfo.InvariantCulture), null);
+            return GetAsync<Achievement>("/wow/achievement/" + achievementId.ToString(CultureInfo.InvariantCulture), null);
         }
 
         /// <summary>
@@ -477,7 +466,7 @@ namespace WOWSharp.Community.Wow
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate")]
         public Task<AchievementsResponse> GetCharacterAchievementsAsync()
         {
-            return GetAsync<AchievementsResponse>("/api/wow/data/character/achievements", null);
+            return GetAsync<AchievementsResponse>("/wow/data/character/achievements", null);
         }
 
         
@@ -488,7 +477,7 @@ namespace WOWSharp.Community.Wow
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate")]
         public Task<AchievementsResponse> GetGuildAchievementsAsync()
         {
-            return GetAsync<AchievementsResponse>("/api/wow/data/guild/achievements", null);
+            return GetAsync<AchievementsResponse>("/wow/data/guild/achievements", null);
         }
 
         #endregion Achievements
@@ -502,7 +491,7 @@ namespace WOWSharp.Community.Wow
         /// <returns> The state of the async operation </returns>
         public Task<Quest> GetQuestAsync(int questId)
         {
-            return GetAsync<Quest>("/api/wow/quest/" + questId.ToString(CultureInfo.InvariantCulture), null);
+            return GetAsync<Quest>("/wow/quest/" + questId.ToString(CultureInfo.InvariantCulture), null);
         }
 
         #endregion Quest
@@ -516,7 +505,7 @@ namespace WOWSharp.Community.Wow
         /// <returns> The state of the request </returns>
         public Task<RecipeInfo> GetRecipeAsync(int recipeId)
         {
-            return GetAsync<RecipeInfo>("/api/wow/recipe/" + recipeId.ToString(CultureInfo.InvariantCulture), null);
+            return GetAsync<RecipeInfo>("/wow/recipe/" + recipeId.ToString(CultureInfo.InvariantCulture), null);
         }
 
         #endregion Recipe
@@ -534,7 +523,7 @@ namespace WOWSharp.Community.Wow
             {
                 realmName = "region";
             }
-            return GetAsync<ChallengesResponse>("/api/wow/challenge/" + GetRealmSlug(realmName), null);
+            return GetAsync<ChallengesResponse>("/wow/challenge/" + GetRealmSlug(realmName), null);
         }
 
         #endregion Challenges
@@ -548,7 +537,7 @@ namespace WOWSharp.Community.Wow
         /// <returns> Async operation status </returns>
         public Task<BattlePetAbility> GetBattlePetAbilityAsync(int abilityId)
         {
-            return GetAsync<BattlePetAbility>("/api/wow/battlePet/ability/" + abilityId.ToString(CultureInfo.InvariantCulture), null);
+            return GetAsync<BattlePetAbility>("/wow/battlePet/ability/" + abilityId.ToString(CultureInfo.InvariantCulture), null);
         }
 
         /// <summary>
@@ -558,7 +547,7 @@ namespace WOWSharp.Community.Wow
         /// <returns> Async operation status </returns>
         public Task<BattlePetSpecies> GetBattlePetSpeciesAsync(int speciesId)
         {
-            return GetAsync<BattlePetSpecies>("/api/wow/battlePet/species/" + speciesId.ToString(CultureInfo.InvariantCulture), null);
+            return GetAsync<BattlePetSpecies>("/wow/battlePet/species/" + speciesId.ToString(CultureInfo.InvariantCulture), null);
         }
 
         /// <summary>
@@ -568,7 +557,7 @@ namespace WOWSharp.Community.Wow
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate")]
         public Task<BattlePetTypesResponse> GetBattlePetTypesAsync()
         {
-            return GetAsync<BattlePetTypesResponse>("/api/wow/data/pet/types", null);
+            return GetAsync<BattlePetTypesResponse>("/wow/data/pet/types", null);
         }
 
         #endregion
@@ -582,7 +571,7 @@ namespace WOWSharp.Community.Wow
         /// <returns> async operation result </returns>
         public Task<Spell> GetSpellAsync(int spellId)
         {
-            return GetAsync<Spell>("/api/wow/spell/" + spellId.ToString(CultureInfo.InvariantCulture), null);
+            return GetAsync<Spell>("/wow/spell/" + spellId.ToString(CultureInfo.InvariantCulture), null);
         }
 
         /// <summary>
@@ -592,7 +581,7 @@ namespace WOWSharp.Community.Wow
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate")]
         public Task<TalentsResponse> GetTalentsAsync()
         {
-            return GetAsync<TalentsResponse>("/api/wow/data/talents", null);
+            return GetAsync<TalentsResponse>("/wow/data/talents", null);
         }
 
         #endregion Spells and Talents

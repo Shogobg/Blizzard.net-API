@@ -21,19 +21,18 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 
 namespace WOWSharp.Community
 {
-    /// <summary>
-    ///   Represents a Region for which battle.net community Api is available
-    /// </summary>
-    /// <remarks>
-    ///   This class is immutable
-    /// </remarks>
-    public sealed class Region
+	/// <summary>
+	///   Represents a Region for which battle.net community Api is available
+	/// </summary>
+	/// <remarks>
+	///   This class is immutable
+	/// </remarks>
+	public sealed class Region
     {
         /// <summary>
         ///   Gets the info about Americas' regional website
@@ -57,7 +56,7 @@ namespace WOWSharp.Community
         ///   Gets the info about Europe's regional website
         /// </summary>
         private static readonly Region _eu = 
-            new Region("EU", "eu.battle.net",
+            new Region("EU", "eu.api.battle.net",
                 new ReadOnlyCollection<string>(new[]
                 {
                     "en-GB", "es-ES", "fr-FR",
@@ -501,6 +500,7 @@ namespace WOWSharp.Community
         {
             if (string.IsNullOrEmpty(cultureName))
                 cultureName = CultureInfo.CurrentCulture.Name;
+
             // try to find the exact culture
             string foundCulture =
                 SupportedLocales.FirstOrDefault(sc => string.Equals(cultureName, sc, StringComparison.OrdinalIgnoreCase));

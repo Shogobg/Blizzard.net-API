@@ -19,30 +19,22 @@
 // THE SOFTWARE.
 
 using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Reflection;
-using System.Runtime.Serialization;
-using System.Runtime.Serialization.Json;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
-using System.Linq;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using System.Security;
 
 namespace WOWSharp.Community
 {
-    /// <summary>
-    ///   A Blizzard's battle.net community API client
-    /// </summary>
-    public abstract class ApiClient
+	/// <summary>
+	///   A Blizzard's battle.net community API client
+	/// </summary>
+	public abstract class ApiClient
     {
         private const string RegionNameHttpHeader = "X-WOWSharpProxy-Region";
         private const string ApiUrlHttpHeader = "X-WOWSharpProxy-Url";
@@ -76,7 +68,7 @@ namespace WOWSharp.Community
         /// <summary>
         ///   The API key used to authenticate the request
         /// </summary>
-        private readonly ApiKeyPair _apiKey;
+        private readonly string _apiKey;
 
         /// <summary>
         ///   An object that implements _cacheManager
@@ -133,6 +125,7 @@ namespace WOWSharp.Community
         {
             if (region == null)
                 region = Region.Default;
+
             Region = region;
             Locale = Region.GetSupportedLocale(locale);
             _cacheManager = cacheManager;
@@ -141,38 +134,14 @@ namespace WOWSharp.Community
         /// <summary>
         ///   Constructor. Initializes a new instance of the ApiClient class
         /// </summary>
-        /// <param name="apiKey"> Application key used to authenticate requests sent by the ApiClient </param>
-        protected ApiClient(ApiKeyPair apiKey)
-            : this((Region) null, apiKey, null, null)
-        {
-        }
-
-        /// <summary>
-        ///   Constructor. Initializes a new instance of the ApiClient class
-        /// </summary>
         /// <param name="region"> Regional battle.net Community website to which the ApiClient should connect to perform request. </param>
         /// <param name="apiKey"> Application key used to authenticate requests sent by the ApiClient </param>
         /// <param name="locale"> The locale to use to perform request (item names, class names, etc are retrieved in the locale specified) </param>
         /// <remarks>
         ///   Only Locales supported by the regional website that the ApiClient is connecting to are supported. If a wrong local is passed, default language is used.
         /// </remarks>
-        protected ApiClient(string region, ApiKeyPair apiKey, string locale)
-            : this(Region.GetRegion(region), apiKey, locale, null)
-        {
-        }
-
-        /// <summary>
-        ///   Constructor. Initializes a new instance of the ApiClient class
-        /// </summary>
-        /// <param name="region"> Regional battle.net Community website to which the ApiClient should connect to perform request. </param>
-        /// <param name="apiKey"> Application key used to authenticate requests sent by the ApiClient </param>
-        /// <param name="locale"> The locale to use to perform request (item names, class names, etc are retrieved in the locale specified) </param>
-        /// <param name="cacheManager"> Cache manager to cache data </param>
-        /// <remarks>
-        ///   Only Locales supported by the regional website that the ApiClient is connecting to are supported. If a wrong local is passed, default language is used.
-        /// </remarks>
-        protected ApiClient(string region, ApiKeyPair apiKey, string locale, ICacheManager cacheManager)
-            : this(Region.GetRegion(region), apiKey, locale, cacheManager)
+        protected ApiClient(string region, string locale, string apiKey)
+            : this(Region.GetRegion(region), locale, apiKey, null)
         {
         }
 
@@ -186,7 +155,22 @@ namespace WOWSharp.Community
         /// <remarks>
         ///   Only Locales supported by the regional website that the ApiClient is connecting to are supported. If a wrong local is passed, default language is used.
         /// </remarks>
-        protected ApiClient(Region region, ApiKeyPair apiKey, string locale, ICacheManager cacheManager)
+        protected ApiClient(string region, string locale, string apiKey, ICacheManager cacheManager)
+            : this(Region.GetRegion(region), locale, apiKey, cacheManager)
+        {
+        }
+
+        /// <summary>
+        ///   Constructor. Initializes a new instance of the ApiClient class
+        /// </summary>
+        /// <param name="region"> Regional battle.net Community website to which the ApiClient should connect to perform request. </param>
+        /// <param name="apiKey"> Application key used to authenticate requests sent by the ApiClient </param>
+        /// <param name="locale"> The locale to use to perform request (item names, class names, etc are retrieved in the locale specified) </param>
+        /// <param name="cacheManager"> Cache manager to cache data </param>
+        /// <remarks>
+        ///   Only Locales supported by the regional website that the ApiClient is connecting to are supported. If a wrong local is passed, default language is used.
+        /// </remarks>
+        protected ApiClient(Region region, string locale, string apiKey, ICacheManager cacheManager)
             : this(region, locale, cacheManager)
         {
             _apiKey = apiKey;
@@ -283,51 +267,24 @@ namespace WOWSharp.Community
                                  ? "http://"
                                  : "https://")
                             + Region.Host + path);
+
                 if (!uri.AbsolutePath.EndsWith(".json", StringComparison.OrdinalIgnoreCase))
                 {
                     uri = !string.IsNullOrEmpty(uri.Query)
                               ? new Uri(uri + "&locale=" + Locale.Replace('-', '_'))
                               : new Uri(uri + "?locale=" + Locale.Replace('-', '_'));
                 }
+
                 if (!ignoreAuthentication)
                 {
-                    SetAuthenticationHeader(client, uri, _apiKey);
+					if (!string.IsNullOrEmpty(_apiKey) && _authenticationSupport != null)
+					{
+						uri = !string.IsNullOrEmpty(uri.Query)
+							  ? new Uri(uri + "&apikey=" + _apiKey)
+							  : new Uri(uri + "?apikey=" + _apiKey);
+					}
                 }
                 return uri;
-            }
-        }
-
-        /// <summary>
-        ///   Sets the request authentication header
-        /// </summary>
-        /// <param name="client"> Http client</param>
-        /// <param name="requestUri">request Url</param>
-        /// <param name="apiKey"> battle.net api authenticate keys </param>
-        internal static void SetAuthenticationHeader(HttpClient client, Uri requestUri, ApiKeyPair apiKey)
-        {
-            if (apiKey != null && _authenticationSupport != null)
-            {
-                DateTimeOffset date = DateTimeOffset.Now.ToUniversalTime();
-                client.DefaultRequestHeaders.Date = date;
-
-                string dateString = date.ToString("r", CultureInfo.InvariantCulture);
-
-                string stringToSign = "GET" + "\n" + dateString
-                                      + "\n" + requestUri.AbsolutePath + "\n";
-                using (
-                    var hashAlgorithm =
-                        (IDisposable)
-                        Activator.CreateInstance(_authenticationSupport.HashType, apiKey.GetPrivateKeyBytes()))
-                {
-                    string signature = Convert.ToBase64String(
-                        (byte[]) _authenticationSupport.ComputeHashMethod.Invoke(hashAlgorithm,
-                                                                                 new object[]
-                                                                                     {
-                                                                                         Encoding.UTF8.GetBytes(
-                                                                                             stringToSign)
-                                                                                     }));
-                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("BNET", apiKey.PublicKey + ":" + signature);
-                }
             }
         }
 
@@ -500,6 +457,7 @@ namespace WOWSharp.Community
             {
                 serializer.MissingMemberHandling = MissingMemberHandling.Error;
             }
+
             return serializer;
         }
 

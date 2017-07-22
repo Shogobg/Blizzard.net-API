@@ -47,7 +47,7 @@ namespace WOWSharp.UnitTests
         [TestCategory("WOWPets")]
         public void TestBattlePetAbility()
         {
-            var client = new WowClient(TestConstants.TestRegion, TestConstants.Credentials, null, null);
+            var client = new WowClient(TestConstants.TestRegion, "en-gb", TestConstants.apiKey, null);
             var ability = client.GetBattlePetAbilityAsync(640).Result;
             Assert.IsNotNull(ability);
             Assert.IsNotNull(ability.Name);
@@ -62,7 +62,7 @@ namespace WOWSharp.UnitTests
         [TestCategory("WOWPets")]
         public void TestBattlePetSpecies()
         {
-            var client = new WowClient(TestConstants.TestRegion, TestConstants.Credentials, null, null);
+            var client = new WowClient(TestConstants.TestRegion, "en-gb", TestConstants.apiKey, null);
             var species = client.GetBattlePetSpeciesAsync(258).Result;
             Assert.IsNotNull(species);
             Assert.IsNotNull(species.Description);
@@ -77,7 +77,7 @@ namespace WOWSharp.UnitTests
         [TestCategory("WOWPets")]
         public void TestBattlePetTypes()
         {
-            var client = new WowClient(TestConstants.TestRegion, TestConstants.Credentials, null, null);
+            var client = new WowClient(TestConstants.TestRegion, "en-gb", TestConstants.apiKey, null);
             var types = client.GetBattlePetTypesAsync().Result;
             Assert.IsNotNull(types);
             Assert.IsNotNull(types.PetTypes);

@@ -76,7 +76,6 @@
     <Compile Include="ApiClient.cs" />
     <Compile Include="ApiError.cs" />
     <Compile Include="ApiException.cs" />
-    <Compile Include="ApiKeyPair.cs" />
     <Compile Include="ApiResponse.cs" />
     <Compile Include="CacheManagerException.cs" />
     <Compile Include="DatetimeConverter.cs" />

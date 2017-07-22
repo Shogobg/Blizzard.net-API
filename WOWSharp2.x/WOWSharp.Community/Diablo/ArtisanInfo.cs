@@ -20,18 +20,14 @@
 
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Serialization;
-using System.Text;
 
 namespace WOWSharp.Community.Diablo
 {
-    /// <summary>
-    /// Artisan's information
-    /// </summary>
-    [DataContract]
+	/// <summary>
+	/// Artisan's information
+	/// </summary>
+	[DataContract]
     public class ArtisanInfo : ApiResponse
     {
         // <summary>

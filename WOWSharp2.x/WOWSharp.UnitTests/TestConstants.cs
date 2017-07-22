@@ -53,10 +53,7 @@ namespace WOWSharp.UnitTests
         //public const CharacterGender TestGender = CharacterGender.Female;
         //public const Skill TestProfession1 = Skill.JewelCrafting;
         //public const Skill TestProfession2 = Skill.Blacksmithing;
-
-        public static readonly string PrivateKey = ConfigurationManager.AppSettings["PrivateKey"];
-        public static readonly string PublicKey = ConfigurationManager.AppSettings["PublicKey"];
-
-        public static readonly ApiKeyPair Credentials = new ApiKeyPair(PublicKey, PrivateKey);
+		
+		public static readonly string apiKey = "";
     }
 }

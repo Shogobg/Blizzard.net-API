@@ -18,18 +18,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-using Newtonsoft.Json;
-using Newtonsoft.Json.Bson;
-using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.IO;
 using System.Linq;
-using System.Net;
-using System.Security;
-using System.Security.Permissions;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using WOWSharp.Community;
 using WOWSharp.Community.Diablo;
@@ -37,45 +27,17 @@ using WOWSharp.Community.Wow;
 
 namespace WOWSharp.ApiClient.TestConsole
 {
-    internal static class Program
+	internal static class Program
     {
         /// <summary>
         ///   Main entry point for the application
         /// </summary>
         private static void Main()
         {
-            WOWSharp.Community.ApiClient.TestMode = true;
+            WOWSharp.Community.ApiClient.TestMode = false;
             
-            TestWowClientAsync().Wait();
+            //TestWowClientAsync().Wait();
             TestDiabloClientAsync().Wait();
-        }
-
-        /// <summary>
-        /// Tests calling Diablo API synchronously
-        /// </summary>
-        private static void TestDiabloClient()
-        {
-            string privateKey = ConfigurationManager.AppSettings["PrivateKey"];
-            string publicKey = ConfigurationManager.AppSettings["PublicKey"];
-            var pair = new ApiKeyPair(publicKey, privateKey);
-            
-            // Init client
-            var client = new DiabloClient(Region.EU, pair, "en-gb", null);
-
-            // Get Profile
-            var profile = client.GetProfileAsync("Grendizer#2508").Result;
-
-            // Get Hero
-            var hero = client.GetHeroAsync(profile.BattleTag, profile.Heroes[0].Id).Result;
-
-            // Get Item
-            var item = client.GetItemAsync(hero.Items.Head.TooltipParameters).Result;
-
-            // Get Blacksmith info
-            var blackSmith = client.GetArtisanInfoAsync(ArtisanType.Blacksmith).Result;
-
-            // Get Scoundrell info
-            var scoundrel = client.GetFollowerInfoAsync(FollowerType.Scoundrel).Result;
         }
 
         /// <summary>
@@ -84,114 +46,35 @@ namespace WOWSharp.ApiClient.TestConsole
         /// <returns>Task</returns>
         private async static Task TestDiabloClientAsync()
         {
-            string privateKey = ConfigurationManager.AppSettings["PrivateKey"];
-            string publicKey = ConfigurationManager.AppSettings["PublicKey"];
-            var pair = new ApiKeyPair(publicKey, privateKey);
-            
-            // Init client
-            var client = new DiabloClient(Region.EU, pair, "en-gb", null);
-            
-            // Get profile
-            var profile = await client.GetProfileAsync("Grendizer#2508");
+			string apiKey = ConfigurationManager.AppSettings["apiKey"];
 
-            // Get Hero
-            var hero = await client.GetHeroAsync(profile.BattleTag, profile.Heroes[0].Id);
+			// Init client
+			var client = new DiabloClient(Region.EU, "en-gb", apiKey);
 
-            /// Get item
-            var item = await client.GetItemAsync(hero.Items.Head.TooltipParameters);
+			// Get profile
+			var profile = await client.GetProfileAsync("Grendizer#2508");
 
-            // Get blacksmith info
-            var blackSmith = await client.GetArtisanInfoAsync(ArtisanType.Blacksmith);
+			// Get Hero
+			//var hero = await client.GetHeroAsync(profile.BattleTag, profile.Heroes[0].Id);
 
-            // Get scoundrel info
-            var scoundrel = await client.GetFollowerInfoAsync(FollowerType.Scoundrel);
-        }
+			///// Get item
+			//var item = await client.GetItemAsync(hero.Items.Head.TooltipParameters);
 
-        /// <summary>
-        /// Test accessing wow client synchronously
-        /// </summary>
-        private static void TestWowClient()
-        {
-            string privateKey = ConfigurationManager.AppSettings["PrivateKey"];
-            string publicKey = ConfigurationManager.AppSettings["PublicKey"];
-            var pair = new ApiKeyPair(publicKey, privateKey);
+			//// Get blacksmith info
+			//var blackSmith = await client.GetArtisanInfoAsync(ArtisanType.Blacksmith);
 
-            // Init client
-            var client = new WowClient(Region.EU, pair, "en-gb", null);
+			//// Get scoundrel info
+			//var scoundrel = await client.GetFollowerInfoAsync(FollowerType.Scoundrel);
 
-            // Get character data
-            var character = client.GetCharacterAsync("kazzak", "Grendiser", CharacterFields.All).Result;
-            // Refresh data
-            character.RefreshAsync(client).Wait();
-
-            // Get pet types
-            var petTypes = client.GetBattlePetTypesAsync().Result;
-
-            // Get realm challenge leaders
-            var kazzakChallengeLeaders = client.GetChallengeLeadersAsync("kazzak").Result;
-
-            // Get EU challenge leader
-            var euChallengeLeaders = client.GetChallengeLeadersAsync(null).Result;
-
-            // Get battle groups
-            var bgs = client.GetBattleGroupsAsync().Result;
-
-            // Get guild rewards
-            var rewards = client.GetGuildRewardsAsync().Result;
-
-            // Get guild perks
-            var perks = client.GetGuildPerksAsync().Result;
-
-            // Get realms
-            var realms = client.GetRealmStatusAsync().Result;
-
-            // Get classes
-            var classes = client.GetClassesAsync().Result;
-
-            // Get item categories
-            var itemCategories = client.GetItemCategoryNamesAsync().Result;
-
-            // Get races
-            var races = client.GetRacesAsync().Result;
-
-            // Get character achievements
-            var characterAchievements = client.GetCharacterAchievementsAsync().Result;
-
-            // get guild achievements
-            var guildAchievements = client.GetGuildAchievementsAsync().Result;
-
-            // Get quest
-            var quest = client.GetQuestAsync(23).Result;
-
-            // Get talents
-            var talents = client.GetTalentsAsync().Result;
-
-            // Get PVP information
-            var topArenaPlayers = client.GetPvpLeaderboardAsync(PvpBracket.Arena5v5).Result;
-            var topBgPlayers = client.GetPvpLeaderboardAsync(PvpBracket.RatedBattleground).Result;
-
-            // Get item set
-            var itemSet = client.GetItemSetAsync(1058).Result;
-
-            // Get battle pet info
-            var ability = client.GetBattlePetAbilityAsync(640).Result;
-            var petSpecies = client.GetBattlePetSpeciesAsync(258).Result;
-
-            // Get guild
-            var guild = client.GetGuildAsync(character.Realm, character.Guild.Name, GuildFields.All).Result;
-
-            // Get items
-            var itemsTasks = character.Items.AllItems.Select(
-                equippedItem => client.GetItemAsync(equippedItem.ItemId)).ToArray();
-            var items = character.Items.AllItems.Select(equipped => client.GetItemAsync(equipped.ItemId).Result).ToArray();
-            var gems = character.Items.AllItems.Where(ei => ei.Parameters != null)
-                .SelectMany(ei => new[] { ei.Parameters.Gem0, ei.Parameters.Gem1, ei.Parameters.Gem2, ei.Parameters.Gem3 })
-                .Where(gemid => gemid != null)
-                .Distinct();
-
-            // Get AH dump
-            var auctions = client.GetAuctionDumpAsync(character.Realm).Result;
-        }
+			//var client = new DiabloClient(Region.EU, "en-gb", "ydxrgscxc9jq5hcmvvanz8ertwywt44t");
+			//try {
+			//	var profile = await client.GetProfileAsync("Shogo#2690");
+			//}
+			//catch (System.Exception ex)
+			//{
+			//	System.Console.WriteLine(ex.Message);
+			//}
+		}
 
         /// <summary>
         /// Gets accessing WOW API Asynchronously
@@ -199,12 +82,10 @@ namespace WOWSharp.ApiClient.TestConsole
         /// <returns></returns>
         private async static Task TestWowClientAsync()
         {
-            string privateKey = ConfigurationManager.AppSettings["PrivateKey"];
-            string publicKey = ConfigurationManager.AppSettings["PublicKey"];
-            var pair = new ApiKeyPair(publicKey, privateKey);
+			var apiKey = "";
 
-            // Init client
-            var client = new WowClient(Region.EU, pair, "en-gb", null);
+			// Init client
+			var client = new WowClient(Region.EU, "en-gb", apiKey, null);
             
             // Character
             var character = await client.GetCharacterAsync("kazzak", "Grendiser", CharacterFields.All);

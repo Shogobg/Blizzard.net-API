@@ -19,21 +19,16 @@
 // THE SOFTWARE.
 
 
-using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace WOWSharp.Community.Diablo
 {
-    /// <summary>
-    /// Diablo 3 Web API client
-    /// </summary>
-    public class DiabloClient : ApiClient
+	/// <summary>
+	/// Diablo 3 Web API client
+	/// </summary>
+	public class DiabloClient : ApiClient
     {
         #region Constructors
 
@@ -44,7 +39,7 @@ namespace WOWSharp.Community.Diablo
         ///   The default constructor will use the default region and locale determined by the current thread's culture.
         /// </remarks>
         public DiabloClient()
-            : this((Region) null, null, null)
+            : this(null)
         {
         }
 
@@ -53,7 +48,7 @@ namespace WOWSharp.Community.Diablo
         /// </summary>
         /// <param name="region"> Regional battle.net Community website to which the ApiClient should connect to perform request. </param>
         public DiabloClient(Region region)
-            : this(region, null, null)
+            : this(region, null)
         {
         }
 
@@ -63,7 +58,7 @@ namespace WOWSharp.Community.Diablo
         /// <param name="region"> Regional battle.net Community website to which the ApiClient should connect to perform request. </param>
         /// <param name="locale"> the locale to use for retrieving data </param>
         public DiabloClient(Region region, string locale)
-            : this(region, locale, null)
+            : this(region, locale, (ICacheManager) null)
         {
         }
 
@@ -81,23 +76,43 @@ namespace WOWSharp.Community.Diablo
         /// <summary>
         ///   Constructor. Initializes a new instance of the ApiClient class
         /// </summary>
-        /// <param name="apiKey"> Application key used to authenticate requests sent by the ApiClient </param>
-        public DiabloClient(ApiKeyPair apiKey)
-            : this((Region) null, apiKey, null, null)
-        {
-        }
-
-        /// <summary>
-        ///   Constructor. Initializes a new instance of the ApiClient class
-        /// </summary>
         /// <param name="region"> Regional battle.net Community website to which the ApiClient should connect to perform request. </param>
         /// <param name="apiKey"> Application key used to authenticate requests sent by the ApiClient </param>
         /// <param name="locale"> The locale to use to perform request (item names, class names, etc are retrieved in the locale specified) </param>
         /// <remarks>
         ///   Only Locales supported by the regional website that the ApiClient is connecting to are supported. If a wrong local is passed, default language is used.
         /// </remarks>
-        public DiabloClient(string region, ApiKeyPair apiKey, string locale)
-            : this(Region.GetRegion(region), apiKey, locale, null)
+        public DiabloClient(string region, string locale, string apiKey)
+            : this(Region.GetRegion(region), locale, apiKey, null)
+        {
+        }
+
+		/// <summary>
+		///   Constructor. Initializes a new instance of the ApiClient class
+		/// </summary>
+		/// <param name="region"> Regional battle.net Community website to which the ApiClient should connect to perform request. </param>
+		/// <param name="apiKey"> Application key used to authenticate requests sent by the ApiClient </param>
+		/// <param name="locale"> The locale to use to perform request (item names, class names, etc are retrieved in the locale specified) </param>
+		/// <remarks>
+		///   Only Locales supported by the regional website that the ApiClient is connecting to are supported. If a wrong local is passed, default language is used.
+		/// </remarks>
+		public DiabloClient(Region region, string locale, string apiKey)
+			: this(region, locale, apiKey, null)
+		{
+		}
+
+		/// <summary>
+		///   Constructor. Initializes a new instance of the ApiClient class
+		/// </summary>
+		/// <param name="region"> Regional battle.net Community website to which the ApiClient should connect to perform request. </param>
+		/// <param name="apiKey"> Application key used to authenticate requests sent by the ApiClient </param>
+		/// <param name="locale"> The locale to use to perform request (item names, class names, etc are retrieved in the locale specified) </param>
+		/// <param name="cacheManager"> Cache manager to cache data </param>
+		/// <remarks>
+		///   Only Locales supported by the regional website that the ApiClient is connecting to are supported. If a wrong local is passed, default language is used.
+		/// </remarks>
+		public DiabloClient(string region, string locale, string apiKey, ICacheManager cacheManager)
+            : this(Region.GetRegion(region), locale, apiKey, cacheManager)
         {
         }
 
@@ -111,23 +126,8 @@ namespace WOWSharp.Community.Diablo
         /// <remarks>
         ///   Only Locales supported by the regional website that the ApiClient is connecting to are supported. If a wrong local is passed, default language is used.
         /// </remarks>
-        public DiabloClient(string region, ApiKeyPair apiKey, string locale, ICacheManager cacheManager)
-            : this(Region.GetRegion(region), apiKey, locale, cacheManager)
-        {
-        }
-
-        /// <summary>
-        ///   Constructor. Initializes a new instance of the ApiClient class
-        /// </summary>
-        /// <param name="region"> Regional battle.net Community website to which the ApiClient should connect to perform request. </param>
-        /// <param name="apiKey"> Application key used to authenticate requests sent by the ApiClient </param>
-        /// <param name="locale"> The locale to use to perform request (item names, class names, etc are retrieved in the locale specified) </param>
-        /// <param name="cacheManager"> Cache manager to cache data </param>
-        /// <remarks>
-        ///   Only Locales supported by the regional website that the ApiClient is connecting to are supported. If a wrong local is passed, default language is used.
-        /// </remarks>
-        public DiabloClient(Region region, ApiKeyPair apiKey, string locale, ICacheManager cacheManager)
-            : base(region, apiKey, locale, cacheManager)
+        public DiabloClient(Region region, string locale, string apiKey, ICacheManager cacheManager)
+            : base(region, locale, apiKey, cacheManager)
         {
         }
 
@@ -176,7 +176,7 @@ namespace WOWSharp.Community.Diablo
         /// <returns>status of async operation</returns>
         public Task<DiabloProfile> GetProfileAsync(string battleTagName, int battleTagCode)
         {
-            string path = "/api/d3/profile/" + battleTagName + "-" + battleTagCode.ToString(CultureInfo.InvariantCulture) + "/";
+            string path = "/d3/profile/" + battleTagName + "-" + battleTagCode.ToString(CultureInfo.InvariantCulture) + "/";
             return GetAsync<DiabloProfile>(path, null);
         }
 
@@ -203,7 +203,7 @@ namespace WOWSharp.Community.Diablo
         /// <returns>status of async operation</returns>
         public Task<Hero> GetHeroAsync(string battleTagName, int battleTagCode, long heroId)
         {
-            string path = "/api/d3/profile/" + battleTagName + "-" + battleTagCode.ToString(CultureInfo.InvariantCulture) + "/hero/" + heroId.ToString(CultureInfo.InvariantCulture);
+            string path = "/d3/profile/" + battleTagName + "-" + battleTagCode.ToString(CultureInfo.InvariantCulture) + "/hero/" + heroId.ToString(CultureInfo.InvariantCulture);
             return GetAsync<Hero>(path, null);
         }
 
@@ -214,7 +214,7 @@ namespace WOWSharp.Community.Diablo
         /// <returns>Status of async operation</returns>
         public Task<Item> GetItemAsync(string itemData)
         {
-            string path = "/api/d3/data/" + itemData;
+            string path = "/d3/data/" + itemData;
             return GetAsync<Item>(path, null);
         }
 
@@ -225,7 +225,7 @@ namespace WOWSharp.Community.Diablo
         /// <returns>Status of async operation</returns>
         public Task<ArtisanInfo> GetArtisanInfoAsync(ArtisanType artisanType)
         {
-            string path = "/api/d3/data/artisan/" + EnumHelper<ArtisanType>.EnumToString(artisanType);
+            string path = "/d3/data/artisan/" + EnumHelper<ArtisanType>.EnumToString(artisanType);
             return GetAsync<ArtisanInfo>(path, null);
         }
 
@@ -236,7 +236,7 @@ namespace WOWSharp.Community.Diablo
         /// <returns>Status of async operation</returns>
         public Task<Follower> GetFollowerInfoAsync(FollowerType followerType)
         {
-            string path = "/api/d3/data/follower/" + EnumHelper<FollowerType>.EnumToString(followerType);
+            string path = "/d3/data/follower/" + EnumHelper<FollowerType>.EnumToString(followerType);
             return GetAsync<Follower>(path, null);
         }
     }
