@@ -32,31 +32,31 @@ namespace WOWSharp.Community.Diablo
     [DataContract]
     public class ItemSet
     {
-        /// <summary>
-        /// List of items in the set
-        /// </summary>
-        [DataMember(Name = "items")]
+		/// <summary>
+		/// Item name
+		/// </summary>
+		[DataMember(Name = "name")]
+		public string Name
+		{
+			get;
+			internal set;
+		}
+
+		/// <summary>
+		/// Item set slug
+		/// </summary>
+		[DataMember(Name = "slug")]
+		public string Slug
+		{
+			get;
+			internal set;
+		}
+
+		/// <summary>
+		/// List of items in the set
+		/// </summary>
+		[DataMember(Name = "items")]
         public IList<Item> Items
-        {
-            get;
-            internal set;
-        }
-
-        /// <summary>
-        /// Item name
-        /// </summary>
-        [DataMember(Name = "name")]
-        public string Name
-        {
-            get;
-            internal set;
-        }
-
-        /// <summary>
-        /// Item set slug
-        /// </summary>
-        [DataMember(Name = "slug")]
-        public string Slug
         {
             get;
             internal set;

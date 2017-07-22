@@ -351,13 +351,20 @@ namespace WOWSharp.Community.Diablo
         /// </summary>
         [EnumMember(Value = "All")]
         AnyArmorExceptHead = ItemHelper.EquipmentSlotMask + ItemHelper.Tradable + ItemHelper.AllFollowers + ItemHelper.AllClassesMask + 101,
-        #endregion 
-        #region Commodity
-        
-        /// <summary>
-        /// Gem
-        /// </summary>
-        [EnumMember(Value = "Gem")]
+
+		/// <summary>
+		/// All armor except head
+		/// </summary>
+		[EnumMember(Value = "Helm_Barbarian")]
+		HelmBarbarian = ItemHelper.Barbarian + 1000,
+		
+		#endregion
+		#region Commodity
+
+		/// <summary>
+		/// Gem
+		/// </summary>
+		[EnumMember(Value = "Gem")]
         Gem = ItemHelper.Commodity + ItemHelper.Tradable + 120,
 
         /// <summary>

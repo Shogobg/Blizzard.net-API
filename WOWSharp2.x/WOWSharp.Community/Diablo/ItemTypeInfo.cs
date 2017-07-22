@@ -54,7 +54,5 @@ namespace WOWSharp.Community.Diablo
             get;
             internal set;
         }
-
-
     }
 }

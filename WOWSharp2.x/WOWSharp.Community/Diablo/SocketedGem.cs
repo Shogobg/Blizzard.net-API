@@ -38,7 +38,7 @@ namespace WOWSharp.Community.Diablo
         /// For exampe, a ruby will list only bonus xp when socketed in a helm
         /// </summary>
         [DataMember(Name = "attributes")]
-        public IList<string> Attributes
+        public ItemAttributes Attributes
         {
             get;
             internal set;

@@ -46,34 +46,31 @@ namespace WOWSharp.ApiClient.TestConsole
         /// <returns>Task</returns>
         private async static Task TestDiabloClientAsync()
         {
-			string apiKey = ConfigurationManager.AppSettings["apiKey"];
+			try {
+				string apiKey = ConfigurationManager.AppSettings["apiKey"];
 
-			// Init client
-			var client = new DiabloClient(Region.EU, "en-gb", apiKey);
+				// Init client
+				var client = new DiabloClient(Region.EU, "en-gb", apiKey);
 
-			// Get profile
-			var profile = await client.GetProfileAsync("Grendizer#2508");
+				// Get profile
+				var profile = await client.GetProfileAsync("Grendizer#2508");
 
-			// Get Hero
-			//var hero = await client.GetHeroAsync(profile.BattleTag, profile.Heroes[0].Id);
+				// Get Hero
+				var hero = await client.GetHeroAsync(profile.BattleTag, profile.Heroes[0].Id);
 
-			///// Get item
-			//var item = await client.GetItemAsync(hero.Items.Head.TooltipParameters);
+				// Get item
+				var item = await client.GetItemAsync(hero.Items.Head.TooltipParameters);
 
-			//// Get blacksmith info
-			//var blackSmith = await client.GetArtisanInfoAsync(ArtisanType.Blacksmith);
+				// Get blacksmith info
+				var blackSmith = await client.GetArtisanInfoAsync(ArtisanType.Blacksmith);
 
-			//// Get scoundrel info
-			//var scoundrel = await client.GetFollowerInfoAsync(FollowerType.Scoundrel);
-
-			//var client = new DiabloClient(Region.EU, "en-gb", "ydxrgscxc9jq5hcmvvanz8ertwywt44t");
-			//try {
-			//	var profile = await client.GetProfileAsync("Shogo#2690");
-			//}
-			//catch (System.Exception ex)
-			//{
-			//	System.Console.WriteLine(ex.Message);
-			//}
+				// Get scoundrel info
+				var scoundrel = await client.GetFollowerInfoAsync(FollowerType.Scoundrel);
+			}
+			catch (System.Exception ex)
+			{
+				System.Console.WriteLine(ex.Message);
+			}
 		}
 
         /// <summary>

@@ -108,10 +108,12 @@ namespace WOWSharp.Community.SilverlightProxy
 
             // Create the request
             var request = (HttpWebRequest) WebRequest.Create(uri);
-            
-			// Todo: Set API key??
 
-            request.AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip;
+			uri = !string.IsNullOrEmpty(uri.Query)
+							  ? new Uri(uri + "&apikey=" + GetApiKey())
+							  : new Uri(uri + "?apikey=" + GetApiKey());
+
+			request.AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip;
 
 
             HttpWebResponse response = null;

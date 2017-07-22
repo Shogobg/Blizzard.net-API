@@ -33,11 +33,21 @@ namespace WOWSharp.Community.Diablo
     [DataContract]
     public class ItemSetBonus
     {
-        /// <summary>
-        /// A user readable list of attributes in the locale specified by the client
-        /// </summary>
-        [DataMember(Name = "attributes")]
-        public IList<string> Attributes
+		/// <summary>
+		/// Number of set items required to activate the set bonus
+		/// </summary>
+		[DataMember(Name = "required")]
+		public int Required
+		{
+			get;
+			internal set;
+		}
+
+		/// <summary>
+		/// A user readable list of attributes in the locale specified by the client
+		/// </summary>
+		[DataMember(Name = "attributes")]
+        public ItemAttributes Attributes
         {
             get;
             internal set;
@@ -54,26 +64,12 @@ namespace WOWSharp.Community.Diablo
         }
 
         /// <summary>
-        /// Number of set items required to activate the set bonus
-        /// </summary>
-        [DataMember(Name = "required")]
-        public int Required
-        {
-            get;
-            internal set;
-        }
-
-        /// <summary>
         /// String representation for debug purposes
         /// </summary>
         /// <returns></returns>
         public override string ToString()
         {
-            if (Attributes != null)
-            {
-                return string.Join("\r\n", Attributes.Select(a => Required.ToString(CultureInfo.InvariantCulture) + ": " + a));
-            }
-            return "";
+            return Attributes.ToString();
         }
     }
 }

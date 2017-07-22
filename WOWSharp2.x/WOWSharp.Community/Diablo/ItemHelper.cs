@@ -1,4 +1,5 @@
-﻿// of this software and associated documentation files (the "Software"), to deal
+﻿// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
 // in the Software without restriction, including without limitation the rights
 // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 // copies of the Software, and to permit persons to whom the Software is
@@ -15,37 +16,33 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 namespace WOWSharp.Community.Diablo
 {
-    /// <summary>
-    /// Helper class for item types
-    /// </summary>
-    public static class ItemHelper
+	/// <summary>
+	/// Helper class for item types
+	/// </summary>
+	public static class ItemHelper
     {
-        // N = Not Used (Bit 31)
-        // F = Future Class (Bits 26-30)
-        // C = Crusader (Bit 25)
-        // Z = Wizard (Bit 24)
-        // W = Witchdoctor (Bit 23)
-        // M = Monk (Bit 22)
-        // D = Demon Hunter (Bit 21)
-        // B = Barbarian (Bit 20)
-        // 2 = Twohanded Flag (Bit 19)
-        // O = Commodity Flag (Bit 18)
-        // T = Sellable Flag (Bit 17)
-        // N = Not Used (Bit 16)
-        // S = Equipment Slot (Bits 11-15)
-        // L = Follower (Bit 8 = Templar, Bit 9 = Scoundrel, Bit 10 = Enchantress)
-        // 0 = Type unique Id
-        // NFFF FFCZ WMDB 2OTN SSSS SLLL 0000 0000
-        
-        // Classes are bits 20-30 (Which should support up to 11 classes)
-        internal const int ClassesShift = 19;
+		// N = Not Used (Bit 31)
+		// F = Future Class (Bits 26-30)
+		// ? = Necromancer (Bit 27)
+		// C = Crusader (Bit 25)
+		// Z = Wizard (Bit 24)
+		// W = Witchdoctor (Bit 23)
+		// M = Monk (Bit 22)
+		// D = Demon Hunter (Bit 21)
+		// B = Barbarian (Bit 20)
+		// 2 = Twohanded Flag (Bit 19)
+		// O = Commodity Flag (Bit 18)
+		// T = Sellable Flag (Bit 17)
+		// N = Not Used (Bit 16)
+		// S = Equipment Slot (Bits 11-15)
+		// L = Follower (Bit 8 = Templar, Bit 9 = Scoundrel, Bit 10 = Enchantress)
+		// 0 = Type unique Id
+		// NFFF FFCZ WMDB 2OTN SSSS SLLL 0000 0000
+
+		// Classes are bits 20-30 (Which should support up to 11 classes)
+		internal const int ClassesShift = 19;
         internal const int FollowerShift = 7;
         
         internal const int Barbarian = 1 << ((int)HeroClass.Barbarian + ClassesShift);
@@ -54,8 +51,9 @@ namespace WOWSharp.Community.Diablo
         internal const int Witchdoctor = 1 << ((int)HeroClass.Witchdoctor + ClassesShift);
         internal const int Wizard = 1 << ((int)HeroClass.Wizard + ClassesShift);
         internal const int Crusader = 1 << ((int)HeroClass.Crusader + ClassesShift);
+		internal const int Necromancer = 1 << ((int)HeroClass.Necromancer + ClassesShift);
 
-        internal const int Templar = 1 << ((int)FollowerType.Templar + FollowerShift);
+		internal const int Templar = 1 << ((int)FollowerType.Templar + FollowerShift);
         internal const int Scoundrel = 1 << ((int)FollowerType.Scoundrel + FollowerShift);
         internal const int Enchantress = 1 << ((int)FollowerType.Enchantress + FollowerShift);
 
@@ -63,7 +61,7 @@ namespace WOWSharp.Community.Diablo
         internal const int AllClassesMask = Barbarian + DemonHunter + Monk + Witchdoctor + Wizard + Crusader;
 
 
-        
+
         // Two handed flag is bit 19
         internal const int TwoHanded = 1 << 18;
         // Commodity flag is bit 18
@@ -124,7 +122,7 @@ namespace WOWSharp.Community.Diablo
         public static bool IsTradable(ItemType type)
         {
             int typeInt = (int)type;
-            return ((int)typeInt & Tradable) != 0;
+            return (typeInt & Tradable) != 0;
         }
 
         /// <summary>
@@ -135,9 +133,7 @@ namespace WOWSharp.Community.Diablo
         public static bool IsCommodity(ItemType type)
         {
             int typeInt = (int)type;
-            return ((int)typeInt & Commodity) != 0;
+            return (typeInt & Commodity) != 0;
         }
-
-        
     }
 }
