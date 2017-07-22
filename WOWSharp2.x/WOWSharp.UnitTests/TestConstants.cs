@@ -19,7 +19,7 @@ namespace WOWSharp.UnitTests
         public const string TestAuctionHouseRealm = "Echsenkessel"; // Need to test witha  low pop realm
         public static readonly Region TestRegion = Region.EU;
 
-        public const string TestBattleTag = "Grendizer#2508";
+        public static readonly string TestBattleTag = System.Configuration.ConfigurationManager.AppSettings.Get("battleNetTag");
 
         //public const string TestRealmName = "";
         //public const string TestRegionName = "US";
@@ -33,6 +33,6 @@ namespace WOWSharp.UnitTests
         //public const Skill TestProfession1 = Skill.JewelCrafting;
         //public const Skill TestProfession2 = Skill.Blacksmithing;
 		
-		public static readonly string apiKey = "";
+		public static readonly string apiKey = System.Configuration.ConfigurationManager.AppSettings.Get("apiKey");
     }
 }

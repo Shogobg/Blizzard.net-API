@@ -32,9 +32,8 @@ namespace WOWSharp.UnitTests
         [TestCategory("WOW")]
         public void TestAuctions()
         {
-            var client = new WowClient(TestConstants.TestRegionName,
-                                       "", null, null);
-            //var result = client.GetAuctionDump(TestConstants.TestRealmName);
+            var client = new WowClient(TestConstants.TestRegionName, "", null, null);
+
             var result = client.GetAuctionDumpAsync(TestConstants.TestAuctionHouseRealm).Result;
 
             Assert.IsNotNull(result);
@@ -47,8 +46,7 @@ namespace WOWSharp.UnitTests
             Assert.IsNotNull(result.Horde.Auctions);
             Assert.IsTrue(result.Horde.Auctions.Count > 0);
 
-            Assert.IsTrue(
-                result.Horde.ToString().StartsWith(result.Horde.Auctions.Count.ToString(CultureInfo.InvariantCulture)));
+            Assert.IsTrue(result.Horde.ToString().StartsWith(result.Horde.Auctions.Count.ToString(CultureInfo.InvariantCulture)));
 
             var auction = result.Horde.Auctions.FirstOrDefault(a => a.BuyoutValue.HasValue);
             Assert.IsNotNull(auction);
@@ -138,14 +136,12 @@ namespace WOWSharp.UnitTests
             Assert.IsTrue(result.Rewards[0].RewardItem.Quality != ItemQuality.Poor);
             Assert.IsTrue(result.Rewards[0].RewardItem.Id > 0);
             Assert.IsNotNull(result.Rewards[0].RewardItem.Name);
-            //Assert.AreEqual(result.Rewards[0].RewardItem.Quality, ItemQuality.Heirloom);
+            Assert.AreEqual(result.Rewards[0].RewardItem.Quality, ItemQuality.Heirloom);
             Assert.IsNotNull(result.Rewards[0].RewardItem.TooltipParameters);
             Assert.IsNotNull(result.Rewards[0].Achievement);
 
             var rw = new GuildReward();
-// ReSharper disable ReturnValueOfPureMethodIsNotUsed
             rw.ToString();
-// ReSharper restore ReturnValueOfPureMethodIsNotUsed
         }
 
         /// <summary>
@@ -351,7 +347,7 @@ namespace WOWSharp.UnitTests
             Assert.IsNotNull(character.Mounts);
             Assert.IsNotNull(character.Pets);
             Assert.IsNotNull(character.PetSlots);
-            //Assert.IsNotNull(character.HunterPets);
+            Assert.IsNotNull(character.HunterPets);
             Assert.IsNotNull(character.Feed);
             Assert.IsNotNull(character.Guild);
             Assert.IsNotNull(character.Progression);
@@ -359,8 +355,7 @@ namespace WOWSharp.UnitTests
             Assert.IsTrue(character.Level >= 85);
 
             Assert.IsTrue(string.Equals(character.Realm, TestConstants.TestRealmName, StringComparison.OrdinalIgnoreCase));
-            Assert.IsTrue(string.Equals(character.Name, TestConstants.TestCharacterName,
-                                        StringComparison.OrdinalIgnoreCase));
+            Assert.IsTrue(string.Equals(character.Name, TestConstants.TestCharacterName, StringComparison.OrdinalIgnoreCase));
             
             Assert.IsNotNull(character.Thumbnail);
         }

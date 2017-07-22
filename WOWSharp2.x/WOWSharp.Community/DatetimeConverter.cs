@@ -21,7 +21,7 @@ namespace WOWSharp.Community
         /// Constructor.
         /// </summary>
         /// <param name="isMilliseconds">Whether the timestamp value is in milliseconds</param>
-        public DatetimeConverter(bool isMilliseconds)
+        protected DatetimeConverter(bool isMilliseconds)
         {
             _isMilliseconds = isMilliseconds;
         }

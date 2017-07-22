@@ -25,15 +25,11 @@ namespace WOWSharp.UnitTests
         [TestCategory("Diablo")]
         public void TestProfile()
         {
-            var client = new DiabloClient(TestConstants.TestRegion, "en-gb", TestConstants.apiKey, null);
+            var client = new DiabloClient(TestConstants.TestRegion, "en-gb", TestConstants.apiKey);
             var profile = client.GetProfileAsync(TestConstants.TestBattleTag).Result;
             Assert.IsNotNull(profile);
             Assert.AreEqual(TestConstants.TestBattleTag, profile.BattleTag);
-            //Assert.IsNotNull(profile.HardcoreModeArtisans);
-            //Assert.IsNotNull(profile.Artisans);
-            //Assert.IsTrue(profile.Artisans.Count >= 2);
-            //Assert.IsTrue(profile.Artisans.First(a => a.ArtisanType == ArtisanType.Blacksmith).Level >= 10);
-            //Assert.IsTrue(profile.Artisans.First(a => a.ArtisanType == ArtisanType.Jeweler).Level >= 10);
+
             Assert.IsNotNull(profile.Progression);
             Assert.IsTrue(profile.Progression.Act1);
             Assert.IsTrue(profile.Progression.Act2);
@@ -54,8 +50,6 @@ namespace WOWSharp.UnitTests
             Assert.IsTrue(profile.Heroes[0].Level > 0);
             Assert.IsTrue(!string.IsNullOrWhiteSpace(profile.Heroes[0].Name));
             Assert.IsTrue(profile.Heroes[0].Id > 0);
-
-            
         }
 
 
