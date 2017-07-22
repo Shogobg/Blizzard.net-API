@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
+﻿using System.Runtime.Serialization;
 
 namespace WOWSharp.Community.Wow
 {
-    /// <summary>
-    /// Auction time left
-    /// </summary>
-    [DataContract]
+	/// <summary>
+	/// Auction time left
+	/// </summary>
+	[DataContract]
     public enum AuctionTimeLeft
     {
         /// <summary>
