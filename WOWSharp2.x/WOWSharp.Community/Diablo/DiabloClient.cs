@@ -120,11 +120,13 @@ namespace WOWSharp.Community.Diablo
         /// <param name="battleTagCode">battle tag code</param>
         private static void ParseBattleTag(string battleTag, out string battleTagName, out int battleTagCode)
         {
-            if (string.IsNullOrWhiteSpace(battleTag))
-                throw new ArgumentNullException(battleTag);
-            int hashIndex = battleTag.IndexOf('#');
-            if (hashIndex <= 0 || hashIndex == (battleTag.Length - 1))
-                throw new ArgumentException(ErrorMessages.InvalidBattleTag, "battleTag");
+			int hashIndex = battleTag.IndexOf('#');
+
+			if (string.IsNullOrWhiteSpace(battleTag) || hashIndex <= 0 || hashIndex == (battleTag.Length - 1))
+			{
+				throw new ArgumentException(ErrorMessages.InvalidBattleTag, "battleTag");
+			}
+
             battleTagName = battleTag.Substring(0, hashIndex);
             string battleTagCodeStr = battleTag.Substring(hashIndex + 1);
 

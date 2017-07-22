@@ -403,14 +403,18 @@ namespace WOWSharp.Community
                 }
                 finally
                 {
-                    if (textReader != null)
-                        textReader.Dispose();
+					if (textReader != null)
+					{
+						textReader.Dispose();
+					}
                 }
             }
             finally
             {
-                if (responseStream != null)
-                    responseStream.Dispose();
+				if (responseStream != null)
+				{
+					responseStream.Dispose();
+				}
             }
         }
 
@@ -468,14 +472,7 @@ namespace WOWSharp.Community
         /// <returns> Utc time object </returns>
         internal static DateTime GetUtcDateFromUnixTimeMilliseconds(long value)
         {
-            try
-            {
-                return _unixStartDate.AddMilliseconds(value);
-            }
-            catch
-            {
-                throw;
-            }
+			return _unixStartDate.AddMilliseconds(value);
         }
 
         /// <summary>
@@ -495,14 +492,7 @@ namespace WOWSharp.Community
         /// <returns> Utc time object </returns>
         internal static DateTime GetUtcDateFromUnixTimeSeconds(long value)
         {
-            try
-            {
-                return _unixStartDate.AddSeconds(value);
-            }
-            catch
-            {
-                throw;
-            }
+			return _unixStartDate.AddSeconds(value);
         }
 
         /// <summary>
