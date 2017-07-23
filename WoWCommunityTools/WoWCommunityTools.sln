@@ -1,17 +1,11 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WOWSharp.Community", "WOWSharp.Community\WOWSharp.Community.csproj", "{BDB5B6E0-45CF-462C-9EEA-2674D4F0DA61}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiTest", "ApiTest\ApiTest.csproj", "{36156F5A-E4CD-48E3-8F5E-3D8B9135F543}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WOWSharpSilverLight.Community", "WOWSharpSilverLight.Community\WOWSharpSilverLight.Community.csproj", "{6AB857FE-524E-456A-BA63-6486C8FE8D1D}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WOWSharp.Community.SilverLightProxy", "WOWSharp.Community.SilverLightProxy\WOWSharp.Community.SilverLightProxy.csproj", "{949C39D8-A233-4C1B-8943-BA09EBDE48A4}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiSilverlightTestApplication", "ApiSilverlightTestApplication\ApiSilverlightTestApplication.csproj", "{6CA13150-9A0F-4FBA-B98F-1B547206B1FF}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiSilverlightTestApplication.Web", "ApiSilverlightTestApplication.Web\ApiSilverlightTestApplication.Web.csproj", "{80621A94-37D6-419E-BD4B-F1F060915BE2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WOWSharp.Community.UnitTest", "WOWSharp.Community.UnitTest\WOWSharp.Community.UnitTest.csproj", "{606F4FFC-58B5-473A-8346-2E6D019BDB1C}"
 EndProject
@@ -25,39 +19,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TabardGenerationWPFTest", "TabardGenerationWPFTest\TabardGenerationWPFTest.csproj", "{738BBA67-EC2F-4583-B8AE-DFBA548570E5}"
 EndProject
 Global
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 9
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs34
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = ApiTest\\ApiTest.csproj
-		SccProjectName1 = ApiTest
-		SccLocalPath1 = ApiTest
-		SccProjectUniqueName2 = WOWSharp.Community\\WOWSharp.Community.csproj
-		SccProjectName2 = WOWSharp.Community
-		SccLocalPath2 = WOWSharp.Community
-		SccProjectUniqueName3 = WOWSharpSilverLight.Community\\WOWSharpSilverLight.Community.csproj
-		SccProjectName3 = WOWSharpSilverLight.Community
-		SccLocalPath3 = WOWSharpSilverLight.Community
-		SccProjectUniqueName4 = WOWSharp.Community.SilverLightProxy\\WOWSharp.Community.SilverLightProxy.csproj
-		SccProjectName4 = WOWSharp.Community.SilverLightProxy
-		SccLocalPath4 = WOWSharp.Community.SilverLightProxy
-		SccProjectUniqueName5 = ApiSilverlightTestApplication\\ApiSilverlightTestApplication.csproj
-		SccProjectName5 = ApiSilverlightTestApplication
-		SccLocalPath5 = ApiSilverlightTestApplication
-		SccProjectUniqueName6 = ApiSilverlightTestApplication.Web\\ApiSilverlightTestApplication.Web.csproj
-		SccProjectName6 = ApiSilverlightTestApplication.Web
-		SccLocalPath6 = ApiSilverlightTestApplication.Web
-		SccProjectUniqueName7 = WOWSharp.Community.UnitTest\\WOWSharp.Community.UnitTest.csproj
-		SccProjectName7 = WOWSharp.Community.UnitTest
-		SccLocalPath7 = WOWSharp.Community.UnitTest
-		SccProjectUniqueName8 = TabardGenerationWPFTest\\TabardGenerationWPFTest.csproj
-		SccProjectName8 = TabardGenerationWPFTest
-		SccLocalPath8 = TabardGenerationWPFTest
-	EndGlobalSection
-	GlobalSection(TestCaseManagementSettings) = postSolution
-		CategoryFile = WoWCommunityTools.vsmdi
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|Mixed Platforms = Debug|Mixed Platforms
@@ -88,46 +49,6 @@ Global
 		{36156F5A-E4CD-48E3-8F5E-3D8B9135F543}.Release|Mixed Platforms.Build.0 = Release|x86
 		{36156F5A-E4CD-48E3-8F5E-3D8B9135F543}.Release|x86.ActiveCfg = Release|x86
 		{36156F5A-E4CD-48E3-8F5E-3D8B9135F543}.Release|x86.Build.0 = Release|x86
-		{6AB857FE-524E-456A-BA63-6486C8FE8D1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6AB857FE-524E-456A-BA63-6486C8FE8D1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6AB857FE-524E-456A-BA63-6486C8FE8D1D}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{6AB857FE-524E-456A-BA63-6486C8FE8D1D}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{6AB857FE-524E-456A-BA63-6486C8FE8D1D}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{6AB857FE-524E-456A-BA63-6486C8FE8D1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6AB857FE-524E-456A-BA63-6486C8FE8D1D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6AB857FE-524E-456A-BA63-6486C8FE8D1D}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{6AB857FE-524E-456A-BA63-6486C8FE8D1D}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{6AB857FE-524E-456A-BA63-6486C8FE8D1D}.Release|x86.ActiveCfg = Release|Any CPU
-		{949C39D8-A233-4C1B-8943-BA09EBDE48A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{949C39D8-A233-4C1B-8943-BA09EBDE48A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{949C39D8-A233-4C1B-8943-BA09EBDE48A4}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{949C39D8-A233-4C1B-8943-BA09EBDE48A4}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{949C39D8-A233-4C1B-8943-BA09EBDE48A4}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{949C39D8-A233-4C1B-8943-BA09EBDE48A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{949C39D8-A233-4C1B-8943-BA09EBDE48A4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{949C39D8-A233-4C1B-8943-BA09EBDE48A4}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{949C39D8-A233-4C1B-8943-BA09EBDE48A4}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{949C39D8-A233-4C1B-8943-BA09EBDE48A4}.Release|x86.ActiveCfg = Release|Any CPU
-		{6CA13150-9A0F-4FBA-B98F-1B547206B1FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6CA13150-9A0F-4FBA-B98F-1B547206B1FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6CA13150-9A0F-4FBA-B98F-1B547206B1FF}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{6CA13150-9A0F-4FBA-B98F-1B547206B1FF}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{6CA13150-9A0F-4FBA-B98F-1B547206B1FF}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{6CA13150-9A0F-4FBA-B98F-1B547206B1FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6CA13150-9A0F-4FBA-B98F-1B547206B1FF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6CA13150-9A0F-4FBA-B98F-1B547206B1FF}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{6CA13150-9A0F-4FBA-B98F-1B547206B1FF}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{6CA13150-9A0F-4FBA-B98F-1B547206B1FF}.Release|x86.ActiveCfg = Release|Any CPU
-		{80621A94-37D6-419E-BD4B-F1F060915BE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{80621A94-37D6-419E-BD4B-F1F060915BE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{80621A94-37D6-419E-BD4B-F1F060915BE2}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{80621A94-37D6-419E-BD4B-F1F060915BE2}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{80621A94-37D6-419E-BD4B-F1F060915BE2}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{80621A94-37D6-419E-BD4B-F1F060915BE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{80621A94-37D6-419E-BD4B-F1F060915BE2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{80621A94-37D6-419E-BD4B-F1F060915BE2}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{80621A94-37D6-419E-BD4B-F1F060915BE2}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{80621A94-37D6-419E-BD4B-F1F060915BE2}.Release|x86.ActiveCfg = Release|Any CPU
 		{606F4FFC-58B5-473A-8346-2E6D019BDB1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{606F4FFC-58B5-473A-8346-2E6D019BDB1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{606F4FFC-58B5-473A-8346-2E6D019BDB1C}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
@@ -152,5 +73,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = WoWCommunityTools.vsmdi
 	EndGlobalSection
 EndGlobal
