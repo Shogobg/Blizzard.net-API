@@ -3,9 +3,7 @@ The Library is written in C# and is available for .NET Framework 4, Silverlight 
 Originally this project was created by Sherif Elmetainy (Grendiser@Kazzak-EU) @ https://wowsharp.codeplex.com/ under the MIT license.
 Since codeplex is going to be closed and this project was abandoned by Grendizer i am copying the project here.
 
-## Downloading the Package
-
-Download NuGet package using the following Command from Package Manager Console: Install-Package WOWSharp
+To use the Blizzard API and this library, you will need an account and API Key from https://dev.battle.net/
 
 ## Features
 
@@ -41,8 +39,4 @@ Download NuGet package using the following Command from Package Manager Console:
     * Get Item or recipe information
     * Get Artisan information
     * Get Follower information
-* SilverLight library (Requires a proxy on the site of origin to route calls to battle.net if it's running in browser mode)
 * Supports basic caching functionality (Cache Manager implementation not included, but the library supports hooking to any cache manager such as enterprise manager caching block, or MemoryCache)
-* Supports API Key authorization (Requires .NET 4). It's not supported in Silverlight.
-* An HTTP Handler to be added on the Silverlight application's site that handles routing calls to battle.net
-
