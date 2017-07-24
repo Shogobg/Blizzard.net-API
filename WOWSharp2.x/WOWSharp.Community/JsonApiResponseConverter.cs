@@ -1,5 +1,4 @@
-﻿
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -21,8 +20,8 @@ namespace WOWSharp.Community
         /// <param name="message">message</param>
         public JsonApiResponseConverter(ApiClient client, HttpResponseMessage message)
         {
-            this.ApiClient = client;
-            this.ResponseMessage = message;
+			ApiClient = client;
+			ResponseMessage = message;
         }
 
         /// <summary>
@@ -64,15 +63,6 @@ namespace WOWSharp.Community
         /// <returns>Parsed object</returns>
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            if (objectType == null)
-                throw new ArgumentNullException("objectType");
-
-            if (reader == null)
-                throw new ArgumentNullException("reader");
-
-            if (serializer == null)
-                throw new ArgumentNullException("serializer");
-
             if (reader.TokenType == JsonToken.Null)
                 return null;
 
@@ -96,22 +86,26 @@ namespace WOWSharp.Community
             {
                 apiResponseResult.LastModifiedUtc = DateTime.UtcNow;
                 IEnumerable<string> lastModifiedHeaders;
+
                 if (responseMessage.Headers.TryGetValues("Last-Modified", out lastModifiedHeaders))
                 {
                     if (lastModifiedHeaders != null)
                     {
                         var lastModifiedHeaderString = lastModifiedHeaders.FirstOrDefault();
+
                         if (!string.IsNullOrWhiteSpace(lastModifiedHeaderString))
                         {
                             DateTime date;
-                            if (DateTime.TryParseExact(lastModifiedHeaderString, "R",
-                                                                                CultureInfo.InvariantCulture,
-                                                                                DateTimeStyles.AdjustToUniversal |
-                                                                                DateTimeStyles.AllowInnerWhite |
-                                                                                DateTimeStyles.AllowLeadingWhite |
-                                                                                DateTimeStyles.AllowTrailingWhite |
-                                                                                DateTimeStyles.AssumeUniversal,
-                                                                                out date))
+                            if (DateTime.TryParseExact(
+								lastModifiedHeaderString,
+								"R",
+                                CultureInfo.InvariantCulture,
+                                DateTimeStyles.AdjustToUniversal |
+                                DateTimeStyles.AllowInnerWhite |
+                                DateTimeStyles.AllowLeadingWhite |
+                                DateTimeStyles.AllowTrailingWhite |
+                                DateTimeStyles.AssumeUniversal,
+                                out date))
                             {
                                 apiResponseResult.LastModifiedUtc = date;
                             }

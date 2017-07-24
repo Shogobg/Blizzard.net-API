@@ -42,13 +42,9 @@ namespace WOWSharp.Community.Diablo
         /// <returns>Deserialized object</returns>
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            if (reader == null)
-                throw new ArgumentNullException("reader");
-            if (serializer == null)
-                throw new ArgumentNullException("serializer");
-
             JObject jObject = JObject.Load(reader);
             var tooltipParametersProperty = jObject["tooltipParams"];
+
             if (tooltipParametersProperty == null)
             {
                 var itemProducedProperty = jObject["itemProduced"];
@@ -62,6 +58,7 @@ namespace WOWSharp.Community.Diablo
             if (tooltipParametersProperty != null && tooltipParametersProperty.Type == JTokenType.String)
             {
                 var tooltipParameter = tooltipParametersProperty.Value<string>();
+
                 if (!string.IsNullOrEmpty(tooltipParameter))
                 {
                     Item item = null;
@@ -69,10 +66,12 @@ namespace WOWSharp.Community.Diablo
                     {
                         item = new Item();
                     }
+
                     if (tooltipParameter.StartsWith("recipe/", StringComparison.OrdinalIgnoreCase))
                     {
                         item = new Recipe();
                     }
+
                     if (item != null)
                     {
                         serializer.Populate(jObject.CreateReader(), item);
@@ -82,6 +81,7 @@ namespace WOWSharp.Community.Diablo
                     }
                 }
             }
+
             throw new JsonSerializationException(ErrorMessages.FailedToDeserializeDataItem);
         }
 

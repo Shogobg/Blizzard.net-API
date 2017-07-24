@@ -79,16 +79,31 @@ namespace WOWSharp.Community.Diablo
         {
             get
             {
-                if (Act5 != null && Act5.IsCompleted)
-                    return DiabloAct.Act5;
-                if (Act4 != null && Act4.IsCompleted)
-                    return DiabloAct.Act4;
-                if (Act3 != null && Act3.IsCompleted)
-                    return DiabloAct.Act3;
-                if (Act2 != null && Act2.IsCompleted)
-                    return DiabloAct.Act2;
-                if (Act1 != null && Act1.IsCompleted)
-                    return DiabloAct.Act1;
+				if (Act5 != null && Act5.IsCompleted)
+				{
+					return DiabloAct.Act5;
+				}
+
+				if (Act4 != null && Act4.IsCompleted)
+				{
+					return DiabloAct.Act4;
+				}
+
+				if (Act3 != null && Act3.IsCompleted)
+				{
+					return DiabloAct.Act3;
+				}
+
+				if (Act2 != null && Act2.IsCompleted)
+				{
+					return DiabloAct.Act2;
+				}
+
+				if (Act1 != null && Act1.IsCompleted)
+				{
+					return DiabloAct.Act1;
+				}
+
                 return DiabloAct.None;
             }
         }
