@@ -46,35 +46,43 @@ namespace WOWSharp.Community
         /// <returns>Deserialized object</returns>
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            if (objectType == null)
-                throw new ArgumentNullException("objectType");
-            if (reader == null)
-                throw new ArgumentNullException("reader");
             if (objectType == typeof(IList<DateTime>) || objectType == typeof(IList<DateTime?>))
             {
                 var elementType = objectType.GetGenericArguments()[0];
-                if (reader.TokenType == JsonToken.Null)
-                    return null;
-                else if (reader.TokenType == JsonToken.StartArray)
-                {
-                    IList list;
-                    if (elementType == typeof(DateTime))
-                        list = new List<DateTime>();
-                    else
-                        list = new List<DateTime?>();
-                    while (reader.Read())
-                    {
-                        if (reader.TokenType == JsonToken.EndArray)
-                            break;
-                        list.Add(ReadDateToken(reader, elementType));
-                    }
-                    return list;
-                }
-                else
-                {
-                    throw new ArgumentException(string.Format(CultureInfo.CurrentCulture,
-                        ErrorMessages.UnexpectedTokenType, reader.TokenType, JsonToken.StartArray));
-                }
+
+				if (reader.TokenType == JsonToken.Null)
+				{
+					return null;
+				}
+				else if (reader.TokenType == JsonToken.StartArray)
+				{
+					IList list;
+
+					if (elementType == typeof(DateTime))
+					{
+						list = new List<DateTime>();
+					}
+					else
+					{
+						list = new List<DateTime?>();
+					}
+
+					while (reader.Read())
+					{
+						if (reader.TokenType == JsonToken.EndArray)
+						{
+							break;
+						}
+
+						list.Add(ReadDateToken(reader, elementType));
+					}
+					return list;
+				}
+				else
+				{
+					throw new ArgumentException(string.Format(CultureInfo.CurrentCulture,
+						ErrorMessages.UnexpectedTokenType, reader.TokenType, JsonToken.StartArray));
+				}
             }
             else if (objectType != typeof(DateTime) && objectType != typeof(DateTime?))
             {
@@ -94,20 +102,26 @@ namespace WOWSharp.Community
         /// <returns>date object</returns>
         private object ReadDateToken(JsonReader reader, Type objectType)
         {
-            if (objectType == typeof(DateTime?) && reader.TokenType == JsonToken.Null)
-                return null;
+			if (objectType == typeof(DateTime?) && reader.TokenType == JsonToken.Null)
+			{
+				return null;
+			}
+
             if (reader.TokenType == JsonToken.Date)
             {
                 return reader.ReadAsDateTime();
             }
+
             if (reader.TokenType != JsonToken.Integer)
             {
                 throw new ArgumentException(
                    string.Format(CultureInfo.CurrentCulture,
                    ErrorMessages.UnexpectedTokenType, reader.TokenType, JsonToken.Integer));
             }
-            var value = Convert.ToInt64(reader.Value, CultureInfo.InvariantCulture);
-            if (_isMilliseconds)
+
+			var value = Convert.ToInt64(reader.Value, CultureInfo.InvariantCulture);
+
+			if (_isMilliseconds)
             {
                 return ApiClient.GetUtcDateFromUnixTimeMilliseconds(value);
             }
@@ -125,73 +139,78 @@ namespace WOWSharp.Community
         /// <param name="serializer">serializer</param>
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            if (writer == null)
-                throw new ArgumentNullException("writer");
-            if (value == null)
-                writer.WriteNull();
-            else if (value is DateTime)
-            {
-                var date = (DateTime)value;
-                if (_isMilliseconds)
-                {
-                    writer.WriteValue(ApiClient.GetUnixTimeFromDateMilliseconds(date));
-                }
-                else
-                {
-                    writer.WriteValue(ApiClient.GetUnixTimeFromDateSeconds(date));
-                }
-            }
-            else if (value is long)
-            {
-                writer.WriteValue((long)value);
-            }
-            else
-            {
-                var dateTimeList = value as IList<DateTime>;
-                if (dateTimeList != null)
-                {
-                    writer.WriteStartArray();
-                    foreach (var date in dateTimeList)
-                    {
-                        if (_isMilliseconds)
-                        {
-                            writer.WriteValue(ApiClient.GetUnixTimeFromDateMilliseconds(date));
-                        }
-                        else
-                        {
-                            writer.WriteValue(ApiClient.GetUnixTimeFromDateSeconds(date));
-                        }
-                    }
-                    writer.WriteEndArray();
-                }
-                else
-                {
-                    var nullableDateTimeList = value as IList<DateTime?>;
-                    if (nullableDateTimeList != null)
-                    {
-                        writer.WriteStartArray();
-                        foreach (var date in nullableDateTimeList)
-                        {
-                            if (!date.HasValue)
-                                writer.WriteNull();
-                            else if (_isMilliseconds)
-                            {
-                                writer.WriteValue(ApiClient.GetUnixTimeFromDateMilliseconds(date.GetValueOrDefault()));
-                            }
-                            else
-                            {
-                                writer.WriteValue(ApiClient.GetUnixTimeFromDateSeconds(date.GetValueOrDefault()));
-                            }
-                        }
-                        writer.WriteEndArray();
-                    }
-                    else
-                    {
-                        throw new ArgumentOutOfRangeException("value", string.Format(CultureInfo.CurrentCulture,
-                           ErrorMessages.UnsupportedConversionType, value.GetType().FullName));
-                    }
-                }
-            }
+			if (value == null)
+			{
+				writer.WriteNull();
+			}
+			else if (value is DateTime)
+			{
+				var date = (DateTime)value;
+				if (_isMilliseconds)
+				{
+					writer.WriteValue(ApiClient.GetUnixTimeFromDateMilliseconds(date));
+				}
+				else
+				{
+					writer.WriteValue(ApiClient.GetUnixTimeFromDateSeconds(date));
+				}
+			}
+			else if (value is long)
+			{
+				writer.WriteValue((long)value);
+			}
+			else
+			{
+				var dateTimeList = value as IList<DateTime>;
+				if (dateTimeList != null)
+				{
+					writer.WriteStartArray();
+					foreach (var date in dateTimeList)
+					{
+						if (_isMilliseconds)
+						{
+							writer.WriteValue(ApiClient.GetUnixTimeFromDateMilliseconds(date));
+						}
+						else
+						{
+							writer.WriteValue(ApiClient.GetUnixTimeFromDateSeconds(date));
+						}
+					}
+					writer.WriteEndArray();
+				}
+				else
+				{
+					var nullableDateTimeList = value as IList<DateTime?>;
+
+					if (nullableDateTimeList != null)
+					{
+						writer.WriteStartArray();
+
+						foreach (var date in nullableDateTimeList)
+						{
+							if (!date.HasValue)
+							{
+								writer.WriteNull();
+							}
+							else if (_isMilliseconds)
+							{
+								writer.WriteValue(ApiClient.GetUnixTimeFromDateMilliseconds(date.GetValueOrDefault()));
+							}
+							else
+							{
+								writer.WriteValue(ApiClient.GetUnixTimeFromDateSeconds(date.GetValueOrDefault()));
+							}
+						}
+
+						writer.WriteEndArray();
+					}
+					else
+					{
+						throw new ArgumentOutOfRangeException("value", string.Format(CultureInfo.CurrentCulture,
+						   ErrorMessages.UnsupportedConversionType, value.GetType().FullName));
+					}
+				}
+			}
         }
     }
 }
