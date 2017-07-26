@@ -21,23 +21,18 @@ THE SOFTWARE.
 
 */
 
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using WOWSharp.Community;
-using WOWSharp.Community.ObjectModel;
-using System.Net;
 using System.Configuration;
 using System.IO;
-using System.Reflection;
+using WOWSharp.Community.Wow;
 
 namespace ApiTest
 {
-    /// <summary>
-    /// Sample console application to for API usage
-    /// </summary>
-    class Program
+	/// <summary>
+	/// Sample console application to for API usage
+	/// </summary>
+	class Program
     {
         /// <summary>
         /// Main entry point for the application
@@ -48,58 +43,44 @@ namespace ApiTest
             string privateKey = ConfigurationManager.AppSettings["PrivateKey"];
             string publicKey = ConfigurationManager.AppSettings["PublicKey"];
 
-            ApiClient client = new ApiClient(Region.US, new ApiKeyPair(publicKey, privateKey), "pt", null);
+            var client = new WowClient(Region.US, "", "pt", null);
 
-            var rewards = client.GetGuildRewards();
+            var rewards = client.GetGuildRewardsAsync().Result;
 
-            var perks = client.GetGuildPerks();
+            var perks = client.GetGuildPerksAsync().Result;
 
-            var realms = client.GetRealmStatus();
+            var realms = client.GetRealmStatusAsync().Result;
 
-            var classes = client.GetClasses();
+            var classes = client.GetClassesAsync().Result;
 
-            var itemCategories = client.GetItemCategoryNames();
+            var itemCategories = client.GetItemCategoryNamesAsync().Result;
 
-            var races = client.GetRaces();
+            var races = client.GetRacesAsync().Result;
 
-            var characterAchievements = client.GetCharacterAchievements();
+            var characterAchievements = client.GetCharacterAchievementsAsync().Result;
 
-            var guildAchievements = client.GetGuildAchievements();
+            var guildAchievements = client.GetGuildAchievementsAsync().Result;
 
-            var quest = client.GetQuest(23);
-
-            var topArena50Teams = client.GetBattlegroupArenaTeams("blackout", 3, 50);
-
-            var character = client.GetCharacter("doomhammer", "grendizer", true);
-            var characterCompletedAchievements =
-                characterAchievements.Categories.Select((c) => GetCharacterAchievements(character, c));
+            var quest = client.GetQuestAsync(23).Result;
+			
+            var character = client.GetCharacterAsync("doomhammer", "grendizer", CharacterFields.All).Result;
+			
             using (FileStream fs = new FileStream("emblem.png", FileMode.Create))
             {
                 character.SaveGuildTabardImage(fs, 240, 240);
             }
-            character.Refresh();
+            character.RefreshAsync(client);
             
-            var guild = client.GetGuild(character.Realm, character.Guild.Name, true);
+            var guild = client.GetGuildAsync(character.Realm, character.Guild.Name, GuildFields.All);
             
             var items = character.Items.AllItems.Select(
-                equippedItem => client.GetItem(equippedItem.ItemId)).ToArray();
+                equippedItem => client.GetItemAsync(equippedItem.ItemId).Result).ToArray();
             var gems = character.Items.AllItems.Where(ei => ei.Parameters != null)
                 .SelectMany(ei => new int?[] { ei.Parameters.Gem0, ei.Parameters.Gem1, ei.Parameters.Gem2, ei.Parameters.Gem3 })
                 .Where(gemid => gemid != null)
-                .Distinct().Select(gemid => client.GetItem(gemid.Value)).ToArray();
+                .Distinct().Select(gemid => client.GetItemAsync(gemid.Value).Result).ToArray();
 
             var auctions = client.GetAuctionDump(character.Realm);
-        }
-
-        private static AchievementCategory GetCharacterAchievements(Character character, AchievementCategory category)
-        {
-            return new AchievementCategory()
-            {
-                Achievements = category.Achievements.Where((ach) => character.Achievements.AchievementsCompleted.Contains(ach.Id)).ToArray(),
-                Categories = category.Categories == null ? null : category.Categories.Select((c) => GetCharacterAchievements(character, c)).ToArray(),
-                Id = category.Id,
-                Name = category.Name
-            };
         }
     }
 }

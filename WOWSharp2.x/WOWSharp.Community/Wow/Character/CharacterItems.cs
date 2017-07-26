@@ -258,8 +258,9 @@ namespace WOWSharp.Community.Wow
                         return Offhand;
                     case EquipmentSlot.Tabard:
                         return Tabard;
+					default:
+						return null;
                 }
-                return null;
             }
         }
 
@@ -282,8 +283,11 @@ namespace WOWSharp.Community.Wow
         /// <returns> Gets string representation (for debugging purposes) </returns>
         public override string ToString()
         {
-            return string.Format(CultureInfo.CurrentCulture, "Average ilvl {0}, Equipped {1}", AverageItemLevel,
-                                 AverageItemLevelEquipped);
+            return string.Format(
+				CultureInfo.CurrentCulture, "Average ilvl {0}, Equipped {1}",
+				AverageItemLevel,
+				AverageItemLevelEquipped
+			);
         }
     }
 }

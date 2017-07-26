@@ -204,8 +204,9 @@ namespace WOWSharp.Community.Diablo
                         return Torso;
                     case EquipmentSlot.Waist:
                         return Waist;
+					default:
+						return null;
                 }
-                return null;
             }
         }
     }

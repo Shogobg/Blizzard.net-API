@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -36,13 +35,20 @@ namespace WOWSharp.Community
             foreach (var field in fields)
             {
                 object[] attrs = field.GetCustomAttributes(typeof (EnumMemberAttribute), false);
-                if (attrs == null || attrs.Length == 0)
-                    continue;
+				if (attrs == null || attrs.Length == 0)
+				{
+					continue;
+				}
+
                 var attr = attrs[0] as EnumMemberAttribute;
-                if (attr == null)
-                    continue;
+				if (attr == null)
+				{
+					continue;
+				}
+
                 dict.Add(attr.Value, (T) Enum.Parse(enumType, field.Name, true));
             }
+
             return dict;
         }
 

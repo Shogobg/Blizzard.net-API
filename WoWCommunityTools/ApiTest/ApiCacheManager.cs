@@ -21,18 +21,14 @@ THE SOFTWARE.
 
 */
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Microsoft.Practices.EnterpriseLibrary.Caching;
 
 namespace ApiTest
 {
-    /// <summary>
-    /// A sample BNet API cache manager that uses the enterprise library caching block
-    /// </summary>
-    public class ApiCacheManager : WOWSharp.Community.ICacheManager
+	/// <summary>
+	/// A sample BNet API cache manager that uses the enterprise library caching block
+	/// </summary>
+	public class ApiCacheManager : WOWSharp.Community.ICacheManager
     {
         /// <summary>
         /// underlying enterprise library cache manager

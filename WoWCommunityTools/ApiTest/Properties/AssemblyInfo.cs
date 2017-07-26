@@ -22,11 +22,7 @@ THE SOFTWARE.
 */
 
 using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using System.Security.Permissions;
-using System.Net;
-using System.Configuration;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
