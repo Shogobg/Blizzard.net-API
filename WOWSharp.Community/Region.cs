@@ -467,8 +467,11 @@ namespace WOWSharp.Community
         /// <returns> The region whose id is specified </returns>
         internal static Region GetRegion(string regionId)
         {
-            if (string.IsNullOrEmpty(regionId))
-                return Default;
+			if (string.IsNullOrEmpty(regionId))
+			{
+				return Default;
+			}
+
             return _regionsDict[regionId];
         }
 
@@ -479,23 +482,27 @@ namespace WOWSharp.Community
         /// <returns> Language of the culture specified is returned if available and supported by the website, otherwise the default language for the regional site is used. </returns>
         public string GetSupportedLocale(string cultureName)
         {
-            if (string.IsNullOrEmpty(cultureName))
-                cultureName = CultureInfo.CurrentCulture.Name;
+			if (string.IsNullOrEmpty(cultureName))
+			{
+				cultureName = CultureInfo.CurrentCulture.Name;
+			}
 
             // try to find the exact culture
-            string foundCulture =
-                SupportedLocales.FirstOrDefault(sc => string.Equals(cultureName, sc, StringComparison.OrdinalIgnoreCase));
+            string foundCulture = SupportedLocales.FirstOrDefault(sc => string.Equals(cultureName, sc, StringComparison.OrdinalIgnoreCase));
             if (foundCulture == null)
             {
                 // if not available, try to find a culture with the same language
-                foundCulture =
-                    SupportedLocales.FirstOrDefault(
-                        sc =>
-                        string.Equals(cultureName.Substring(0, 2), sc.Substring(0, 2),
-                                      StringComparison.OrdinalIgnoreCase));
-                if (foundCulture == null)
-                    return SupportedLocales[0]; // if not available get the site's default language
+                foundCulture = SupportedLocales.FirstOrDefault(
+					sc => string.Equals(cultureName.Substring(0, 2), sc.Substring(0, 2),
+					StringComparison.OrdinalIgnoreCase)
+				);
+
+				if (foundCulture == null)
+				{
+					return SupportedLocales[0]; // if not available get the site's default language
+				}
             }
+
             return foundCulture;
         }
     }

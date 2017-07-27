@@ -103,7 +103,6 @@ namespace WOWSharp.Community.Wow
             switch (FeedItemType)
             {
                 case FeedItemType.BossKill:
-                    return FeedItemType.ToString() + ": " + Achievement.Description;
                 case FeedItemType.Achievement:
                     return FeedItemType.ToString() + ": " + Achievement.Description;
                 case FeedItemType.Loot:

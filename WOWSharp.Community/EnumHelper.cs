@@ -64,11 +64,17 @@ namespace WOWSharp.Community
             foreach (var field in fields)
             {
                 object[] attrs = field.GetCustomAttributes(typeof (EnumMemberAttribute), false);
-                if (attrs == null || attrs.Length == 0)
-                    continue;
+				if (attrs == null || attrs.Length == 0)
+				{
+					continue;
+				}
+
                 var attr = attrs[0] as EnumMemberAttribute;
-                if (attr == null)
-                    continue;
+				if (attr == null)
+				{
+					continue;
+				}
+
                 dict.Add((T) Enum.Parse(enumType, field.Name, true), attr.Value);
             }
             return dict;
@@ -82,13 +88,18 @@ namespace WOWSharp.Community
         public static T ParseEnum(string value)
         {
             int intVal;
-            if (int.TryParse(value, out intVal))
-                return
-                    _enumDict.Keys.Where(k => Convert.ToInt32(k, CultureInfo.InvariantCulture) == intVal).FirstOrDefault
-                        ();
+			if (int.TryParse(value, out intVal))
+			{
+				return _enumDict.Keys.Where(k => Convert.ToInt32(k, CultureInfo.InvariantCulture) == intVal).FirstOrDefault();
+			}
+
             T enumValue = default(T);
-            if (_stringDict.TryGetValue(value, out enumValue))
-                return enumValue;
+
+			if (_stringDict.TryGetValue(value, out enumValue))
+			{
+				return enumValue;
+			}
+
             throw new ArgumentOutOfRangeException("value", string.Format(CultureInfo.InvariantCulture, ErrorMessages.EnumValueInvalid, value, typeof(T).Name));
         }
 
