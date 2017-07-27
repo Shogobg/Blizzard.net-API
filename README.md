@@ -7,6 +7,8 @@ To use the Blizzard API and this library, you will need an account and API Key f
 
 ## Features
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/634aa715861b40cbbdfac28514fd287e)](https://www.codacy.com/app/Shogobg/wowsharp?utm_source=github.com&utm_medium=referral&utm_content=Shogobg/wowsharp&utm_campaign=badger)
+
 * The library handles all HTTP connections, error handling and JSON deserialization
 * Uses Task based async operations which makes developing responsive application easier.
 * The following World of WarCraft API functions are currently supported
