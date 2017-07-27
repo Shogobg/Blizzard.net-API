@@ -80,7 +80,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApiCacheManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -98,6 +97,12 @@
     <Content Include="ReferenceDlls\Microsoft.Practices.ServiceLocation.dll" />
     <Content Include="ReferenceDlls\Microsoft.Practices.Unity.dll" />
     <Content Include="ReferenceDlls\Microsoft.Practices.Unity.Interception.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\WOWSharp2.x\WOWSharp.Community\WOWSharp.Community.csproj">
+      <Project>{da640ccb-a60b-40c5-a052-98dfe436dea9}</Project>
+      <Name>WOWSharp.Community</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

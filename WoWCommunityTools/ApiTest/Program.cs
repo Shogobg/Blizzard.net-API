@@ -67,7 +67,7 @@ namespace ApiTest
 			
             using (FileStream fs = new FileStream("emblem.png", FileMode.Create))
             {
-                character.SaveGuildTabardImage(fs, 240, 240);
+                //character.SaveGuildTabardImage(fs, 240, 240);
             }
             character.RefreshAsync(client);
             
@@ -80,7 +80,7 @@ namespace ApiTest
                 .Where(gemid => gemid != null)
                 .Distinct().Select(gemid => client.GetItemAsync(gemid.Value).Result).ToArray();
 
-            var auctions = client.GetAuctionDump(character.Realm);
+            //var auctions = client.GetAuctionDump(character.Realm);
         }
     }
 }

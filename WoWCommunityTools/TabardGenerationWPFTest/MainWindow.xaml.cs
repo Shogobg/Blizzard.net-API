@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using WOWSharp.Community;
+using WOWSharp.Community.Wow;
 
 namespace TabardGenerationWPFTest
 {
@@ -16,12 +17,12 @@ namespace TabardGenerationWPFTest
 
         private void button1_Click(object sender, RoutedEventArgs e)
         {
-            ApiClient client = new ApiClient();
-            var character = client.GetCharacter("doomhammer", "grendizer", true);
-            var res = character.BeginGenerateTabardImage(240, 240, null, null);
+            var client = new WowClient(Region.US, "", "pt", null);
+			var character = client.GetCharacterAsync("doomhammer", "grendizer", CharacterFields.All).Result;
+            //var res = character.BeginGenerateTabardImage(240, 240, null, null);
             try
             {
-                this.image1.Source = character.EndGenerateTabardImage(res);
+                //this.image1.Source = character.EndGenerateTabardImage(res);
             }
             catch (Exception ex)
             {
