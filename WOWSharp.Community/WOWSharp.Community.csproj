@@ -88,6 +88,7 @@
     <Compile Include="Diablo\AttributeValue.cs" />
     <Compile Include="Diablo\CharacterItems.cs" />
     <Compile Include="Diablo\CharacterStats.cs" />
+    <Compile Include="Diablo\DiabloSeason.cs" />
     <Compile Include="Diablo\EquipmentSlot.cs" />
     <Compile Include="Diablo\Follower.cs" />
     <Compile Include="Diablo\FollowerSkills.cs" />
@@ -158,6 +159,7 @@
     <Compile Include="Wow\ChallengeMode\ChallengeCompletionTime.cs" />
     <Compile Include="Wow\ChallengeMode\ChallengeGroup.cs" />
     <Compile Include="Wow\ChallengeMode\ChallengeGroupMember.cs" />
+    <Compile Include="Wow\CharacterBase.cs" />
     <Compile Include="Wow\Character\CharacterStatistic.cs" />
     <Compile Include="Wow\Character\CharacterStatisticsCategory.cs" />
     <Compile Include="Wow\Character\ClassTalentInfo.cs" />

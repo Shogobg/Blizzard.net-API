@@ -5,7 +5,8 @@ VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{644B9C45-370C-4138-8588-284E4FA12763}"
 	ProjectSection(SolutionItems) = preProject
-		ReleaseNotes.txt = ReleaseNotes.txt
+		LICENSE = LICENSE
+		README.md = README.md
 		WOWSharp.Community\WOWSharp.Community.nuspec = WOWSharp.Community\WOWSharp.Community.nuspec
 	EndProjectSection
 EndProject

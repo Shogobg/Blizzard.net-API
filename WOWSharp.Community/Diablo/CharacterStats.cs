@@ -140,10 +140,30 @@ namespace WOWSharp.Community.Diablo
             internal set;
         }
 
-        /// <summary>
-        /// damage increase from main stat
-        /// </summary>
-        [DataMember(Name = "damageIncrease")]
+		/// <summary>
+		/// toughness
+		/// </summary>
+		[DataMember(Name = "toughness")]
+		public double Toughness
+		{
+			get;
+			internal set;
+		}
+
+		/// <summary>
+		/// healing
+		/// </summary>
+		[DataMember(Name = "healing")]
+		public double Healing
+		{
+			get;
+			internal set;
+		}
+
+		/// <summary>
+		/// damage increase from main stat
+		/// </summary>
+		[DataMember(Name = "damageIncrease")]
         public double DamageIncrease
         {
             get;

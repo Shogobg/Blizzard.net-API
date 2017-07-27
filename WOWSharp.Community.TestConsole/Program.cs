@@ -14,7 +14,7 @@ namespace WOWSharp.ApiClient.TestConsole
         /// </summary>
         private static void Main()
         {
-            WOWSharp.Community.ApiClient.TestMode = false;
+            WOWSharp.Community.ApiClient.TestMode = true;
             
             //TestWowClientAsync().Wait();
             TestDiabloClientAsync().Wait();
@@ -33,7 +33,7 @@ namespace WOWSharp.ApiClient.TestConsole
 				var client = new DiabloClient(Region.EU, "en-gb", apiKey);
 
 				// Get profile
-				var profile = await client.GetProfileAsync("Grendizer#2508");
+				var profile = await client.GetProfileAsync("Shogo#2690");
 
 				// Get Hero
 				var hero = await client.GetHeroAsync(profile.BattleTag, profile.Heroes[0].Id);

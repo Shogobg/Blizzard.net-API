@@ -276,18 +276,16 @@ namespace WOWSharp.Community.Diablo
 			get;
 			internal set;
 		}
-
-
-
-		///// <summary>
-		///// Seasonal profiles
-		///// </summary>
-		//[DataMember(Name = "seasonalProfiles", IsRequired = false)]
-		//public int SeasonalProfiles
-		//{
-		//	get;
-		//	internal set;
-		//}
+		
+		/// <summary>
+		/// Seasonal profiles
+		/// </summary>
+		[DataMember(Name = "seasonalProfiles", IsRequired = false)]
+		public IDictionary<string, DiabloSeason> SeasonalProfiles
+		{
+			get;
+			internal set;
+		}
 
 		/// <summary>
 		/// Handle deserialization

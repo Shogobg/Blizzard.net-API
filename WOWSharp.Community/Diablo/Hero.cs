@@ -5,6 +5,7 @@ using Newtonsoft.Json.Converters;
 using System;
 using System.Globalization;
 using System.Runtime.Serialization;
+using System.Collections.Generic;
 
 namespace WOWSharp.Community.Diablo
 {
@@ -23,11 +24,21 @@ namespace WOWSharp.Community.Diablo
             get;
             internal set;
         }
-		
-        /// <summary>
-        /// Hero's class
-        /// </summary>
-        [DataMember(Name = "class", IsRequired = true)]
+
+		/// <summary>
+		/// character's name
+		/// </summary>
+		[DataMember(Name = "name", IsRequired = true)]
+		public string Name
+		{
+			get;
+			internal set;
+		}
+
+		/// <summary>
+		/// Hero's class
+		/// </summary>
+		[DataMember(Name = "class", IsRequired = true)]
         [JsonConverter(typeof(StringEnumConverter))]
         public HeroClass HeroClass
         {
@@ -35,21 +46,31 @@ namespace WOWSharp.Community.Diablo
             internal set;
         }
 
-        /// <summary>
-        /// Whether the hero is dead (for hardcore characters)
-        /// </summary>
-        [DataMember(Name = "dead", IsRequired = false)]
-        public bool IsDead
-        {
-            get;
-            internal set;
-        }
+		/// <summary>
+		/// Hero's gender
+		/// </summary>
+		[DataMember(Name = "gender", IsRequired = true)]
+		public HeroGender Gender
+		{
+			get;
+			internal set;
+		}
 
-        /// <summary>
-        /// Hero's gender
-        /// </summary>
-        [DataMember(Name = "gender", IsRequired = true)]
-        public HeroGender Gender
+		/// <summary>
+		/// character's level
+		/// </summary>
+		[DataMember(Name = "level", IsRequired = true)]
+		public int Level
+		{
+			get;
+			internal set;
+		}
+
+		/// <summary>
+		/// Whether the hero is dead (for hardcore characters)
+		/// </summary>
+		[DataMember(Name = "dead", IsRequired = false)]
+        public bool IsDead
         {
             get;
             internal set;
@@ -76,29 +97,19 @@ namespace WOWSharp.Community.Diablo
 		}
 
 		/// <summary>
-		/// character's level
+		/// whether the hero is seasonal
 		/// </summary>
-		[DataMember(Name = "level", IsRequired = true)]
-        public int Level
-        {
-            get;
-            internal set;
-        }
+		[DataMember(Name = "seasonCreated", IsRequired = false)]
+		public int SeasonCreated
+		{
+			get;
+			internal set;
+		}
 
-        /// <summary>
-        /// character's name
-        /// </summary>
-        [DataMember(Name = "name", IsRequired = true)]
-        public string Name
-        {
-            get;
-            internal set;
-        }
-
-        /// <summary>
-        /// Paragon level
-        /// </summary>
-        [DataMember(Name = "paragonLevel", IsRequired = false)]
+		/// <summary>
+		/// Paragon level
+		/// </summary>
+		[DataMember(Name = "paragonLevel", IsRequired = false)]
         public int ParagonLevel
         {
             get;
@@ -166,11 +177,20 @@ namespace WOWSharp.Community.Diablo
             internal set;
         }
 
+		/// <summary>
+		/// Hero's stats
+		/// </summary>
+		[DataMember(Name = "legendaryPowers", IsRequired = false)]
+		public IList<string> LegendaryPowers
+		{
+			get;
+			internal set;
+		}
 
-        /// <summary>
-        /// Hero's stats
-        /// </summary>
-        [DataMember(Name = "stats", IsRequired = false)]
+		/// <summary>
+		/// Hero's stats
+		/// </summary>
+		[DataMember(Name = "stats", IsRequired = false)]
         public CharacterStats Stats
         {
             get;
