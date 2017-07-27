@@ -79,8 +79,12 @@ namespace WOWSharp.Community.Diablo
         public static bool CanEquip(HeroClass heroClass, ItemType type)
         {
             int typeInt = (int)type;
-            if ((typeInt & EquipmentSlotMask) == 0)
-                return false;
+
+			if ((typeInt & EquipmentSlotMask) == 0)
+			{
+				return false;
+			}
+
             return ((1 << ((int)heroClass + ClassesShift)) & typeInt) != 0;
         }
 
@@ -93,8 +97,12 @@ namespace WOWSharp.Community.Diablo
         public static bool CanEquip(FollowerType followerType, ItemType type)
         {
             int typeInt = (int)type;
-            if ((typeInt & EquipmentSlotMask) == 0)
-                return false;
+
+			if ((typeInt & EquipmentSlotMask) == 0)
+			{
+				return false;
+			}
+
             return ((1 << ((int)followerType + FollowerShift)) & typeInt) != 0;
         }
 

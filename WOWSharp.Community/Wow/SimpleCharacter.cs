@@ -10,7 +10,7 @@ namespace WOWSharp.Community.Wow
     ///   hence the different class
     /// </summary>
     [DataContract]
-    public class SimpleCharacter
+    public class SimpleCharacter : CharacterBase
     {
         /// <summary>
         ///   Gets or sets the realm name to which the character belongs
@@ -74,41 +74,10 @@ namespace WOWSharp.Community.Wow
             internal set;
         }
 
-        /// <summary>
-        ///   Gets or sets the race id of the character
-        /// </summary>
-        [DataMember(Name = "race", IsRequired = true)]
-        public Race Race
-        {
-            get;
-            internal set;
-        }
-
-        /// <summary>
-        ///   Gets the character faction
-        /// </summary>
-        public Faction Faction
-        {
-            get
-            {
-                if (Race == Race.NeutralPandaren)
-                    return Faction.Neutral;
-                return Race == Race.Worgen
-                       || Race == Race.NightElf
-                       || Race == Race.Human
-                       || Race == Race.Gnome
-                       || Race == Race.Dwarf
-                       || Race == Race.Draenei
-                       || Race == Race.AlliancePandaren
-                           ? Faction.Alliance
-                           : Faction.Horde;
-            }
-        }
-
-        /// <summary>
-        ///   Gets or sets the total achievevement points for the character
-        /// </summary>
-        [DataMember(Name = "achievementPoints", IsRequired = true)]
+		/// <summary>
+		///   Gets or sets the total achievevement points for the character
+		/// </summary>
+		[DataMember(Name = "achievementPoints", IsRequired = true)]
         public int AchievementPoints
         {
             get;

@@ -21,6 +21,7 @@ namespace WOWSharp.Community.Wow
         private static Dictionary<int, ItemStatType[]> InitializeReforgeIds()
         {
             var reforgeIds = new Dictionary<int, ItemStatType[]>();
+
             var statTypes = new ItemStatType[] { 
                 ItemStatType.Spirit, 
                 ItemStatType.DodgeRating, 
@@ -31,7 +32,9 @@ namespace WOWSharp.Community.Wow
                 ItemStatType.ExpertiseRating,
                 ItemStatType.MasteryRating
             };
+
             var startReforgeId = 113;
+
             for (int i = 0; i < statTypes.Length; i++)
             {
                 for (int j = 0; j < statTypes.Length; j++)
@@ -162,8 +165,11 @@ namespace WOWSharp.Community.Wow
         {
             get
             {
-                if (!Reforge.HasValue)
-                    return null;
+				if (!Reforge.HasValue)
+				{
+					return null;
+				}
+
                 return _reforgeIds[Reforge.Value][0];
             }
         }
@@ -175,8 +181,11 @@ namespace WOWSharp.Community.Wow
         {
             get
             {
-                if (!Reforge.HasValue)
-                    return null;
+				if (!Reforge.HasValue)
+				{
+					return null;
+				}
+
                 return _reforgeIds[Reforge.Value][1];
             }
         }

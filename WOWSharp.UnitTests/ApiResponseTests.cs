@@ -29,7 +29,7 @@ namespace WOWSharp.UnitTests
         {
             var client = new WowClient(TestConstants.TestRegionName, "en-gb", TestConstants.apiKey, null);
             var character = client.GetCharacterAsync(TestConstants.TestRealmName, TestConstants.TestCharacterName, CharacterFields.All).Result;
-            character.RefreshAsync(client).Wait();
+			client.RefreshAsync();
         }
     }
 }

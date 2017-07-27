@@ -11,7 +11,7 @@ namespace WOWSharp.Community
 	/// <summary>
 	///   A Blizzard's battle.net community API client
 	/// </summary>
-	public abstract class ApiClient
+	public abstract class ApiClient : ApiResponse
     {
         private const string RegionNameHttpHeader = "X-WOWSharpProxy-Region";
         private const string ApiUrlHttpHeader = "X-WOWSharpProxy-Url";
@@ -100,10 +100,13 @@ namespace WOWSharp.Community
         /// <param name="cacheManager"> Cache manager to cache data </param>
         protected ApiClient(Region region, string locale, ICacheManager cacheManager)
         {
-            if (region == null)
-                region = Region.Default;
+			Region = region;
 
-            Region = region;
+			if (region == null)
+			{
+				Region = Region.Default;
+			}
+
             Locale = Region.GetSupportedLocale(locale);
             _cacheManager = cacheManager;
         }
@@ -207,11 +210,18 @@ namespace WOWSharp.Community
         private static AuthenticationSupport InitializeAuthenticationSupport()
         {
             Type hashType = typeof (int).Assembly.GetType("System.Security.Cryptography.HMACSHA1", false);
-            if (hashType == null)
-                return null;
+
+			if (hashType == null)
+			{
+				return null;
+			}
+
             MethodInfo computeHashMethod = hashType.GetMethod("ComputeHash", new[] {typeof (byte[])});
-            if (computeHashMethod == null)
-                return null;
+
+			if (computeHashMethod == null)
+			{
+				return null;
+			}
             return new AuthenticationSupport
                        {
                            ComputeHashMethod = computeHashMethod,
@@ -274,7 +284,7 @@ namespace WOWSharp.Community
         /// <returns>A task object for the async HTTP get</returns>
         internal async Task<T> GetAsync<T>(string path, T objectToRefresh) where T : class
         {
-            var objResult = await GetAsync(path, typeof(T), objectToRefresh);
+            var objResult = await GetAsync(path, typeof(T), objectToRefresh).ConfigureAwait(false);
             return (T)objResult;
         }
 
@@ -291,16 +301,20 @@ namespace WOWSharp.Community
             {
                 throw new ArgumentNullException("path");
             }
+
             if (_cacheManager != null && objectToRefresh == null)
             {
-                object cachedObject = await GetObjectFromCacheAsync(path);
+                object cachedObject = await GetObjectFromCacheAsync(path).ConfigureAwait(false);
+
                 if (cachedObject != null)
                 {
                     return cachedObject;
                 }
             }
+
             var handler = new HttpClientHandler();
             handler.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
+
             using (var client = new HttpClient(handler))
             {
                 var objectApiResponse = objectToRefresh as ApiResponse;
@@ -312,7 +326,8 @@ namespace WOWSharp.Community
 
                 bool ignoreAuthentication = objectType.IsDefined(typeof(DoNotAuthenticateAttribute), true);
                 var uri = SetupRequest(client, path, ignoreAuthentication);
-                var responseMessage = await client.GetAsync(uri);
+                var responseMessage = await client.GetAsync(uri).ConfigureAwait(false);
+
                 if (responseMessage.StatusCode == HttpStatusCode.NotModified)
                 {
                     return objectToRefresh;
@@ -322,18 +337,17 @@ namespace WOWSharp.Community
                     object obj;
                     if (typeof(ApiResponse).IsAssignableFrom(objectType))
                     {
-                        obj = await DeserializeResponse(path, objectType, responseMessage);
+                        obj = await DeserializeResponse(path, objectType, responseMessage).ConfigureAwait(false);
                     }
                     else
                     {
-                        obj = await responseMessage.Content.ReadAsByteArrayAsync();
+                        obj = await responseMessage.Content.ReadAsByteArrayAsync().ConfigureAwait(false);
                     }
                     if (_cacheManager != null)
                     {
                         try
                         {
-                            await _cacheManager.AddDataAsync(Region.Name
-                                                  + "/" + Locale + "/" + path, obj);
+                            await _cacheManager.AddDataAsync(Region.Name + "/" + Locale + "/" + path, obj).ConfigureAwait(false);
                         }
                         catch (CacheManagerException)
                         {
@@ -345,19 +359,20 @@ namespace WOWSharp.Community
                 else
                 {
                     ApiError apiError = null;
+
                     try
                     {
-                        apiError = (ApiError)await DeserializeResponse(path, typeof(ApiError), responseMessage);
+                        apiError = (ApiError)await DeserializeResponse(path, typeof(ApiError), responseMessage).ConfigureAwait(false);
                     }
                     catch (JsonException)
                     {
                         // Failed to deserialize error
                         apiError = null;
                     }
+
                     throw new ApiException(apiError, responseMessage.StatusCode, null);
                 }
             }
-            
         }
 
         /// <summary>
@@ -369,7 +384,8 @@ namespace WOWSharp.Community
         /// <returns></returns>
         private async Task<object> DeserializeResponse(string path, Type objectType, HttpResponseMessage responseMessage)
         {
-            var responseStream = await responseMessage.Content.ReadAsStreamAsync();
+            var responseStream = await responseMessage.Content.ReadAsStreamAsync().ConfigureAwait(false);
+
             try
             {
                 var textReader = new StreamReader(responseStream);
@@ -380,6 +396,7 @@ namespace WOWSharp.Community
                 try
                 {
                     var serializer = CreateJsonSerializer(responseMessage);
+
                     using (var jsonReader = new JsonTextReader(textReader))
                     {
                         // jsonReader now owns textReader and will dispose it.
@@ -394,7 +411,7 @@ namespace WOWSharp.Community
                         // therefore make it a separate task so that it doesn't block main thread
                         var deserializeTask = new Task<ApiResponse>(() => (ApiResponse)serializer.Deserialize(jsonReader, objectType));
                         deserializeTask.Start();
-                        apiResponseResult = await deserializeTask;
+                        apiResponseResult = await deserializeTask.ConfigureAwait(false);
 
                         // Post serialization
                         apiResponseResult.Path = path;

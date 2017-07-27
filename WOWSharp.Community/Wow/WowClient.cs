@@ -215,15 +215,12 @@ namespace WOWSharp.Community.Wow
         /// <returns> The status of the async operation </returns>
         public Task<Character> GetCharacterAsync(string realm, string characterName, CharacterFields fieldsToRetrieve)
         {
-            string[] fields =
-                EnumHelper<CharacterFields>.GetNames().Where(
-                    name =>
-                    name != "All" &&
+            string[] fields = EnumHelper<CharacterFields>.GetNames().Where(
+                    name => name != "All" &&
                     (fieldsToRetrieve & (CharacterFields) Enum.Parse(typeof (CharacterFields), name, true)) != 0).Select
                     (name => char.ToLowerInvariant(name[0]) + name.Substring(1)).ToArray();
             string queryString = fields.Length == 0 ? "" : "?fields=" + string.Join(",", fields);
-            return
-                GetAsync<Character>(
+            return GetAsync<Character>(
                     "/wow/character/" + GetRealmSlug(realm) + "/" + Uri.EscapeUriString(characterName) + queryString,
                     null);
         }
@@ -565,6 +562,14 @@ namespace WOWSharp.Community.Wow
             return GetAsync<TalentsResponse>("/wow/data/talents", null);
         }
 
-        #endregion Spells and Talents
-    }
+		#endregion Spells and Talents
+
+		/// <summary>
+		///   Refreshes object data from server
+		/// </summary>
+		public Task RefreshAsync()
+		{
+			return RefreshAsync(this, false);
+		}
+	}
 }

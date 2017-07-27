@@ -67,7 +67,7 @@ namespace WOWSharp.ApiClient.TestConsole
             // Character
             var character = await client.GetCharacterAsync("kazzak", "Grendiser", CharacterFields.All);
             // Refresh character info
-            await character.RefreshAsync(client);
+            await client.RefreshAsync();
 
             // Gee pet types
             var petTypes = await client.GetBattlePetTypesAsync();

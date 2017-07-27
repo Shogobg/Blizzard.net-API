@@ -159,8 +159,11 @@ namespace WOWSharp.Community.Diablo
                 foreach (var slot in EnumHelper<EquipmentSlot>.GetValues())
                 {
                     var item = this[slot];
-                    if (item != null)
-                        yield return item;
+
+					if (item != null)
+					{
+						yield return item;
+					}
                 }
             }
         }

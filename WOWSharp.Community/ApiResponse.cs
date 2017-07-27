@@ -54,11 +54,11 @@ namespace WOWSharp.Community
         {
             return _knownTypesCache;
         }
-
-        /// <summary>
-        ///   Refreshes object data from server
-        /// </summary>
-        public Task RefreshAsync(ApiClient client)
+		
+		/// <summary>
+		///   Refreshes object data from server
+		/// </summary>
+		public Task RefreshAsync(ApiClient client)
         {
             return RefreshAsync(client, false);
         }
@@ -69,10 +69,15 @@ namespace WOWSharp.Community
         /// <param name="forceRefresh">if true will not set the If-Modified-Since header, and will force the client to refetch all data from server.</param>
         public async Task RefreshAsync(ApiClient client, bool forceRefresh)
         {
-            object response = await client.GetAsync(Path, this.GetType(), forceRefresh ? null : this);
-            if (response == this)
-                return;
+            object response = await client.GetAsync(Path, GetType(), forceRefresh ? null : this);
+
+			if (response == this)
+			{
+				return;
+			}
+
             PropertyInfo[] properties = GetType().GetProperties();
+
             for (int i = 0; i < properties.Length; i++)
             {
                 object[] attrs = properties[i].GetCustomAttributes(typeof(DataMemberAttribute), true);
