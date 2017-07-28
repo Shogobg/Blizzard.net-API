@@ -1,5 +1,4 @@
-﻿
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 
@@ -13,15 +12,6 @@ namespace WOWSharp.Community.Diablo
 	/// </summary>
 	internal class JsonDataItemConverter : JsonConverter
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="client">client</param>
-        /// <param name="message">message</param>
-        public JsonDataItemConverter()
-        {
-        }
-
         /// <summary>
         /// Whether the converter can converts objects of a given type
         /// </summary>

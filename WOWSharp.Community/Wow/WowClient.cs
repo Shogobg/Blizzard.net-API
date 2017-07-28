@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
@@ -124,6 +123,7 @@ namespace WOWSharp.Community.Wow
         {
             var builder = new StringBuilder();
             bool dash = false;
+
             foreach (char ch in identifier)
             {
                 if (char.IsLetterOrDigit(ch))
@@ -139,6 +139,7 @@ namespace WOWSharp.Community.Wow
                     builder.Append('-');
                 }
             }
+
             return builder.ToString();
         }
 
@@ -168,11 +169,14 @@ namespace WOWSharp.Community.Wow
         /// <returns> The status of the async operation </returns>
         public Task<RealmStatusResponse> GetRealmStatusAsync(string[] realms)
         {
-            if (realms == null || realms.Length == 0)
-                return GetRealmStatusAsync();
-            string queryString = "?realms=" + string.Join(",",
-                                                          realms.Where(r => !string.IsNullOrEmpty(r)).Select(
-                                                              GetRealmSlug).ToArray());
+			if (realms == null || realms.Length == 0)
+			{
+				return GetRealmStatusAsync();
+			}
+
+            string queryString = "?realms=" +
+				string.Join(",", realms.Where(r => !string.IsNullOrEmpty(r)).Select(GetRealmSlug).ToArray());
+
             return GetAsync<RealmStatusResponse>("/wow/realm/status" + queryString, null);
         }
 
@@ -497,11 +501,18 @@ namespace WOWSharp.Community.Wow
         /// <returns> Async operation status </returns>
         public Task<ChallengesResponse> GetChallengeLeadersAsync(string realmName)
         {
+			string slug;
+
             if (string.IsNullOrEmpty(realmName))
             {
-                realmName = "region";
+				slug = GetRealmSlug("region");
             }
-            return GetAsync<ChallengesResponse>("/wow/challenge/" + GetRealmSlug(realmName), null);
+			else
+			{
+				slug = GetRealmSlug(realmName);
+			}
+
+            return GetAsync<ChallengesResponse>("/wow/challenge/" + slug, null);
         }
 
         #endregion Challenges

@@ -63,8 +63,10 @@ namespace WOWSharp.Community
         /// <returns>Parsed object</returns>
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            if (reader.TokenType == JsonToken.Null)
-                return null;
+			if (reader.TokenType == JsonToken.Null)
+			{
+				return null;
+			}
 
             ApiResponse response = (ApiResponse)Activator.CreateInstance(objectType);
 

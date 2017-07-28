@@ -15,7 +15,7 @@ namespace WOWSharp.Community
         /// <summary>
         /// Whether the timestamp value is in milliseconds
         /// </summary>
-        private bool _isMilliseconds;
+        private readonly bool _isMilliseconds;
 
         /// <summary>
         /// Constructor.
