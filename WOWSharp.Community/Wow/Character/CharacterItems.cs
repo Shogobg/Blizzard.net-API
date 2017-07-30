@@ -216,52 +216,49 @@ namespace WOWSharp.Community.Wow
         /// </summary>
         /// <param name="slotName"> name of the equipment slot </param>
         /// <returns> The item equipped by the character in the specified slot </returns>
-        public EquippedItem this[EquipmentSlot slotName]
+        public EquippedItem getEquippedItem(EquipmentSlot slotName)
         {
-            get
-            {
-                switch (slotName)
-                {
-                    case EquipmentSlot.Head:
-                        return Head;
-                    case EquipmentSlot.Neck:
-                        return Neck;
-                    case EquipmentSlot.Shoulder:
-                        return Shoulder;
-                    case EquipmentSlot.Chest:
-                        return Chest;
-                    case EquipmentSlot.Back:
-                        return Back;
-                    case EquipmentSlot.Shirt:
-                        return Shirt;
-                    case EquipmentSlot.Wrist:
-                        return Wrist;
-                    case EquipmentSlot.Hands:
-                        return Hands;
-                    case EquipmentSlot.Waist:
-                        return Waist;
-                    case EquipmentSlot.Legs:
-                        return Legs;
-                    case EquipmentSlot.Feet:
-                        return Feet;
-                    case EquipmentSlot.Finger1:
-                        return Finger1;
-                    case EquipmentSlot.Finger2:
-                        return Finger2;
-                    case EquipmentSlot.Trinket1:
-                        return Trinket1;
-                    case EquipmentSlot.Trinket2:
-                        return Trinket2;
-                    case EquipmentSlot.MainHand:
-                        return MainHand;
-                    case EquipmentSlot.Offhand:
-                        return Offhand;
-                    case EquipmentSlot.Tabard:
-                        return Tabard;
-					default:
-						return null;
-                }
-            }
+			switch (slotName)
+			{
+			    case EquipmentSlot.Head:
+			        return Head;
+			    case EquipmentSlot.Neck:
+			        return Neck;
+			    case EquipmentSlot.Shoulder:
+			        return Shoulder;
+			    case EquipmentSlot.Chest:
+			        return Chest;
+			    case EquipmentSlot.Back:
+			        return Back;
+			    case EquipmentSlot.Shirt:
+			        return Shirt;
+			    case EquipmentSlot.Wrist:
+			        return Wrist;
+			    case EquipmentSlot.Hands:
+			        return Hands;
+			    case EquipmentSlot.Waist:
+			        return Waist;
+			    case EquipmentSlot.Legs:
+			        return Legs;
+			    case EquipmentSlot.Feet:
+			        return Feet;
+			    case EquipmentSlot.Finger1:
+			        return Finger1;
+			    case EquipmentSlot.Finger2:
+			        return Finger2;
+			    case EquipmentSlot.Trinket1:
+			        return Trinket1;
+			    case EquipmentSlot.Trinket2:
+			        return Trinket2;
+			    case EquipmentSlot.MainHand:
+			        return MainHand;
+			    case EquipmentSlot.Offhand:
+			        return Offhand;
+			    case EquipmentSlot.Tabard:
+			        return Tabard;
+				default:
+					return null;
+			}
         }
 
         /// <summary>
@@ -272,7 +269,7 @@ namespace WOWSharp.Community.Wow
             get
             {
                 return EnumHelper<EquipmentSlot>.GetValues()
-                    .Select(slot => this[slot])
+                    .Select(slot => getEquippedItem(slot))
                     .Where(equippedItem => equippedItem != null);
             }
         }

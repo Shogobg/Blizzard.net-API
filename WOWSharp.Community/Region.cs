@@ -482,18 +482,20 @@ namespace WOWSharp.Community
         /// <returns> Language of the culture specified is returned if available and supported by the website, otherwise the default language for the regional site is used. </returns>
         public string GetSupportedLocale(string cultureName)
         {
-			if (string.IsNullOrEmpty(cultureName))
+			var culture = CultureInfo.CurrentCulture.Name;
+			if (!string.IsNullOrEmpty(cultureName))
 			{
-				cultureName = CultureInfo.CurrentCulture.Name;
+				culture = cultureName;
 			}
 
             // try to find the exact culture
-            string foundCulture = SupportedLocales.FirstOrDefault(sc => string.Equals(cultureName, sc, StringComparison.OrdinalIgnoreCase));
+            string foundCulture = SupportedLocales.FirstOrDefault(sc => string.Equals(culture, sc, StringComparison.OrdinalIgnoreCase));
+
             if (foundCulture == null)
             {
                 // if not available, try to find a culture with the same language
                 foundCulture = SupportedLocales.FirstOrDefault(
-					sc => string.Equals(cultureName.Substring(0, 2), sc.Substring(0, 2),
+					sc => string.Equals(culture.Substring(0, 2), sc.Substring(0, 2),
 					StringComparison.OrdinalIgnoreCase)
 				);
 

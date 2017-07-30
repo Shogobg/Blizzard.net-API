@@ -41,7 +41,7 @@ namespace WOWSharp.Community.Wow
                 {
                     if (i != j)
                     {
-                        reforgeIds.Add(startReforgeId++, new ItemStatType[] { statTypes[i], statTypes[j] });
+                        reforgeIds.Add(startReforgeId++, new [] { statTypes[i], statTypes[j] });
                     }
                 }
             }

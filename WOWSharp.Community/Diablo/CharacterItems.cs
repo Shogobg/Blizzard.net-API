@@ -158,7 +158,7 @@ namespace WOWSharp.Community.Diablo
             {
                 foreach (var slot in EnumHelper<EquipmentSlot>.GetValues())
                 {
-                    var item = this[slot];
+                    var item = getEquippedItem(slot);
 
 					if (item != null)
 					{
@@ -173,44 +173,41 @@ namespace WOWSharp.Community.Diablo
         /// </summary>
         /// <param name="slot"></param>
         /// <returns></returns>
-        public Item this[EquipmentSlot slot]
+        public Item getEquippedItem(EquipmentSlot slot)
         {
-            get
-            {
-                switch(slot)
-                {
-                    case EquipmentSlot.Bracers:
-                        return Bracers;
-                    case EquipmentSlot.Feet:
-                        return Feet;
-                    case EquipmentSlot.FollowerSpecial: 
-                        return FollowerSpecial;
-                    case EquipmentSlot.Hands:
-                        return Hands;
-                    case EquipmentSlot.Head:
-                        return Head;
-                    case EquipmentSlot.LeftFinger:
-                        return LeftFinger;
-                    case EquipmentSlot.Legs:
-                        return Legs;
-                    case EquipmentSlot.MainHand:
-                        return MainHand;
-                    case EquipmentSlot.Neck:
-                        return Neck;
-                    case EquipmentSlot.Offhand:
-                        return Offhand;
-                    case EquipmentSlot.RightFinger:
-                        return RightFinger;
-                    case EquipmentSlot.Shoulders:
-                        return Shoulders;
-                    case EquipmentSlot.Torso:
-                        return Torso;
-                    case EquipmentSlot.Waist:
-                        return Waist;
-					default:
-						return null;
-                }
-            }
+			switch(slot)
+			{
+			    case EquipmentSlot.Bracers:
+			        return Bracers;
+			    case EquipmentSlot.Feet:
+			        return Feet;
+			    case EquipmentSlot.FollowerSpecial: 
+			        return FollowerSpecial;
+			    case EquipmentSlot.Hands:
+			        return Hands;
+			    case EquipmentSlot.Head:
+			        return Head;
+			    case EquipmentSlot.LeftFinger:
+			        return LeftFinger;
+			    case EquipmentSlot.Legs:
+			        return Legs;
+			    case EquipmentSlot.MainHand:
+			        return MainHand;
+			    case EquipmentSlot.Neck:
+			        return Neck;
+			    case EquipmentSlot.Offhand:
+			        return Offhand;
+			    case EquipmentSlot.RightFinger:
+			        return RightFinger;
+			    case EquipmentSlot.Shoulders:
+			        return Shoulders;
+			    case EquipmentSlot.Torso:
+			        return Torso;
+			    case EquipmentSlot.Waist:
+			        return Waist;
+				default:
+					return null;
+			}
         }
     }
 }
