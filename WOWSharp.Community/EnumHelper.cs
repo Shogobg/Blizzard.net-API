@@ -88,12 +88,13 @@ namespace WOWSharp.Community
         public static T ParseEnum(string value)
         {
             int intVal;
+
 			if (int.TryParse(value, out intVal))
 			{
 				return _enumDict.Keys.Where(k => Convert.ToInt32(k, CultureInfo.InvariantCulture) == intVal).FirstOrDefault();
 			}
 
-            T enumValue = default(T);
+            T enumValue;
 
 			if (_stringDict.TryGetValue(value, out enumValue))
 			{

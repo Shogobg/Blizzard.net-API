@@ -43,11 +43,31 @@ namespace WOWSharp.Community.Diablo
             internal set;
         }
 
-        /// <summary>
-        /// String representation for debug purposes
-        /// </summary>
-        /// <returns></returns>
-        public override string ToString()
+		/// <summary>
+		/// IsGem
+		/// </summary>
+		[DataMember(Name = "isGem", IsRequired = false)]
+		public bool IsGem
+		{
+			get;
+			internal set;
+		}
+
+		/// <summary>
+		/// IsJewel
+		/// </summary>
+		[DataMember(Name = "isJewel", IsRequired = false)]
+		public bool IsJewel
+		{
+			get;
+			internal set;
+		}
+
+		/// <summary>
+		/// String representation for debug purposes
+		/// </summary>
+		/// <returns></returns>
+		public override string ToString()
         {
             return Item == null ? "" : Item.ToString();
         }

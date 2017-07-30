@@ -35,8 +35,7 @@ namespace WOWSharp.Community.Diablo
         /// <returns></returns>
         public override string ToString()
         {
-            return MinimumValue == MaximumValue ? MinimumValue.ToString(CultureInfo.InvariantCulture) 
-                : (MinimumValue.ToString(CultureInfo.InvariantCulture) + "-" + MaximumValue.ToString(CultureInfo.InvariantCulture));
+            return MinimumValue.ToString(CultureInfo.InvariantCulture) + "-" + MaximumValue.ToString(CultureInfo.InvariantCulture);
         }
     }
 }

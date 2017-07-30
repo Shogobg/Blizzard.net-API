@@ -271,6 +271,7 @@ namespace WOWSharp.Community
 							  : new Uri(uri + "?apikey=" + _apiKey);
 					}
                 }
+
                 return uri;
             }
         }

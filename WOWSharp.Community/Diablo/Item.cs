@@ -271,6 +271,26 @@ namespace WOWSharp.Community.Diablo
 		}
 
 		/// <summary>
+		/// seasonRequiredToDrop
+		/// </summary>
+		[DataMember(Name = "seasonRequiredToDrop")]
+		public int SeasonRequiredToDrop
+		{
+			get;
+			internal set;
+		}
+
+		/// <summary>
+		/// isSeasonRequiredToDrop
+		/// </summary>
+		[DataMember(Name = "isSeasonRequiredToDrop")]
+		public bool IsSeasonRequiredToDrop
+		{
+			get;
+			internal set;
+		}
+
+		/// <summary>
 		/// Item description
 		/// </summary>
 		[DataMember(Name = "description")]

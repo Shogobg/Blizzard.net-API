@@ -131,27 +131,5 @@ namespace WOWSharp.Community.Wow
         {
             return Name;
         }
-
-        ///// <summary>
-        /////   Performs additional processing after the guild information is deserialized
-        ///// </summary>
-        ///// <param name="client"> </param>
-        //protected internal override void OnDeserialized(ApiClient client)
-        //{
-        //    base.OnDeserialized(client);
-        //    if (Members != null)
-        //    {
-        //        //long lastModified = (long)(DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalMilliseconds;
-        //        for (int i = 0; i < Members.Count; i++)
-        //        {
-        //            Character ch = Members[i].Character;
-        //            ch.LastModifiedUtc = LastModifiedUtc;
-        //            ch.Client = client;
-        //            ch.Path = "/wow/character/" + WowClient.GetRealmSlug(ch.Realm) + "/" +
-        //                      Uri.EscapeUriString(ch.Name);
-        //            ch.OnDeserialized(client);
-        //        }
-        //    }
-        //}
     }
 }

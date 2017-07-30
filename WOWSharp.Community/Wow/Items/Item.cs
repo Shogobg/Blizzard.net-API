@@ -169,28 +169,6 @@ namespace WOWSharp.Community.Wow
             internal set;
         }
 
-        ///// <summary>
-        /////   Gets or sets the item sub category
-        ///// </summary>
-        //public ItemSubcategory Subcategory
-        //{
-        //    get
-        //    {
-        //        unchecked
-        //        {
-        //            return (ItemSubcategory) (((long) Category << 32) | (uint) SubcategoryId);
-        //        }
-        //    }
-        //    //internal set
-        //    //{
-        //    //    unchecked
-        //    //    {
-        //    //        this.SubcategoryId = (int)((long)value & 0xffffffffL);
-        //    //        this.Category = (ItemCategory)(((long)value & 0xffff) >> 32);
-        //    //    }
-        //    //}
-        //}
-
         /// <summary>
         ///   Gets or sets the container item slots (the value is zero if the item is not a container)
         /// </summary>
