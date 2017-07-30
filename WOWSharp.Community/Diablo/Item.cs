@@ -319,21 +319,7 @@ namespace WOWSharp.Community.Diablo
 			get;
 			internal set;
 		}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+		
 		/// <summary>
 		/// Recipe that craft the items 
 		/// </summary>
@@ -373,8 +359,7 @@ namespace WOWSharp.Community.Diablo
 			get;
 			internal set;
 		}
-
-
+		
 		/// <summary>
 		/// Minumum damage
 		/// </summary>
@@ -384,8 +369,7 @@ namespace WOWSharp.Community.Diablo
 			get;
 			internal set;
 		}
-
-
+		
 		/// <summary>
 		/// Maximum damage
 		/// </summary>
@@ -396,7 +380,6 @@ namespace WOWSharp.Community.Diablo
 			internal set;
 		}
 
-
 		/// <summary>
 		/// Attacks per second
 		/// </summary>
@@ -406,9 +389,7 @@ namespace WOWSharp.Community.Diablo
 			get;
 			internal set;
 		}
-
 		
-
 		/// <summary>
 		/// String representation for debug purposes
 		/// </summary>

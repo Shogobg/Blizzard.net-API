@@ -12,10 +12,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WOWSharp.Community", "WOWSharp.Community\WOWSharp.Community.csproj", "{DA640CCB-A60B-40C5-A052-98DFE436DEA9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WOWSharp.ApiClient.TestConsole", "WOWSharp.Community.TestConsole\WOWSharp.ApiClient.TestConsole.csproj", "{04B72007-5F11-472F-9FDB-34DF8662C849}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WOWSharp.UnitTests", "WOWSharp.UnitTests\WOWSharp.UnitTests.csproj", "{B4F201C4-0F90-4CD6-8795-6F1FBFB673C1}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,14 +22,6 @@ Global
 		{DA640CCB-A60B-40C5-A052-98DFE436DEA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DA640CCB-A60B-40C5-A052-98DFE436DEA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DA640CCB-A60B-40C5-A052-98DFE436DEA9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{04B72007-5F11-472F-9FDB-34DF8662C849}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{04B72007-5F11-472F-9FDB-34DF8662C849}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{04B72007-5F11-472F-9FDB-34DF8662C849}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{04B72007-5F11-472F-9FDB-34DF8662C849}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B4F201C4-0F90-4CD6-8795-6F1FBFB673C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B4F201C4-0F90-4CD6-8795-6F1FBFB673C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B4F201C4-0F90-4CD6-8795-6F1FBFB673C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B4F201C4-0F90-4CD6-8795-6F1FBFB673C1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
