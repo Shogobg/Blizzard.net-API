@@ -33,11 +33,6 @@ namespace WOWSharp.Community
         }
 
         /// <summary>
-        ///   Authentication support
-        /// </summary>
-        private static readonly AuthenticationSupport _authenticationSupport = InitializeAuthenticationSupport();
-
-        /// <summary>
         ///   Reference date for Unix time
         /// </summary>
         private static readonly DateTime _unixStartDate = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
@@ -204,39 +199,12 @@ namespace WOWSharp.Community
         }
 
         /// <summary>
-        ///   Initialize authenticatio support
-        /// </summary>
-        /// <returns> </returns>
-        private static AuthenticationSupport InitializeAuthenticationSupport()
-        {
-            Type hashType = typeof (int).Assembly.GetType("System.Security.Cryptography.HMACSHA1", false);
-
-			if (hashType == null)
-			{
-				return null;
-			}
-
-            MethodInfo computeHashMethod = hashType.GetMethod("ComputeHash", new[] {typeof (byte[])});
-
-			if (computeHashMethod == null)
-			{
-				return null;
-			}
-            return new AuthenticationSupport
-                       {
-                           ComputeHashMethod = computeHashMethod,
-                           HashType = hashType,
-                       };
-        }
-
-        /// <summary>
         ///   Creates a GET request
         /// </summary>
         /// <param name="client">HttpClient object</param>
         /// <param name="path">request relative url</param>
-        /// <param name="ignoreAuthentication">whether to always perform unauthenticatd requests </param>
         /// <returns>Request Url.</returns>
-        private Uri SetupRequest(HttpClient client, string path, bool ignoreAuthentication)
+        private Uri SetupRequest(HttpClient client, string path)
         {
             if (ProxyUri != null)
             {
@@ -249,11 +217,7 @@ namespace WOWSharp.Community
             else
             {
                 // Blizzard recommends that SSL is used when authenticating using the API key
-                var uri =
-                    new Uri((_apiKey == null || _authenticationSupport == null || ignoreAuthentication
-                                 ? "http://"
-                                 : "https://")
-                            + Region.Host + path);
+                var uri = new Uri("https://" + Region.Host + path);
 
                 if (!uri.AbsolutePath.EndsWith(".json", StringComparison.OrdinalIgnoreCase))
                 {
@@ -262,15 +226,10 @@ namespace WOWSharp.Community
                               : new Uri(uri + "?locale=" + Locale.Replace('-', '_'));
                 }
 
-                if (!ignoreAuthentication)
-                {
-					if (!string.IsNullOrEmpty(_apiKey) && _authenticationSupport != null)
-					{
-						uri = !string.IsNullOrEmpty(uri.Query)
-							  ? new Uri(uri + "&apikey=" + _apiKey)
-							  : new Uri(uri + "?apikey=" + _apiKey);
-					}
-                }
+
+					uri = !string.IsNullOrEmpty(uri.Query)
+						  ? new Uri(uri + "&apikey=" + _apiKey)
+						  : new Uri(uri + "?apikey=" + _apiKey);
 
                 return uri;
             }
@@ -324,9 +283,8 @@ namespace WOWSharp.Community
                 {
                     client.DefaultRequestHeaders.IfModifiedSince = objectApiResponse.LastModifiedUtc;
                 }
-
-                bool ignoreAuthentication = objectType.IsDefined(typeof(DoNotAuthenticateAttribute), true);
-                var uri = SetupRequest(client, path, ignoreAuthentication);
+				
+                var uri = SetupRequest(client, path);
                 var responseMessage = await client.GetAsync(uri).ConfigureAwait(false);
 
                 if (responseMessage.StatusCode == HttpStatusCode.NotModified)

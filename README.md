@@ -42,3 +42,11 @@ To use the Blizzard API and this library, you will need an account and API Key f
     * Get Artisan information
     * Get Follower information
 * Supports basic caching functionality (Cache Manager implementation not included, but the library supports hooking to any cache manager such as enterprise manager caching block, or MemoryCache)
+
+## Links
+https://dev.battle.net/ - API Home
+https://us.battle.net/forums/en/bnet/15051533/index - Known issues
+https://www.npmjs.com/package/battlenet-api - NPM API Package
+https://github.com/benweier/blizzard.js - NPM API Package
+https://wowwiki.wikia.com/wiki/Battle.net_API - API Wiki
+https://worldofwarcraft.com/en-us/news/15336025/attention-web-developers - Blizzard OAUTH2 for login with battle.net account

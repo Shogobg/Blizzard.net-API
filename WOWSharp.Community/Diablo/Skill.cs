@@ -67,7 +67,7 @@ namespace WOWSharp.Community.Diablo
         /// Where 
         /// {0} is lang (en, es, pt, it, etc)
         /// {1} is the tooltip returned from this property
-        /// {2} is the host (eu.battle.net, etc)
+        /// {2} is the host (*.api.battle.net, etc)
         /// {3} is protocol (http or https)
         /// {4}://{2}/d3/{0}/tooltip/{1} 
         /// </summary>

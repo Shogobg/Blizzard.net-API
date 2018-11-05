@@ -19,7 +19,7 @@ namespace WOWSharp.Community
         ///   Gets the info about Americas' regional website
         /// </summary>
         private static readonly Region _us = 
-            new Region("US", "us.battle.net",
+            new Region("US", "us.api.battle.net",
                 new ReadOnlyCollection<string>(new[] {"en-US", "es-MX", "pt-BR"}));
 
         /// <summary>
@@ -60,7 +60,7 @@ namespace WOWSharp.Community
         ///   Gets the info about Korean regional website
         /// </summary>
         private static readonly Region _kr = 
-            new Region("KR", "kr.battle.net",
+            new Region("KR", "kr.api.battle.net",
                 new ReadOnlyCollection<string>(new[] {"ko-KR"}));
 
         /// <summary>
@@ -78,7 +78,7 @@ namespace WOWSharp.Community
         ///   Gets the info about Taiwanese regional website
         /// </summary>
         private static readonly Region _tw = 
-            new Region("TW", "tw.battle.net",
+            new Region("TW", "tw.api.battle.net",
                 new ReadOnlyCollection<string>(new[] {"zh-TW"}));
 
         /// <summary>
@@ -96,7 +96,7 @@ namespace WOWSharp.Community
         ///   Gets the info about Chinese regional website
         /// </summary>
         private static readonly Region _cn = 
-            new Region("CN", "www.battlenet.com.cn",
+            new Region("CN", "api.battlenet.com.cn",
             new ReadOnlyCollection<string>(new[] {"zh-CN"}));
 
         /// <summary>
@@ -110,12 +110,28 @@ namespace WOWSharp.Community
             }
         }
 
+		/// <summary>
+		///   Gets the info about South-east asia regional website
+		/// </summary>
+		private static readonly Region _sea =
+			new Region("SEA", "sea.api.battle.net",
+			new ReadOnlyCollection<string>(new[] { "en-US" }));
 
+		/// <summary>
+		///   Gets the info about CN's regional website
+		/// </summary>
+		public static Region SEA
+		{
+			get
+			{
+				return _sea;
+			}
+		}
 
-        /// <summary>
-        ///   Gets a collection of all regions
-        /// </summary>
-        private static readonly ReadOnlyCollection<Region> _allRegions = 
+		/// <summary>
+		///   Gets a collection of all regions
+		/// </summary>
+		private static readonly ReadOnlyCollection<Region> _allRegions = 
             new ReadOnlyCollection<Region>(new[]
             {
                 US, EU, KR, TW, CN
@@ -143,6 +159,7 @@ namespace WOWSharp.Community
                     {"TW", TW},
                     {"CN", CN},
                     {"KR", KR},
+                    {"SEA", SEA},
                 };
 
         /// <summary>
